@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden, NotFound } from "../utils/Errors.js";
+import { BadRequest, Forbidden } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
@@ -19,7 +19,7 @@ class FoldersService {
 
   async getFolderById(folderId) {
     const folder = await dbContext.Folders.findById(folderId);
-    if (!folder) { throw new NotFound(`No folder with ID: ${folderId}`) }
+    if (!folder) { throw new BadRequest(`No folder with ID: ${folderId}`) }
     logger.log('[FOLDER SERVICE] getFolderById(): ', folder)
     return folder
   }

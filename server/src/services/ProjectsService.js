@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden, NotFound } from "../utils/Errors.js";
+import { BadRequest, Forbidden } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
@@ -19,7 +19,7 @@ class ProjectsService {
 
   async getProjectById(projectId) {
     const project = await dbContext.Projects.findById(projectId);
-    if (!project) { throw new NotFound(`No project with ID: ${projectId}`) }
+    if (!project) { throw new BadRequest(`No project with ID: ${projectId}`) }
     logger.log('[PROJECTS SERVICE] getProjectById(): ', project)
     return project
   }

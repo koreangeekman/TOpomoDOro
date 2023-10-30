@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden, NotFound } from "../utils/Errors.js";
+import { BadRequest, Forbidden } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
@@ -15,14 +15,14 @@ function _captureData(newData) {
 class TasksService {
 
   async getTasks(query) {
-    const tasks = await dbContext.Tasks.find(query);
+    const tasks = await dbContext.Tasks.find(query).populate('creator', 'name picture');
     logger.log('[TASKS SERVICE] getTasks(): ', tasks)
     return tasks
   }
 
   async getTaskById(taskId) {
-    const task = await dbContext.Tasks.findById(taskId);
-    if (!task) { throw new NotFound(`No task with ID: ${taskId}`) }
+    const task = await dbContext.Tasks.findById(taskId).populate('creator', 'name picture');
+    if (!task) { throw new BadRequest(`No task with ID: ${taskId}`) }
     logger.log('[TASKS SERVICE] getTaskById(): ', task)
     return task
   }
@@ -31,6 +31,7 @@ class TasksService {
 
   async createTask(body) {
     const newTask = await dbContext.Tasks.create(body);
+    newTask.populate('creator', 'name picture')
     logger.log('[TASKS SERVICE] createTask(): ', newTask)
     return newTask
   }
