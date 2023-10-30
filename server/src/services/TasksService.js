@@ -24,7 +24,6 @@ class TasksService {
     return task
   }
 
-
   // 🔽 REQUIRES AUTHENTICATION 🔽
 
   async createTask(body) {
