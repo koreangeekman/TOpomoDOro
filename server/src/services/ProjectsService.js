@@ -11,7 +11,7 @@ function _captureData(newData) {
 }
 class ProjectsService {
 
-  async getProject() {
+  async getProjects() {
     const projects = await dbContext.Projects.find();
     logger.log('[PROJECTS SERVICE] getProject(): ', projects)
     return projects

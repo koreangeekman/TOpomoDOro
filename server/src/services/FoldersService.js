@@ -11,9 +11,9 @@ function _captureData(newData) {
 }
 class FoldersService {
 
-  async getFolder() {
+  async getFolders() {
     const folders = await dbContext.Folders.find();
-    logger.log('[FOLDER SERVICE] getFolder(): ', folders)
+    logger.log('[FOLDER SERVICE] getFolders(): ', folders)
     return folders
   }
 
