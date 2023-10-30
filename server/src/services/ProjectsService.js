@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden } from "../utils/Errors.js";
+import { Forbidden, NotFound } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
@@ -11,14 +11,15 @@ function _captureData(newData) {
 }
 class ProjectsService {
 
-  async getProjects() {
-    const projects = await dbContext.Projects.find();
+  async getProjects(query) {
+    const projects = await dbContext.Projects.find(query);
     logger.log('[PROJECTS SERVICE] getProject(): ', projects)
     return projects
   }
 
   async getProjectById(projectId) {
     const project = await dbContext.Projects.findById(projectId);
+    if (!project) { throw new NotFound(`No project with ID: ${projectId}`) }
     logger.log('[PROJECTS SERVICE] getProjectById(): ', project)
     return project
   }
@@ -45,7 +46,7 @@ class ProjectsService {
     if (toBeUpdated.creatorId != userId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your project to update') }
     const update = _captureData(newData);
     const updated = await dbContext.Projects.findOneAndUpdate(
-      { _id: userId },
+      { _id: projectId },
       { $set: update },
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     );

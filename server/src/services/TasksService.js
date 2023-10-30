@@ -1,25 +1,28 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden } from "../utils/Errors.js";
+import { Forbidden, NotFound } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
   const updateable = {
     body: newData.body,
     completed: newData.completed,
-    projectId: newData.projectId
+    color: newData.color,
+    projectId: newData.projectId,
+    folderId: newData.folderId
   }
   return updateable
 }
 class TasksService {
 
-  async getTasks() {
-    const tasks = await dbContext.Tasks.find();
+  async getTasks(query) {
+    const tasks = await dbContext.Tasks.find(query);
     logger.log('[TASKS SERVICE] getTasks(): ', tasks)
     return tasks
   }
 
   async getTaskById(taskId) {
     const task = await dbContext.Tasks.findById(taskId);
+    if (!task) { throw new NotFound(`No task with ID: ${taskId}`) }
     logger.log('[TASKS SERVICE] getTaskById(): ', task)
     return task
   }
@@ -45,7 +48,7 @@ class TasksService {
     if (toBeUpdated.creatorId != userId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your task to update') }
     const update = _captureData(newData);
     const updated = await dbContext.Tasks.findOneAndUpdate(
-      { _id: userId },
+      { _id: taskId },
       { $set: update },
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     );

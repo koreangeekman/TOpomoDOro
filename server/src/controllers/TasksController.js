@@ -18,7 +18,7 @@ export class TasksController extends BaseController {
 
   async getTasks(req, res, nxt) {
     try {
-      const tasks = await tasksService.getTasks();
+      const tasks = await tasksService.getTasks(req.query);
       return res.send(tasks)
     } catch (error) {
       nxt(error)

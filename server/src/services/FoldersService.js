@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
-import { Forbidden } from "../utils/Errors.js";
+import { Forbidden, NotFound } from "../utils/Errors.js";
 import { logger } from "../utils/Logger.js";
 
 function _captureData(newData) {
@@ -11,14 +11,15 @@ function _captureData(newData) {
 }
 class FoldersService {
 
-  async getFolders() {
-    const folders = await dbContext.Folders.find();
+  async getFolders(query) {
+    const folders = await dbContext.Folders.find(query);
     logger.log('[FOLDER SERVICE] getFolders(): ', folders)
     return folders
   }
 
   async getFolderById(folderId) {
     const folder = await dbContext.Folders.findById(folderId);
+    if (!folder) { throw new NotFound(`No folder with ID: ${folderId}`) }
     logger.log('[FOLDER SERVICE] getFolderById(): ', folder)
     return folder
   }
@@ -45,7 +46,7 @@ class FoldersService {
     if (toBeUpdated.creatorId != userId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your folder to update') }
     const update = _captureData(newData);
     const updated = await dbContext.Folders.findOneAndUpdate(
-      { _id: userId },
+      { _id: folderId },
       { $set: update },
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     );

@@ -18,7 +18,7 @@ export class FoldersController extends BaseController {
 
   async getFolders(req, res, nxt) {
     try {
-      const folders = await foldersService.getFolders();
+      const folders = await foldersService.getFolders(req.query);
       return res.send(folders)
     } catch (error) {
       nxt(error)
