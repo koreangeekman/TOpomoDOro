@@ -12,6 +12,8 @@ export class TasksController extends BaseController {
       // 🔽 REQUIRES AUTHENTICATION 🔽
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createTask)
+      .put('/:taskId', this.updateTask)
+      .delete('/:taskId', this.removeTask)
   }
 
   async getTasks(req, res, nxt) {
@@ -43,15 +45,6 @@ export class TasksController extends BaseController {
     }
   }
 
-  async removeTask(req, res, nxt) {
-    try {
-      const toBeDeleted = await tasksService.removeTask(req.params.taskId, req.userInfo.id);
-      return res.send('Removed from DB: ', toBeDeleted)
-    } catch (error) {
-      nxt(error)
-    }
-  }
-
   async updateTask(req, res, nxt) {
     try {
       const toBeUpdated = await tasksService.updateTask(req.params.taskId, req.body, req.userInfo.id);
@@ -61,6 +54,13 @@ export class TasksController extends BaseController {
     }
   }
 
-
+  async removeTask(req, res, nxt) {
+    try {
+      const toBeDeleted = await tasksService.removeTask(req.params.taskId, req.userInfo.id);
+      return res.send('Removed from DB: ', toBeDeleted)
+    } catch (error) {
+      nxt(error)
+    }
+  }
 
 }
