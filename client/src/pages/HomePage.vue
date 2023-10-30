@@ -3,9 +3,17 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState";
+
 export default {
   setup() {
-    return {}
+    return {
+      projects: computed(()=> AppState.projects),
+      folders: computed(()=> AppState.folders),
+      tasks: computed(() => AppState.tasks),
+      
+    }
   }
 }
 </script>
