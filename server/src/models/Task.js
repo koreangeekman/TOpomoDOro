@@ -3,10 +3,20 @@ import { Schema } from "mongoose";
 export const TaskSchema = new Schema({
   body: { type: String, required: true, maxLength: 100 },
   completed: { type: Boolean, required: true, default: false },
-  projectId: { type: Schema.Types.ObjectId, required: false, ref: 'Project' },
-  creatorId: { type: Schema.Types.ObjectId, required: false, ref: 'Account' }
+  repeating: { type: Boolean, required: true, default: false }, // condition to enable repeating condition
+  creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }, // 
+  projectId: { type: Schema.Types.ObjectId, required: false, ref: 'Project' }, // if tied to a project
+  watcherId: { type: Schema.Types.ObjectId, required: false, ref: 'Watcher' }, // monitors specified tasks for completion, triggers this task to re-activate
+  repeatingId: { type: Schema.Types.ObjectId, required: false, ref: 'Repeating' }, // ties to a set repeatable schedule - hour, day, week, month, etc
 }, {
   timestamps: true, toJSON: { virtuals: true }
+})
+
+TaskSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
 })
 
 TaskSchema.virtual('project', {
@@ -16,9 +26,16 @@ TaskSchema.virtual('project', {
   ref: 'Project'
 })
 
-TaskSchema.virtual('creator', {
-  localField: 'creatorId',
+TaskSchema.virtual('watcher', {
+  localField: 'watcherId',
   foreignField: '_id',
   justOne: true,
-  ref: 'Account'
+  ref: 'Watcher'
+})
+
+TaskSchema.virtual('repeating', {
+  localField: 'repeatingId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'repeating'
 })
