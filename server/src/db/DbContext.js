@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { AccountSchema } from '../models/Account'
+import { AdvTaskSchema } from "../models/AdvTask.js";
 import { TaskSchema } from "../models/Task.js";
 
 class DbContext {
