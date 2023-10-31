@@ -8,6 +8,8 @@ export const AppState = reactive({
 
   /** @type {import('./models/Task.js').Task} */
   tasks: {},
+  /** @type {import('./models/Note.js').Note} */
+  notes: {},
   /** @type {import('./models/Folder.js').Folder} */
   folders: {},
   /** @type {import('./models/Project.js').Project} */

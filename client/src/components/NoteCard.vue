@@ -4,9 +4,16 @@
 
 
 <script>
+import { Note } from "../models/Note";
+
 export default {
-  setup(){
-  return {  }
+  props: { note: { type: Note} },
+  
+  setup() {
+    
+    return {
+    
+    }
   }
 };
 </script>

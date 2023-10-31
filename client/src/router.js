@@ -22,6 +22,11 @@ const routes = [
     component: loadPage('MasonryProjects')
   },
   {
+    path: '/folders',
+    name: 'Folders',
+    component: loadPage('MasonryFolders')
+  },
+  {
     path: '/notes',
     name: 'Notes',
     component: loadPage('MasonryNotes')
