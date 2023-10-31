@@ -4,6 +4,7 @@ export const AdvTaskSchema = new Schema({
   body: { type: String, required: true, maxLength: 100 },
   completed: { type: Boolean, required: true, default: false },
   repeating: { type: Boolean, required: true, default: false }, // condition to enable repeating condition
+  archived: { type: Boolean, required: true, default: false },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }, // 
   projectId: { type: Schema.Types.ObjectId, required: false, ref: 'Project' }, // if tied to a project
   watcherId: { type: Schema.Types.ObjectId, required: false, ref: 'Watcher' }, // monitors specified tasks for completion, triggers this task to re-activate

@@ -17,6 +17,21 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/projects',
+    name: 'Projects',
+    component: loadPage('MasonryProjects')
+  },
+  {
+    path: '/notes',
+    name: 'Notes',
+    component: loadPage('MasonryNotes')
+  },
+  {
+    path: '/tasks',
+    name: 'Tasks',
+    component: loadPage('MasonryTasks')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),

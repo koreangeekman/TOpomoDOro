@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <p class="fs-1">some stuff</p>
+<div class="container-fluid">
+    <section class="row justify-content-center">
+      <div class="col-6 text-center py-5">
+        ...
+      </div>
+    </section>
   </div>
 </template>
 
