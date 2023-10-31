@@ -16,15 +16,6 @@ class AccountService {
 
   async updateProfile(newData) {
     try {
-      // const toBeUpdated = new Account(newData)
-      
-      // toBeUpdated.name = newData.name
-      // toBeUpdated.github = newData.github
-      // toBeUpdated.linkedin = newData.linkedin
-      // toBeUpdated.resume = newData.resume
-      // toBeUpdated.website = newData.website
-      // toBeUpdated.bio = newData.bio
-
       const res = await api.put(`/account/${newData.id}`, newData);
       AppState.account = new Account(res.data);
       logger.log('profile update response', res.data);
