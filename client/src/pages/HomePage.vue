@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <p class="fs-1">some stuff</p>
+  </div>
 </template>
 
 <script>
@@ -9,10 +11,10 @@ import { AppState } from "../AppState";
 export default {
   setup() {
     return {
-      projects: computed(()=> AppState.projects),
-      folders: computed(()=> AppState.folders),
+      projects: computed(() => AppState.projects),
+      folders: computed(() => AppState.folders),
       tasks: computed(() => AppState.tasks),
-      
+
     }
   }
 }
