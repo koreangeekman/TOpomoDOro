@@ -2,14 +2,13 @@
   <div class="container-fluid">
     <section class="row justify-content-center" data-masonry='{"percentPosition": true }'>
     
-      <div v-for="task in tasks" :key="task.id" class="col-3 p-3">
+      <div v-for="task in tasks" :key="task.id" class="col-3 p-2">
         <TaskCard :task="task" />
       </div>
 
     </section>
   </div>
 </template>
-
 
 <script>
 import { computed, onMounted } from "vue";
@@ -40,7 +39,6 @@ export default {
     components: { TaskCard }
 };
 </script>
-
 
 <style lang="scss" scoped>
 

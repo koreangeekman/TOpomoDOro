@@ -19,15 +19,20 @@ class TasksService{
     AppState.tasks = res.data.map(task => new Task(task));
     logger.log('[TASKS SERVICE] getTasks(): [res.data]', res.data)
   }
-
+  
   async getTaskById(taskId) {
     const res = await api.get(`api/tasks/${taskId}`);
     AppState.activeTask = new Task(res.data);
     logger.log('[TASKS SERVICE] getTaskById(): [res.data]', res.data)
   }
-
-
-
+  
+  
+  async createTask(body) {
+    const res = await api.post('api/tasks', body);
+    AppState.activeTask = new Task(res.data);
+    logger.log('[TASKS SERVICE] createTask(): [res.data]', res.data)
+  }
+  
 
 }
 

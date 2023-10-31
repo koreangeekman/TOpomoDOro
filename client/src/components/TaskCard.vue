@@ -10,11 +10,14 @@
   
     <hr>
     <span class="d-flex justify-content-between">
-      <button class="btn btn-danger" @click="deleteTask(task._id)">
-        Delete <i class="mdi mdi-trash-can"></i>
+      <button title="Edit" class="shadow btn btn-primary" @click="toggleEdit(task.id)">
+        <i class="mdi mdi-pencil-outline"></i>
       </button>
-      <button class="btn btn-primary" @click="toggleEdit()">
-        Edit <i class="mdi mdi-pencil-outline"></i>
+      <button title="Archive" class="shadow btn btn-success" @click="archiveTask(task.id)">
+        <i class="mdi mdi-package-down"></i>
+      </button>
+      <button title="Delete" class="shadow btn btn-danger" @click="deleteTask(task.id)">
+        <i class="mdi mdi-trash-can"></i>
       </button>
     </span>
   </div>
@@ -34,11 +37,26 @@ export default {
 
       toggleEdit(taskId) {
         tasksService.toggleEdit(taskId);
+      },
+
+      archiveTask(taskId) {
+        tasksService.archiveTask(taskId);
+      },
+
+      deleteTask(taskId) {
+        tasksService.deleteTask(taskId);
       }
+
+
+
     }
   }
 };
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.btn{
+opacity: .8;
+}
+</style>
