@@ -18,7 +18,6 @@ class AccountService {
     try {
       const res = await api.put(`/account/${newData.id}`, newData);
       AppState.account = new Account(res.data);
-      logger.log('profile update response', res.data);
     } catch (error) {
       logger.error(error);
       Pop.error(error);

@@ -64,7 +64,9 @@ import Pop from "../utils/Pop";
 
 export default {
   setup() {
+    
     const editable = ref({});
+
     watchEffect(() => {
       if (AppState.account) {
         editable.value = { ...AppState.account };
@@ -73,6 +75,7 @@ export default {
         editable.value = {};
       }
     });
+
     return {
       editable,
 

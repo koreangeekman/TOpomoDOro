@@ -31,7 +31,7 @@
       </div>
 
 
-      <div class="col-12 col-lg-6 col-xxl-5 py-5">
+      <div class="col-12 col-lg-6 col-xxl-5 py-5 pe-xl-5">
         <EditAccountForm  />
       </div>
     </section>
