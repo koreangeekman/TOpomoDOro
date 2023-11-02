@@ -1,8 +1,10 @@
 <template>
-<div class="container-fluid">
+  <div class="container-fluid">
     <section class="row justify-content-center">
       <div class="col-6 text-center py-5">
-        ...
+
+
+
       </div>
     </section>
   </div>
@@ -43,5 +45,18 @@ export default {
       object-position: center;
     }
   }
+}
+
+.blueBlur {
+  background-color: #123456b0;
+  color: whitesmoke;
+  border-radius: .25rem;
+  /* width: fit-content; */
+}
+
+hr,
+i {
+  color: orange;
+  text-shadow: 0 0 5px black;
 }
 </style>

@@ -17,6 +17,10 @@ export const AppState = reactive({
 
   activeTask: null,
   activeFolder: null,
-  activeProject:null,
+  activeProject: null,
+
+  settings: {},
+
+  weather: {},
 
 })
