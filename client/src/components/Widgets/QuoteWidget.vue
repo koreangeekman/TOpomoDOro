@@ -1,17 +1,47 @@
 <template>
-  <div class="component">
-
-
+  <div class="position-relative">
+    <div class="d-flex flex-column align-items-center text-center text-white d-block" id="quote">
+      <div class="blueBlur quoteContent rounded-pill px-3 py-2">{{ quote.content }}</div>
+      <div class="quoteInfo d-flex flex-wrap justify-content-end align-items-center my-2 px-2 py-1">
+        <p class="blueBlur mx-1 py-1 px-2">{{ quote.author }}</p>
+        <p class="blueBlur mx-1 px-2 rounded-circle"> • </p>
+        <p v-for="tag in quote.tags" class="blueBlur py-1 px-2 mx-1 rounded-pill">{{ tag }}</p>[]
+      </div>
+    </div>
+    <i class="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" @click="refresh()"></i>
   </div>
 </template>
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { quotesService } from "../../services/QuotesService.js";
+import { logger } from "../../utils/Logger.js";
+import Pop from "../../utils/Pop.js";
+import { AppState } from '../../AppState';
+import { computed, onMounted } from 'vue';
+
 export default {
   setup() {
-    return {}
+
+    async function _getQuote() {
+      try {
+        await quotesService.getQuote();
+      } catch (error) {
+        logger.error(error);
+        Pop.error(error);
+      }
+    }
+
+    onMounted(() => {
+      _getQuote();
+    })
+
+    return {
+      quote: computed(() => AppState.widgets.quote),
+
+      refresh() { _getQuote() }
+
+    }
   }
 };
 </script>
@@ -19,23 +49,17 @@ export default {
 
 <style lang="scss" scoped>
 #quote {
-  text-align: center;
-  align-self: center;
   width: fit-content;
 }
 
 .quoteContent {
   cursor: help;
   font-size: large;
-  max-width: 69%;
-  width: fit-content;
-  border-radius: 2rem;
+  // width: fit-content;
 }
 
 .quoteInfo {
   font-size: small;
-  width: fit-content;
-  border-radius: 2rem;
   opacity: 0;
   visibility: hidden;
   transition: ease-in-out .25s;
@@ -47,9 +71,20 @@ export default {
 }
 
 .refreshQuote {
-  position: relative;
-  top: 10px;
-  left: 10px;
+  top: -12px;
+  left: -10px;
+  text-shadow: 0 0 5px black;
+}
+
+.blueBlur {
+  background-color: #123456b0;
+  color: whitesmoke;
+  border-radius: .25rem;
+  /* width: fit-content; */
+}
+
+i {
+  color: orange;
   text-shadow: 0 0 5px black;
 }
 </style>

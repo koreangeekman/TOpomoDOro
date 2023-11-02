@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row justify-content-center">
       <div class="col-6 text-center py-5">
-
+        <QuoteWidget />
 
 
       </div>
@@ -13,6 +13,7 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState";
+import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
 
 export default {
   setup() {
@@ -20,9 +21,9 @@ export default {
       projects: computed(() => AppState.projects),
       folders: computed(() => AppState.folders),
       tasks: computed(() => AppState.tasks),
-
-    }
-  }
+    };
+  },
+  components: { QuoteWidget }
 }
 </script>
 

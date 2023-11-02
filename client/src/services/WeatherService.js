@@ -1,5 +1,5 @@
 import { AppState } from "../AppState.js";
-import { api } from "./AxiosService.js";
+import { weatherAPI } from "./AxiosService.js";
 
 class WeatherService {
 
@@ -10,7 +10,7 @@ class WeatherService {
   async getWeather() {
     const userSettings = AppState.settings;
     const query = `?lat=${lat}&lon=${lon}`
-    const res = await api.get(`https://api.openweathermap.org/data/2.5/weather${query}`)
+    const res = await weatherAPI.get(`${query}`)
   }
 
 

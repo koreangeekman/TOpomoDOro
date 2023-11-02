@@ -19,8 +19,28 @@ export const AppState = reactive({
   activeFolder: null,
   activeProject: null,
 
-  settings: {},
+  settings: {
+    weather: {
+      location: '',
+      format: 'F' // 'K'elvin, 'F'ahrenheit, 'C'elsius
+    },
+    quote: {
+      enabled: true,
+      autoChange: false,
+      cycle: 3600 // auto-refresh interval
+    },
+    bgImg: {
+      enabled: true,
+      bgColor: '#123456', // if bgImg is disabled/unresponsive, set a custom bg-color
+      autoChange: false,
+      cycle: 3600 // auto-refresh interval
+    }
+  },
 
-  weather: {},
+  weather: {}, // populated by OpenWeather API on get
 
+  widgets: { // to anchor the current instance of simple widget objects data
+    bgImg: '',
+    quote: ''
+  }
 })
