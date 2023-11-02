@@ -6,7 +6,7 @@ export const api = Axios.create({
   baseURL,
   timeout: 8000
 })
-export const weatherAPI = Axios.create({
+export const weatherAPI = Axios.create({ // returns 5 day forecast results per 3 hrs
   baseURL,
   timeout: 8000,
   params: {

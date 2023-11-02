@@ -1,26 +1,30 @@
 export class Weather {
   constructor(data) {
-    this.id = data.id
-    this.coord = data.coord // lon/lat coords
+    this.city = data.city // 
     this.format = data.format || 'F'
-    this.data.main = data.main // temp in kelvin (feel,high,low) + humidity
-    this.details.location = data.name
-    this.details.weather = data.weather // description + icon
-    this.details.timezone = data.timezone // pre-formatting
-    this.details.sunrise = data.sys.sunrise // pre-formatting
-    this.details.sunset = data.sys.sunset // pre-formatting
-    this.details.humidity = data.main.humidity
+    this.data.temp = data.list[0].main.temp
+    this.data.temp_min = data.list[0].main.temp_min
+    this.data.temp_max = data.list[0].main.temp_max
+    this.data.feels_like = data.list[0].main.feels_like
+    this.details.weather = data.list[0].weather[0] // description + icon
+    this.details.location = data.city.name
+    this.details.timezone = data.city.timezone // pre-formatting / shift in seconds from UTC
+    this.details.sunrise = data.city.sunrise // pre-formatting
+    this.details.sunset = data.city.sunset // pre-formatting
+    this.details.humidity = data.list[0].main.humidity
+    this.conditions.clouds = data.list[0].clouds // % coverage cloudiness
+    this.conditions.rain = data.list[0].rain ? data.list[0].rain : { '3h': 0 } // 3 hr rain volume in mm
+    this.conditions.snow = data.list[0].snow ? data.list[0].snow : { '3h': 0 } // 3 hr snow volume in mm
+    this.conditions.visibility = data.list[0].visibility // % coverage cloudiness
+    this.conditions.wind = data.list[0].wind
   }
 }
 
 const weather = // https://api.openweathermap.org/data/2.5/forecast?id=5586437&appid={key}
 {
-  "cod": "200",
-  "message": 0,
-  "cnt": 40,
   "list": [
     {
-      "dt": 1698926400,
+      "dt": 1698926400, // time of data calc
       "main": {
         "temp": 281.93,
         "feels_like": 281.93,

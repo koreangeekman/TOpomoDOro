@@ -17,6 +17,7 @@
     <!-- https://openweathermap.org/full-price#current -->
     <!-- https://openweathermap.org/appid -->
     <!-- https://openweathermap.org/current -->
+    <!-- https://bulk.openweathermap.org/sample/ -->
   </section>
 </template>
 
