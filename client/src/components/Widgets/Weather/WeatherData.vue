@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
           <i class="mdi mdi-format-vertical-align-top"></i>
           <p class="mb-0 px-2">
-            ${this.maxTempFormat}
+            {{ temps.maxTemp[settings.weather.format] }}
           </p>
         </div>
         <div>
@@ -22,7 +22,7 @@
         </div>
         <div class="d-flex align-items-center">
           <p class="mb-0 px-2">
-            ${this.minTempFormat}
+            {{ temps.minTemp[settings.weather.format] }}
           </p>
           <i class="mdi mdi-format-vertical-align-bottom"></i>
         </div>
@@ -31,13 +31,13 @@
 
     <div class="d-flex justify-content-between align-items-center tempBig">
       <p class="mb-0 px-2">
-        ${this.mainTempFormat}
+        {{ temps.mainTemp[settings.weather.format] }}
       </p>
-      <img class="img-fluid weatherIcon" src="https://openweathermap.org/img/wn/${this.weather['0']?.icon}.png"
-        alt="${this.weather['0']?.description}">
+      <img class="img-fluid weatherIcon" :src="`https://openweathermap.org/img/wn/${data.weather['0']?.icon}.png`"
+        :alt="`${data.weather['0']?.description}`">
     </div>
     <p class="tempSmall mb-4">
-      Feels like: ${this.feelsLikeTempFormat}
+      Feels like: {{ temps.feels_like[settings.weather.format] }}
     </p>
 
   </div>
@@ -51,9 +51,54 @@ import { computed, onMounted } from 'vue';
 export default {
   props: { data: { type: Object } },
 
-  setup() {
+  setup(props) {
 
+    const temps = {}
+
+    function _mainTempFormatted(format) {
+      let temp = props.data.temp;
+      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
+      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
+      return `${temp.toFixed(2)}ºK`
+    }
+
+    function _minTempFormatted(format) {
+      let temp = props.data.temp_min;
+      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
+      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
+      return `${temp.toFixed(2)}ºK`
+    }
+
+    function _maxTempFormatted(format) {
+      let temp = props.data.temp_max;
+      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
+      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
+      return `${temp.toFixed(2)}ºK`
+    }
+
+    function _feelsLikeTempFormatted(format) {
+      let temp = props.data.feels_like;
+      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
+      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
+      return `${temp.toFixed(2)}ºK`
+    }
+
+    function _calcVariables() {
+      const formats = ['K', 'F', 'C'] // HAH
+      formats.forEach(format => {
+        temps.mainTemp[format] = _mainTempFormatted(format)
+        temps.minTemp[format] = _minTempFormatted(format)
+        temps.maxTemp[format] = _maxTempFormatted(format)
+        temps.feels_like[format] = _feelsLikeTempFormatted(format)
+      })
+    }
+
+    onMounted(() => {
+      _calcVariables
+    })
     return {
+      temps,
+      settings: computed(() => AppState.settings)
 
     }
   }
@@ -61,4 +106,20 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tempSmall {
+  font-size: 1rem;
+  line-height: .5rem;
+}
+
+.tempBig {
+  margin-top: -1rem;
+  font-size: 3.2rem;
+  line-height: 3.2rem;
+}
+
+.weatherIcon {
+  height: 86px;
+  width: 86px;
+}
+</style>

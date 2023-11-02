@@ -1,5 +1,5 @@
 <template>
-  <section class="position-relative weather">
+  <section class="position-relative">
     <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
       <div class="d-block text-center temp pe-3" id="weather">
         <WeatherData :data="weather.data" />
@@ -33,6 +33,7 @@ import { weatherService } from "../../../services/weatherService.js";
 
 export default {
   setup() {
+
     async function _getWeather() {
       try {
         await weatherService.getWeather();
@@ -42,9 +43,11 @@ export default {
         Pop.error(error);
       }
     }
+
     onMounted(() => {
       // _getWeather();
     });
+
     return {
       settings: computed(() => AppState.settings),
       weather: computed(() => AppState.weather),
@@ -58,6 +61,7 @@ export default {
           Pop.error(error);
         }
       }
+
     };
   },
   components: { WeatherDetails, WeatherData }
@@ -75,11 +79,6 @@ i {
   border-left: 1px dashed grey;
 }
 
-.tempSmall {
-  font-size: 1rem;
-  line-height: .5rem;
-}
-
 .weather {
   font-family: 'Courier New', Courier, monospace;
   background-color: #123456b0;
@@ -88,11 +87,6 @@ i {
   border-radius: 1rem;
   width: fit-content;
   height: fit-content;
-}
-
-.weatherIcon {
-  height: 86px;
-  width: 86px;
 }
 
 .weatherDetails p {
@@ -107,16 +101,5 @@ i {
   font-family: 'Courier New', Courier, monospace;
   border: 1px solid white;
   border-radius: 1rem;
-}
-
-.tempBig {
-  margin-top: -1rem;
-  font-size: 3.2rem;
-  line-height: 3.2rem;
-  /*  */
-}
-
-.tempSplit {
-  line-height: 3rem;
 }
 </style>

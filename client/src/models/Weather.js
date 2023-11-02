@@ -1,12 +1,12 @@
 export class Weather {
   constructor(data) {
     this.city = data.city // 
-    this.format = data.format || 'F'
     this.data.temp = data.list[0].main.temp
     this.data.temp_min = data.list[0].main.temp_min
     this.data.temp_max = data.list[0].main.temp_max
     this.data.feels_like = data.list[0].main.feels_like
-    this.details.weather = data.list[0].weather[0] // description + icon
+    this.data.weatherIcon = data.list[0].weather[0].icon
+    this.details.weather = data.list[0].weather[0].description
     this.details.location = data.city.name
     this.details.timezone = data.city.timezone // pre-formatting / shift in seconds from UTC
     this.details.sunrise = data.city.sunrise // pre-formatting
