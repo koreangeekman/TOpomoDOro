@@ -8,7 +8,7 @@
         <p v-for="tag in quote.tags" class="blueBlur py-1 px-2 mx-1 rounded-pill">{{ tag }}</p>[]
       </div>
     </div>
-    <i class="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" @click="refresh()"></i>
+    <i class="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" type="button" @click="refresh()"></i>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
     return {
       quote: computed(() => AppState.widgets.quote),
 
-      refresh() { _getQuote() }
+      refresh() { _getQuote() },
 
     }
   }
