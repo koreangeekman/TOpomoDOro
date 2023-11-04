@@ -7,32 +7,39 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="createTask()">
             <span class="d-flex">
-              <div class="mb-3 w-100">
+              <div class="mb-3 me-2 w-100">
                 <label for="project">Project</label>
-                <select name="project" id="project" class="form-control">
+                <select v-model="newTask.projectId" name="project" id="project" class="form-control">
                   <option v-for="project in projects" :key="project.id" :value="project.Id">
-                    <i class="fs-5 mdi mdi-text-box" :style="'color:', project.color"></i>
+                    <i class="fs-3 mdi mdi-text-box me-2" :style="`color:${project.color}`"></i>
                     {{ project.name }}
                   </option>
                 </select>
               </div>
-              <div class="bar mx-3"></div>
-              <div class="mb-3 w-100">
+              <div class="mb-3 ms-2 w-100">
                 <label for="folder">Folder</label>
-                <select name="folder" id="folder" class="form-control">
+                <select v-model="newTask.folderId" name="folder" id="folder" class="form-control">
                   <option v-for="folder in folders" :key="folder.id" :value="folder.Id">
-                    <i class="fs-5 mdi mdi-folder" :style="'color:', folder.color"></i>
+                    <i class="fs-3 mdi mdi-folder me-2" :style="`color:${folder.color}`"></i>
                     {{ folder.name }}
                   </option>
                 </select>
               </div>
             </span>
-            <div class="mb-3">
-              <label for="body">Task</label>
-              <input type="body" name="body" id="body" class="form-control" maxlength="100" required>
-            </div>
+            <span class="d-flex align-items-center">
+              <div class="mb-3 me-3 w-100">
+                <label for="body">Task</label>
+                <input v-model="newTask.body" type="body" name="body" id="body" class="form-control" maxlength="100"
+                  required>
+              </div>
+              <div class="mb-3 position-relative colorPicker">
+                <label for="color">Color</label>
+                <input v-model="newTask.color" type="color" class="border-0">
+                <!-- <i class="position-absolute colorIcon fs-1 mdi mdi-calendar-check" :style="`color:${newTask.color}`"></i> -->
+              </div>
+            </span>
             <div class="modal-footer">
               <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Create Task</button>
             </div>
@@ -48,21 +55,23 @@
 import { AppState } from '../../AppState';
 import { computed, onMounted, ref } from 'vue';
 import Pop from "../../utils/Pop.js";
+import { tasksService } from "../../services/TasksService.js";
 
 export default {
   setup() {
-    const newTask = ref({})
+    const newTask = ref({});
 
     async function _getProjectList() {
       try {
-        // await projectsService.getProjectList()
+        // await projectsService.getProjectList();
       } catch (error) {
         Pop.error(error)
       }
     }
+
     async function _getFolderList() {
       try {
-        // await foldersService.getFolderList()
+        // await foldersService.getFolderList();
       } catch (error) {
         Pop.error(error)
       }
@@ -74,9 +83,20 @@ export default {
     })
 
     return {
+      newTask,
       account: computed(() => AppState.account),
       projects: computed(() => AppState.projects),
       folders: computed(() => AppState.folders),
+      // bgColor: computed(() => newTask.value.color),
+
+      async createTask() {
+        try {
+          await tasksService.createTask(newTask.value);
+          newTask.value = {};
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
 
     }
   }
@@ -88,5 +108,22 @@ export default {
 .bar {
   border-left: 1px solid darkgrey;
   opacity: .5;
+}
+
+.colorIcon {
+  z-index: 0;
+  top: .6rem;
+  left: .5rem;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  // border-radius: 2rem;
+  width: 2.5rem;
+  height: 2.4rem;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 2rem;
 }
 </style>

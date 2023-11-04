@@ -25,7 +25,8 @@ class TasksService {
 
   async createTask(body) {
     const res = await api.post('api/tasks', body);
-    AppState.activeTask = new Task(res.data);
+    AppState.tasks.push(new Task(res.data));
+    // AppState.activeTask = new Task(res.data);
     logger.log('[TASKS SERVICE] createTask(): [res.data]', res.data)
   }
 

@@ -1,5 +1,6 @@
 <template>
-  <div class="card bg-light shadow p-3 position-relative">
+  <div class="rounded bg-light taskColoring p-3 position-relative" :style="`border: 2px solid ${task.color}`">
+    <!-- box-shadow: 0 -3px 3px ${task.project?.color}, 3px 0 3px ${task.folder?.color}, 0 3px 3px ${task.note?.color}, -3px 0 3px ${task.color}; -->
     <div v-if="!task.edit && (task.project || task.folder)" class="fs-5 fw-bold d-flex justify-content-between">
       <p v-if="task.project" class="mb-0">
         <i class="mdi mdi-text-box" :style="'color:', task.project.color"></i>
@@ -40,7 +41,8 @@
         </button>
       </span>
     </div>
-    <img :src="task.creator.picture" :alt="task.creator.name" class="user rounded-circle border p-1 bg-dark">
+    <img :src="task.creator.picture" :alt="task.creator.name" :title="task.creator.name"
+      class="user rounded-circle border p-1 bg-dark">
   </div>
 </template>
 
@@ -55,29 +57,42 @@ import { AppState } from "../AppState.js";
 export default {
   props: { task: { type: Task } },
 
-  setup() {
+  setup(props) {
 
     return {
       account: computed(() => AppState.account),
+      projectColor: computed(() => props.task.project?.color || props.task.color),
+      folderColor: computed(() => props.task.folder?.color || props.task.color),
+      noteColor: computed(() => props.task.note?.color || props.task.color),
+      taskColor: computed(() => props.task.color || '#ffffff'),
 
       enableEdit(taskObj) {
-        tasksService.enableEdit(taskObj);
-      },
-      saveTask(taskObj) {
-        tasksService.saveTask(taskObj);
+        try {
+          tasksService.enableEdit(taskObj);
+        } catch (error) {
+          Pop.error(error)
+        }
       },
 
-      archiveTask(taskId) {
+      async saveTask(taskObj) {
         try {
-          tasksService.archiveTask(taskId);
+          await tasksService.saveTask(taskObj);
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async archiveTask(taskId) {
+        try {
+          await tasksService.archiveTask(taskId);
         } catch (error) {
           Pop.error(error);
         }
       },
 
-      deleteTask(taskId) {
+      async deleteTask(taskId) {
         try {
-          tasksService.deleteTask(taskId);
+          await tasksService.deleteTask(taskId);
         } catch (error) {
           Pop.error(error);
         }
@@ -96,8 +111,8 @@ export default {
   position: absolute;
   height: 2.4rem;
   width: 2.4rem;
-  bottom: -10px;
-  right: -10px;
+  bottom: -1rem;
+  right: -0.5rem;
 }
 
 i {
@@ -106,6 +121,14 @@ i {
 
 .btn {
   opacity: .8;
+}
+
+.taskColoring {
+  box-shadow:
+    0 -3px 3px --var(projectColor),
+    3px 0 3px --var(folderColor),
+    0 3px 3px --var(noteColor),
+    -3px 0 3px --var(taskColor);
 }
 
 @media screen and (max-width: 768px) {

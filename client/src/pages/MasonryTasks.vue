@@ -18,7 +18,7 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import TaskCard from "../components/TaskCard.vue";
 import { tasksService } from "../services/TasksService";
-// import Masonry from "masonry-layout";
+import Masonry from "masonry-layout";
 
 export default {
   setup() {
