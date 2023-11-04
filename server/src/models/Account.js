@@ -13,6 +13,13 @@ export const AccountSchema = new Schema(
     resume: { type: String, required: false, maxLength: 64 },
     website: { type: String, required: false, maxLength: 64 },
     bio: { type: String, required: false, maxLength: 500 },
+    workspaceId: { type: Schema.Types.ObjectId, required: true, ref: 'Workspace' }, // tied to a shared workspace
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
+
+AccountSchema.virtual('workspaces', {
+  localField: 'workspaceId',
+  foreignField: '_id',
+  ref: 'Workspace'
+})

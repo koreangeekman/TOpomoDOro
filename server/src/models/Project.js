@@ -3,8 +3,9 @@ import { Schema } from "mongoose";
 export const ProjectSchema = new Schema({
   name: { type: String, required: true, maxLength: 64 },
   description: { type: String, required: true, maxLength: 500 },
-  archived: { type: Boolean, required: true, default: false },
+  isArchived: { type: Boolean, required: true, default: false },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
+  workspaceId: { type: Schema.Types.ObjectId, required: true, ref: 'Workspace' },
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -15,16 +16,30 @@ ProjectSchema.virtual('creator', {
   ref: 'Account'
 })
 
-ProjectSchema.virtual('basicTasks', {
+ProjectSchema.virtual('folderCount', {
   localField: '_id',
-  foreignField: '_id',
+  foreignField: 'projectId',
   count: true,
-  ref: 'BasicTask'
+  ref: 'Folder'
 })
 
-ProjectSchema.virtual('tasks', {
+ProjectSchema.virtual('noteCount', {
   localField: '_id',
-  foreignField: '_id',
+  foreignField: 'projectId',
+  count: true,
+  ref: 'Note'
+})
+
+ProjectSchema.virtual('taskCount', {
+  localField: '_id',
+  foreignField: 'projectId',
   count: true,
   ref: 'Task'
+})
+
+ProjectSchema.virtual('advTaskCount', {
+  localField: '_id',
+  foreignField: 'projectId',
+  count: true,
+  ref: 'AdvTask'
 })
