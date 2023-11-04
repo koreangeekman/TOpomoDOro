@@ -1,11 +1,11 @@
 <template>
   <div class="position-relative">
     <div class="d-flex flex-column align-items-center text-center text-white d-block" id="quote">
-      <div class="blueBlur quoteContent rounded-pill px-3 py-2">{{ quote.content }}</div>
+      <div class="blueBlur quoteContent rounded-pill border px-3 py-2">{{ quote.content }}</div>
       <div class="quoteInfo d-flex flex-wrap justify-content-end align-items-center my-2 px-2 py-1">
-        <p class="blueBlur mx-1 py-1 px-2">{{ quote.author }}</p>
-        <p class="blueBlur mx-1 px-2 rounded-circle"> • </p>
-        <p v-for="tag in quote.tags" class="blueBlur py-1 px-2 mx-1 rounded-pill">{{ tag }}</p>[]
+        <p class="blueBlur border mx-1 py-1 px-2">{{ quote.author }}</p>
+        <p class="blueBlur px-2 rounded-circle"> • </p>
+        <p v-for="tag in quote.tags" class="blueBlur border py-1 px-2 mx-1 rounded-pill">{{ tag }}</p>
       </div>
     </div>
     <i class="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" type="button" @click="refresh()"></i>
@@ -81,6 +81,7 @@ export default {
   color: whitesmoke;
   border-radius: .25rem;
   /* width: fit-content; */
+  backdrop-filter: blur(5px);
 }
 
 i {
