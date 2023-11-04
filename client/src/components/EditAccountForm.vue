@@ -1,5 +1,5 @@
 <template>
-  <form class="container-fluid card p-3" @submit.prevent="updateProfile()">
+  <form class="container-fluid card bg-light p-3" @submit.prevent="updateProfile()">
     <section class="row justify-content-between">
       <div class="col-12">
         <p class="fs-3 text-center">Edit profile</p>
@@ -34,14 +34,14 @@
           </div>
           <div class="m-3 mt-0">
             <label for="resume">Resume</label>
-            <input v-model="editable.resume" class="ms-2 form-control" type="text" id="resume" maxlength="100">
+            <input v-model="editable.resume" class="ms-2 form-control" type="url" id="resume" maxlength="100">
           </div>
         </section>
       </div>
       <div class="col-12">
         <div class="mx-3 mt-0 mb-4">
           <label for="bio">Bio</label>
-          <textarea v-model="editable.bio" class="ms-2 form-control" name="bio" id="bio" rows="3"
+          <textarea v-model="editable.bio" class="ms-2 form-control" name="bio" id="bio" rows="4"
             maxlength="5000"></textarea>
         </div>
         <hr>
@@ -64,7 +64,7 @@ import Pop from "../utils/Pop";
 
 export default {
   setup() {
-    
+
     const editable = ref({});
 
     watchEffect(() => {
@@ -95,6 +95,4 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

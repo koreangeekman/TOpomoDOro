@@ -1,10 +1,8 @@
 <template>
   <div class="container-fluid">
     <section class="row justify-content-center">
-      <div class="col-6 d-flex justify-content-center py-5">
+      <div class="col-12 col-md-10 col-lg-8 col-xxl-6 d-flex justify-content-center py-5">
         <QuoteWidget />
-
-
       </div>
     </section>
   </div>

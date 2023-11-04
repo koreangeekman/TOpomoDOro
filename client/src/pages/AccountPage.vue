@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row justify-content-evenly align-items-center">
 
-      <div class="col-12 col-md-6 about text-center p-3">
+      <div class="col-12 col-md-6 mt-5 mt-md-0 about text-center text-light p-3">
         <h1>Welcome {{ account.name }}</h1>
         <img class="rounded-circle mt-2 mb-3" :src="account.picture" alt="" />
         <p>{{ account.email }}</p>
@@ -32,23 +32,23 @@
 
 
       <div class="col-12 col-lg-6 col-xxl-5 py-5 pe-xl-5">
-        <EditAccountForm  />
+        <EditAccountForm />
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import { computed} from 'vue';
+import { computed } from 'vue';
 import { AppState } from '../AppState';
 import EditAccountForm from "../components/EditAccountForm.vue";
 
 export default {
   setup() {
-      
-  return {
-    account: computed(() => AppState.account),
-      };
+
+    return {
+      account: computed(() => AppState.account),
+    };
   },
   components: { EditAccountForm }
 }

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <img alt="logo" src="../assets/img/powersymbol2048.png" height="50" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -11,6 +11,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
+        <li>
+          <router-link :to="{ name: 'Projects' }" class="btn text-primary lighten-30 selectable text-uppercase">
+            Projects
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Folders' }" class="btn text-primary lighten-30 selectable text-uppercase">
+            Folders
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Tags' }" class="btn text-primary lighten-30 selectable text-uppercase">
+            Tags
+          </router-link>
+        </li>
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
@@ -48,7 +63,7 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   nav {
     height: 64px;
   }
