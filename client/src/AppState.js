@@ -14,6 +14,8 @@ export const AppState = reactive({
   folders: {},
   /** @type {import('./models/Project.js').Project} */
   projects: {},
+  /** @type {import('./models/Workspace.js').Workspace} */
+  workspaces: {},
 
   activeTask: null,
   activeFolder: null,
