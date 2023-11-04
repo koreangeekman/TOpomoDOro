@@ -10,22 +10,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
+      <ul class="navbar-nav ms-2 me-auto">
+        <li class="d-flex align-items-center">
           <router-link :to="{ name: 'Projects' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Projects
           </router-link>
+          <i class="fs-4 ms-2 me-4 mdi mdi-text-box-plus" type="button"></i>
         </li>
-        <li>
+        <div class="bar me-3"></div>
+        <li class="d-flex align-items-center">
           <router-link :to="{ name: 'Folders' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Folders
           </router-link>
+          <i class="fs-4 ms-2 me-4 mdi mdi-folder-plus" type="button"></i>
         </li>
-        <li>
-          <router-link :to="{ name: 'Tags' }" class="btn text-primary lighten-30 selectable text-uppercase">
-            Tags
+        <div class="bar me-3"></div>
+        <li class="d-flex align-items-center">
+          <router-link :to="{ name: 'Tasks' }" class="btn text-primary lighten-30 selectable text-uppercase">
+            Tasks
           </router-link>
+          <i class="fs-4 ms-2 me-4 mdi mdi-checkbox-marked-circle-plus-outline" type="button"></i>
         </li>
+        <div class="bar me-3"></div>
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
@@ -61,6 +67,11 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.bar {
+  border-left: 1px dashed #ff8000;
+  opacity: .67
 }
 
 @media screen and (min-width: 992px) {
