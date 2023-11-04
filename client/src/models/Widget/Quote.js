@@ -1,4 +1,3 @@
-
 export class Quote {
   constructor(data) {
     this.content = data.content || 'Totally Uninspirational Content'

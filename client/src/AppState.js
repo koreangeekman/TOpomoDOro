@@ -42,7 +42,9 @@ export const AppState = reactive({
   weather: {}, // populated by OpenWeather API on get
 
   widgets: { // to anchor the current instance of simple widget objects data
-    bgImg: '',
-    quote: ''
-  }
+    bgImg: {},
+    quote: {}
+  },
+
+  backgrounds: []
 })

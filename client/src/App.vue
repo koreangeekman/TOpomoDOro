@@ -18,7 +18,9 @@ import NewTaskModal from './components/Modals/NewTaskModal.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      bgImg: computed(() => `url(${AppState.widgets.bgImg.largeImgUrl})`)
+
     }
   },
   components: { Navbar, NewTaskModal }
@@ -28,9 +30,12 @@ export default {
 @import "./assets/scss/main.scss";
 
 :root {
-  --main-height: calc(100vh - 32px - 64px);
+  --main-height: calc(100vh - 64px);
 }
 
+body {
+  background-image: var(bgImg);
+}
 
 footer {
   display: grid;
