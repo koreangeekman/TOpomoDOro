@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <section class="row justify-content-center" data-masonry>
 
-      <div v-for="task in tasks" :key="task.id" class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 p-2 p-lg-3 p-xxl-4">
+      <div v-for="task in tasks" :key="task.id"
+        class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 p-2 p-lg-3 p-xxl-4 pe-2 pe-md-3 ">
         <TaskCard :task="task" />
       </div>
 

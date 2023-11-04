@@ -20,7 +20,7 @@
     <div v-if="task.edit">
       <textarea v-model="task.body" class="form-control" name="body" id="body" rows="3"></textarea>
     </div>
-    <p v-else class="mb-0">{{ task.body }}</p>
+    <p v-else class="mb-0 ms-4 ms-md-0">{{ task.body }}</p>
 
     <div v-if="task.creatorId == account.id">
       <hr>
@@ -40,6 +40,7 @@
         </button>
       </span>
     </div>
+    <img :src="task.creator.picture" :alt="task.creator.name" class="user rounded-circle border p-1 bg-dark">
   </div>
 </template>
 
@@ -91,11 +92,26 @@ export default {
 
 
 <style lang="scss" scoped>
+.user {
+  position: absolute;
+  height: 2.4rem;
+  width: 2.4rem;
+  bottom: -10px;
+  right: -10px;
+}
+
 i {
   line-height: 1.5rem;
 }
 
 .btn {
   opacity: .8;
+}
+
+@media screen and (max-width: 768px) {
+  .user {
+    top: 0;
+    left: 0;
+  }
 }
 </style>
