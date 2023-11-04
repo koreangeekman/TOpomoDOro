@@ -29,7 +29,7 @@ import { logger } from "../../../utils/Logger.js";
 import Pop from "../../../utils/Pop.js";
 import WeatherData from "./WeatherData.vue";
 import WeatherDetails from "./WeatherDetails.vue";
-import { weatherService } from "../../../services/weatherService.js";
+import { weatherService } from "../../../services/WeatherService.js";
 
 export default {
   setup() {

@@ -5,12 +5,15 @@
   <main>
     <router-view />
   </main>
+  <!-- SECTION MODALS -->
+  <NewTaskModal />
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import NewTaskModal from './components/Modals/NewTaskModal.vue'
 
 export default {
   setup() {
@@ -18,13 +21,13 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, NewTaskModal }
 }
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
 }
 

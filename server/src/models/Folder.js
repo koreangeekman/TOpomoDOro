@@ -8,7 +8,7 @@ export const FolderSchema = new Schema({
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
-FolderSchema.virtual('account', {
+FolderSchema.virtual('creator', {
   localField: 'creatorId',
   foreignField: '_id',
   justOne: true,

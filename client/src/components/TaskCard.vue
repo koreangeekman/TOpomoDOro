@@ -1,9 +1,16 @@
 <template>
   <div class="card bg-light shadow p-3 position-relative">
-    <p v-if="!task.edit && (task.project || task.folder)" class="fs-5 fw-bold">
-      {{ task.project ? task.project : '' }} {{ (task.project && task.folder) ? ' & ' : '' }} {{ task.folder ? task.folder
-        : '' }}
-    </p>
+    <div v-if="!task.edit && (task.project || task.folder)" class="fs-5 fw-bold d-flex justify-content-between">
+      <p v-if="task.project" class="mb-0">
+        <i class="mdi mdi-text-box" :style="'color:', task.project.color"></i>
+        {{ task.project }}
+      </p>
+      <p class="mb-0">{{ (task.project && task.folder) ? ' & ' : '' }} </p>
+      <p v-if="task.folder" class="mb-0">
+        <i class="mdi mdi-folder" :style="'color:', task.folder.color"></i>
+        {{ task.folder }}
+      </p>
+    </div>
     <div v-if="task.edit" class="d-flex align-items-center">
       <input id="Project" type="text" class="form-control" placeholder="project">
       <p class="mb-0 mx-2">&</p>
