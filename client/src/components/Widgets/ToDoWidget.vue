@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-12 col-md-auto d-none">
+      <div class="col-12 col-md-auto">
         <form class="d-flex align-items-center" @submit="addTask()">
           <input class="form-control" type="text" name="description" placeholder="New Task?" maxlength="32">
           <button class="btn p-0" type="submit"><i class="fs-3 p-1 mdi mdi-plus-box"></i>
@@ -17,10 +17,9 @@
             <i @click="removeAllCompleted()" type="button" class="ps-2" disabled>Clean up list <i
                 class="mdi mdi-broom"></i></i>
           </div>
-
-          <!-- <div v-for="todo in todos" :key="todo.id">
+          <div v-for="todo in todos" :key="todo.id">
             <ToDoListEntry :todo="todo" />
-          </div> -->
+          </div>
 
         </section>
       </div>
@@ -92,4 +91,20 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+hr,
+i {
+  color: orange;
+  text-shadow: 0 0 5px black;
+}
+
+.bar {
+  border-left: 1px dashed grey;
+}
+
+.card {
+  background-color: #123456b0;
+  color: whitesmoke;
+  width: fit-content;
+}
+</style>

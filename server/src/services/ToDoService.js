@@ -49,19 +49,20 @@ class ToDoService {
   async removeToDo(todoId, creatorId) {
     const toBeDeleted = await dbContext.ToDos.findById(todoId);
     if (toBeDeleted.creatorId != creatorId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your do to remove') }
-    const results = await dbContext.ToDos.remove(todoId);
+    const results = await dbContext.ToDos.deleteOne({ _id: todoId });
     logger.log('[TODO SERVICE] removeToDo(): ', results)
     return toBeDeleted
   }
 
-  async removeToDoBulk(toBeDeleted, creatorId) {
-    const allToDos = await dbContext.ToDos.find({ creatorId });
-    const filtered = allToDos.filter(todo => toBeDeleted.some(pending => pending.id == todo.id));
-    let results = [];
-    for (let i = 0; i < filtered.length; i++) {
-      results.push([filtered[i].id, filtered[i].body, await dbContext.ToDos.remove(filtered[i].id)]);
-    }
-    logger.log('[TODO SERVICE] removeToDo(): ', results)
+  async removeToDoCompleted(creatorId) {
+    // const allToDos = await dbContext.ToDos.find({ creatorId });
+    // const filtered = allToDos.filter(todo => toBeDeleted.some(pending => pending.id == todo.id));
+    // let results = [];
+    // for (let i = 0; i < filtered.length; i++) {
+    //   results.push([filtered[i].id, filtered[i].body, await dbContext.ToDos.remove(filtered[i].id)]);
+    // }
+    const results = await dbContext.ToDos.deleteMany({ creatorId, isCompleted: true })
+    logger.log('[TODO SERVICE] removeToDoCompleted(): ', results)
     return results
   }
 

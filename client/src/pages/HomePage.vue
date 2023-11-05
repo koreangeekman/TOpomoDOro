@@ -1,12 +1,12 @@
 <template>
   <div class="position-relative">
     <div class="container-fluid">
-      <section class="row justify-content-center">
-        <div class="col-12 position-relative">
+      <section class="row justify-content-center p-0">
+        <div class="col-12 col-md-10 p-0 position-relative d-flex justify-content-end">
           <div class="position-absolute BGImgControls">
             <BGImgControlWidget />
           </div>
-          <div class="mx-5 p-0 ToDoWidget">
+          <div class="p-0 ToDoWidget">
             <ToDoWidget />
           </div>
         </div>
@@ -40,6 +40,10 @@ export default {
 
 
 <style scoped lang="scss">
+.ToDoWidget {
+  // align-items: flex-end;
+}
+
 .BGImgControls {
   top: 1rem;
   left: 1rem;
@@ -49,7 +53,6 @@ export default {
   background-color: #123456b0;
   color: whitesmoke;
   border-radius: .25rem;
-  /* width: fit-content; */
 }
 
 hr,
