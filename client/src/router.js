@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/workspaces',
     name: 'Workspaces',
-    component: loadPage('MasonryWorkspaces')
+    component: loadPage('Workspaces')
   },
   {
     path: '/projects',

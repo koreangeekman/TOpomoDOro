@@ -1,7 +1,10 @@
 <template>
-  <div class="component">
+  <div class="container-fluid">
+    <section class="row">
+      <div class="col-12 col-lg-6">
 
-
+      </div>
+    </section>
   </div>
 </template>
 
@@ -21,8 +24,9 @@ export default {
         Pop.error(error)
       }
     }
-    onMounted(() = {
-      _getWorkspaces();
+
+    onMounted(() => {
+      // _getWorkspaces();
     })
 
     return {

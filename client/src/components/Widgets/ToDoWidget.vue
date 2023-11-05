@@ -14,7 +14,11 @@
               <i class="fs-4 ms-1 headIcon mdi mdi-sort-bool-ascending-variant"></i>
             </span>
             <div class="bar"></div>
-            <p class="fs-5 mb-0 px-3 orange" type="button" @click="toggleVisibility()">
+            <p v-if="todos.length == incomplete.length" class="fs-5 mb-0 px-4 mx-4 orange" type="button"
+              @click="toggleVisibility()">
+              <b>{{ todos.length }}</b> things To Do
+            </p>
+            <p v-else class="fs-5 mb-0 px-3 orange" type="button" @click="toggleVisibility()">
               Remaining ToDo: <b>{{ incomplete.length }}</b> of <b>{{ todos.length }}</b>
             </p>
             <div class="bar"></div>
@@ -125,6 +129,7 @@ i,
   background-color: #123456b0;
   color: whitesmoke;
   width: fit-content;
+  backdrop-filter: blur(2px);
 }
 
 .blur {

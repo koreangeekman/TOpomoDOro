@@ -10,7 +10,8 @@
       </p>
     </span>
     <span class="d-flex">
-      <i v-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
+      <div v-if="!todo.edit && todo.isCompleted"></div>
+      <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
         @click="enableEdit(todo)"></i>
       <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
         @click="saveEdit(todo)"></i>
