@@ -1,13 +1,22 @@
 <template>
-  <div class="col-6 col-md-1 d-block text-center blueBlur BGImgCredit">
+  <div class="position-relative text-center blueBlur shadow BGImgCredit">
     <p>Background Image Credit & Controls</p>
     <div class="d-flex flex-wrap p-2" id="BGImgCredit">
-      <!-- draw in bg credit info -->
+      <span class="d-flex w-100 justify-content-between">
+        <p>Author:</p>
+        <p>{{ bgImg.author }}</p>
+      </span>
+      <span class="d-flex w-100 justify-content-between">
+        <p>Tags: </p>
+        <p>{{ bgImg.query }}</p>
+      </span>
+      <span class="d-flex w-100 justify-content-between">
+        <p>Query: </p>
+        <p>{{ bgImg.tags }}</p>
+      </span>
     </div>
-    <div class="d-flex justify-content-evenly">
-      <!-- <i class="fs-4 mdi mdi-skip-backward" onclick="prev()"></i> -->
-      <!-- <i class="fs-4 mdi mdi-dice-d20" onclick="rng()"></i> -->
-      <!-- <i class="fs-4 mdi mdi-skip-forward" onclick="next()"></i> -->
+    <div class="position-absolute changeBG">
+      <i class="fs-4 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
     </div>
   </div>
 </template>
@@ -16,7 +25,6 @@
 <script>
 import { AppState } from '../../AppState';
 import { computed, onMounted } from 'vue';
-import { logger } from "../../utils/Logger.js";
 import Pop from "../../utils/Pop.js";
 import { bgImageService } from "../../services/BGImageService.js";
 
@@ -25,17 +33,26 @@ export default {
     async function _getBGImg() {
       try {
         await bgImageService.getBGImg();
+        document.body.style.backgroundImage = `url('${AppState.widgets.bgImg.largeImgUrl}')`
       } catch (error) {
         Pop.error(error);
       }
     }
 
     onMounted(() => {
-      _getBGImg();
+      if (!AppState.widgets.bgImg.largeImgUrl) {
+        _getBGImg();
+      }
     })
 
     return {
-      backgrounds: computed(() => AppState.backgrounds)
+      backgrounds: computed(() => AppState.backgrounds),
+      bgImg: computed(() => AppState.widgets.bgImg),
+
+      rng() {
+        _getBGImg();
+      }
+
     }
   }
 };
@@ -43,11 +60,10 @@ export default {
 
 
 <style lang="scss" scoped>
-body {
-  background-color: #123456b0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+.changeBG {
+  bottom: -0.8rem;
+  right: -0.42rem;
+  color: orange;
 }
 
 .BGImgCredit {

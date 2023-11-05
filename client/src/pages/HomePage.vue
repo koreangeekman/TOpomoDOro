@@ -1,17 +1,26 @@
 <template>
-  <div class="container-fluid">
-    <section class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8 col-xxl-6 d-flex justify-content-center py-5">
-        <QuoteWidget />
-      </div>
-    </section>
+  <div class="position-relative">
+    <div class="container-fluid">
+      <section class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xxl-6 d-flex justify-content-center py-5">
+        </div>
+      </section>
+    </div>
+    <div class="position-absolute BGImgControls">
+      <BGImgControlWidget />
+    </div>
+  </div>
+  <div class="d-flex justify-content-center position-absolute fixed-bottom mx-5 p-0 QuoteWidget">
+    <QuoteWidget />
   </div>
 </template>
+
 
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState";
 import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
+import BGImgControlWidget from "../components/Widgets/BGImgControlWidget.vue";
 
 export default {
   setup() {
@@ -21,29 +30,15 @@ export default {
       tasks: computed(() => AppState.tasks),
     };
   },
-  components: { QuoteWidget }
+  components: { QuoteWidget, BGImgControlWidget }
 }
 </script>
 
+
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.BGImgControls {
+  top: 1rem;
+  left: 1rem;
 }
 
 .blueBlur {
@@ -57,5 +52,12 @@ hr,
 i {
   color: orange;
   text-shadow: 0 0 5px black;
+}
+
+@media screen and (max-width:768px) {
+  .BGImgControls {
+    // top: -64px;
+    // left: 33%;
+  }
 }
 </style>

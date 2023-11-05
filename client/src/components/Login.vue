@@ -15,12 +15,16 @@
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action bg-light">
+              <div class="list-group-item dropdown-item list-group-item-action">
                 Manage Account
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action bg-light text-danger selectable"
-              @click="logout">
+            <div class="list-group-item dropdown-item list-group-item-action">
+              <div type="button" data-bs-toggle="modal" data-bs-target="#userSettingsModal">
+                Preferences
+              </div>
+            </div>
+            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
             </div>

@@ -6,6 +6,9 @@
     <router-view />
   </main>
   <!-- SECTION MODALS -->
+  <UserSettingsModal />
+  <NewProjectModal />
+  <NewFolderModal />
   <NewTaskModal />
 </template>
 
@@ -19,7 +22,8 @@ export default {
   setup() {
     return {
       appState: computed(() => AppState),
-      bgImg: computed(() => `url(${AppState.widgets.bgImg.largeImgUrl})`)
+      bgImg: computed(() => `url('${AppState.widgets.bgImg.largeImgUrl}'')`),
+      bgColor: computed(() => AppState.settings.bgImg.bgColor),
 
     }
   },
@@ -34,7 +38,11 @@ export default {
 }
 
 body {
-  background-image: var(bgImg);
+  background-image: v-bind(bgImg);
+  background-position: center;
+  background-size: cover;
+  background-color: v-bind(bgColor);
+  background-repeat: no-repeat;
 }
 
 footer {

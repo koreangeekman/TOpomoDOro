@@ -6,16 +6,16 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
 
-  /** @type {import('./models/Task.js').Task} */
-  tasks: {},
-  /** @type {import('./models/Note.js').Note} */
-  notes: {},
-  /** @type {import('./models/Folder.js').Folder} */
-  folders: {},
-  /** @type {import('./models/Project.js').Project} */
-  projects: {},
+  /** @type {import('./models/Task.js').Task[]} */
+  tasks: [],
+  /** @type {import('./models/Note.js').Note[]} */
+  notes: [],
+  /** @type {import('./models/Folder.js').Folder[]} */
+  folders: [],
+  /** @type {import('./models/Project.js').Project[]} */
+  projects: [],
   /** @type {import('./models/Workspace.js').Workspace} */
-  workspaces: {},
+  workspaces: [],
 
   activeTask: null,
   activeFolder: null,

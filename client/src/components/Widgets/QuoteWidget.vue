@@ -77,7 +77,7 @@ export default {
 }
 
 .blueBlur {
-  background-color: #123456b0;
+  background-color: #123456;
   color: whitesmoke;
   border-radius: .25rem;
   /* width: fit-content; */
