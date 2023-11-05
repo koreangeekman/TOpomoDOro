@@ -18,9 +18,9 @@
             <i @click="clearAll()" type="button" class="ps-2" disabled>Clear list <i class="mdi mdi-broom"></i></i>
           </div>
 
-          <div v-for="todo in todos" :key="todo.id">
+          <!-- <div v-for="todo in todos" :key="todo.id">
             <ToDoListEntry :todo="todo" />
-          </div>
+          </div> -->
 
         </section>
       </div>

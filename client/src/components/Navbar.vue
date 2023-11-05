@@ -22,7 +22,7 @@
           <router-link :to="{ name: 'Projects' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Projects
           </router-link>
-          <i class="fs-4 ms-2 me-4 mdi mdi-text-box-plus" data-bs-toggle="modal" data-bs-target="#newProjectModal"
+          <i class="fs-3 ms-2 me-4 mdi mdi-text-box-plus" data-bs-toggle="modal" data-bs-target="#newProjectModal"
             type="button"></i>
         </li>
         <div class="bar me-3"></div>
@@ -30,7 +30,7 @@
           <router-link :to="{ name: 'Folders' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Folders
           </router-link>
-          <i class="fs-4 ms-2 me-4 mdi mdi-folder-plus" data-bs-toggle="modal" data-bs-target="#newFolderModal"
+          <i class="fs-3 ms-2 me-4 mdi mdi-folder-plus" data-bs-toggle="modal" data-bs-target="#newFolderModal"
             type="button"></i>
         </li>
         <div class="bar me-3"></div>
@@ -38,11 +38,18 @@
           <router-link :to="{ name: 'Tasks' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Tasks
           </router-link>
-          <i class="fs-4 ms-2 me-4 mdi mdi-checkbox-marked-circle-plus-outline" data-bs-target="#newTaskModal"
+          <i class="fs-3 ms-2 me-4 mdi mdi-checkbox-marked-circle-plus-outline" data-bs-target="#newTaskModal"
             data-bs-toggle="modal" type="button"></i>
         </li>
         <div class="bar me-3"></div>
-        <li>
+        <li class="d-flex align-items-center">
+          <p title="Change background" @click="changeBG()" type="button"
+            class="mb-0 ms-2 me-4 btn text-primary lighten-30 selectable text-uppercase">
+            <i class="fs-2 mdi mdi-image-refresh"></i>
+          </p>
+        </li>
+        <div class="bar me-3"></div>
+        <li class="d-flex align-items-center">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
           </router-link>
@@ -55,10 +62,24 @@
 </template>
 
 <script>
+import { AppState } from "../AppState.js";
+import { bgImageService } from "../services/BGImageService.js";
+import Pop from "../utils/Pop.js";
 import Login from './Login.vue';
+
 export default {
   setup() {
-    return {}
+    return {
+      async changeBG() {
+        try {
+          await bgImageService.getBGImg();
+          document.body.style.backgroundImage = `url('${AppState.widgets.bgImg.largeImgUrl}')`
+        } catch (error) {
+          Pop.error(error);
+        }
+      }
+
+    }
   },
   components: { Login }
 }
