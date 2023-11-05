@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="z2">
     <Navbar />
   </header>
-  <main>
+  <main class="z0">
     <router-view />
   </main>
   <!-- SECTION MODALS -->
@@ -49,5 +49,17 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+.z2 {
+  z-index: 2;
+}
+
+.z1 {
+  z-index: 1;
+}
+
+.z0 {
+  z-index: 0;
 }
 </style>

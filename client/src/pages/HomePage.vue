@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <section class="row justify-content-center p-0">
         <div class="col-12 p-0 position-relative d-flex justify-content-end">
-          <div class="p-0 pt-md-4 pe-md-4 ToDoWidget">
+          <div v-if="account.id" class="p-0 pt-md-4 pe-md-4 ToDoWidget">
             <ToDoWidget />
           </div>
         </div>
@@ -29,6 +29,7 @@ import ToDoWidget from "../components/Widgets/ToDoWidget.vue";
 export default {
   setup() {
     return {
+      account: computed(() => AppState.account),
       projects: computed(() => AppState.projects),
       folders: computed(() => AppState.folders),
       tasks: computed(() => AppState.tasks),
