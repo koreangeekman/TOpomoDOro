@@ -11,20 +11,20 @@ function _captureData(newData) {
 }
 class ToDoService {
 
-  async getToDos(query, creatorId) {
+  // 🔽 REQUIRES AUTHENTICATION 🔽
+
+  async getToDos(creatorId, query) {
     const todos = await dbContext.ToDos.find({ creatorId });
     logger.log('[TODO SERVICE] getToDos(): ', todos)
     return todos
   }
 
-  async getToDoById(_id, creatorId) {
+  async getToDoById(creatorId, _id) {
     const todo = await dbContext.ToDos.find({ creatorId, _id });
     if (!todo) { throw new BadRequest(`No todo with ID: ${_id}`) }
     logger.log('[TODO SERVICE] getToDoById(): ', todo)
     return todo
   }
-
-  // 🔽 REQUIRES AUTHENTICATION 🔽
 
   async createToDo(body) {
     const newToDo = await dbContext.ToDos.create(body);
@@ -33,9 +33,9 @@ class ToDoService {
     return newToDo
   }
 
-  async updateToDo(todoId, newData, userId) {
+  async updateToDo(todoId, newData, creatorId) {
     const toBeUpdated = await dbContext.ToDos.findById(todoId);
-    if (toBeUpdated.creatorId != userId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your do to update') }
+    if (toBeUpdated.creatorId != creatorId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your do to update') }
     const update = _captureData(newData);
     const updated = await dbContext.ToDos.findOneAndUpdate(
       { _id: todoId },
@@ -46,9 +46,9 @@ class ToDoService {
     return updated
   }
 
-  async removeToDo(todoId, userId) {
+  async removeToDo(todoId, creatorId) {
     const toBeDeleted = await dbContext.ToDos.findById(todoId);
-    if (toBeDeleted.creatorId != userId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your do to remove') }
+    if (toBeDeleted.creatorId != creatorId) { throw new Forbidden('UNAUTHORIZED REQUEST: Not your do to remove') }
     const results = await dbContext.ToDos.remove(todoId);
     logger.log('[TODO SERVICE] removeToDo(): ', results)
     return toBeDeleted

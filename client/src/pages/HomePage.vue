@@ -2,17 +2,19 @@
   <div class="position-relative">
     <div class="container-fluid">
       <section class="row justify-content-center">
+        <div class="col-12">
+          <div class="position-absolute BGImgControls">
+            <BGImgControlWidget />
+          </div>
+          <div class="d-flex justify-content-center position-absolute fixed-top mx-5 p-0 ToDoWidget">
+            <ToDoWidget />
+          </div>
+        </div>
         <div class="col-12 col-md-10 col-lg-8 col-xxl-6 d-flex justify-content-center py-5">
 
         </div>
       </section>
     </div>
-    <div class="position-absolute BGImgControls">
-      <BGImgControlWidget />
-    </div>
-  </div>
-  <div class="d-flex justify-content-center position-absolute fixed-top mx-5 p-0 ToDoWidget">
-    <ToDoWidget />
   </div>
   <div class="d-flex justify-content-center position-absolute fixed-bottom mx-5 p-0 QuoteWidget">
     <QuoteWidget />

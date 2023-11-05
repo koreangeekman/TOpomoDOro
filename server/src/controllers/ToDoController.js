@@ -16,9 +16,11 @@ export class ToDoController extends BaseController {
       .delete('/:todoId', this.removeToDo)
   }
 
+  // 🔽 REQUIRES AUTHENTICATION 🔽
+
   async getToDos(req, res, nxt) {
     try {
-      const todos = await todoService.getToDos(req.query, req.userInfo.id);
+      const todos = await todoService.getToDos(req.userInfo.id, req.query);
       return res.send(todos)
     } catch (error) {
       nxt(error)
@@ -27,14 +29,12 @@ export class ToDoController extends BaseController {
 
   async getToDoById(req, res, nxt) {
     try {
-      const todo = await todoService.getToDoById(req.params.todoId, req.userInfo.id);
+      const todo = await todoService.getToDoById(req.userInfo.id, req.params.todoId);
       return res.send(todo)
     } catch (error) {
       nxt(error)
     }
   }
-
-  // 🔽 REQUIRES AUTHENTICATION 🔽
 
   async createToDo(req, res, nxt) {
     try {
