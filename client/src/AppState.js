@@ -6,6 +6,9 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
 
+  /** @type {import('./models/ToDo.js').ToDo[]} */
+  todos: [],
+
   /** @type {import('./models/Task.js').Task[]} */
   tasks: [],
   /** @type {import('./models/Note.js').Note[]} */
@@ -41,7 +44,7 @@ export const AppState = reactive({
 
   weather: {}, // populated by OpenWeather API on get
 
-  widgets: { // to anchor the current instance of simple widget objects data
+  widgets: { // to anchor the current instance of simple widget data objects
     bgImg: {},
     quote: {}
   },

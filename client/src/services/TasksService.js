@@ -28,15 +28,11 @@ class TasksService {
   }
 
   enableEdit(taskObj) {
-    // const specificTask = AppState.tasks.find(task => task.id = taskObj.id);
-    // specificTask.edit = true;
     taskObj.edit = true;
     logger.log('[TASKS SERVICE] enableEdit(): Editing', taskObj.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
   }
 
   async saveTask(taskObj) {
-    // const specificTask = AppState.tasks.find(task => task.id = taskObj.id);
-    // specificTask.edit = true;
     taskObj.edit = false;
     const res = await api.put(`api/tasks/${taskObj.id}`, taskObj)
     logger.log('[TASKS SERVICE] saveTask(): editing', taskObj.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
