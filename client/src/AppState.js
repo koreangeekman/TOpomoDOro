@@ -21,8 +21,10 @@ export const AppState = reactive({
   workspaces: [],
 
   activeTask: null,
+  activeNote: null,
   activeFolder: null,
   activeProject: null,
+  activeWorkspace: null,
 
   settings: {
     weather: {

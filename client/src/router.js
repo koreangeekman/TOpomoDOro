@@ -12,9 +12,9 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadPage('AboutPage')
+    path: '/workspaces',
+    name: 'Workspaces',
+    component: loadPage('MasonryWorkspaces')
   },
   {
     path: '/projects',
@@ -35,6 +35,11 @@ const routes = [
     path: '/tasks',
     name: 'Tasks',
     component: loadPage('MasonryTasks')
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: loadPage('AboutPage')
   },
   {
     path: '/account',

@@ -12,47 +12,55 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li class="d-flex align-items-center">
-          <!-- <i class="fs-4 me-2 mdi mdi-home"></i> -->
-          <router-link :to="{ name: 'Home' }" class="btn text-primary lighten-30 selectable text-uppercase me-4">
+          <!-- <i class="fs-4 me-1 mdi mdi-home"></i> -->
+          <router-link :to="{ name: 'Home' }" class="btn text-primary lighten-30 selectable text-uppercase me-3">
             Home
           </router-link>
         </li>
-        <div class="bar me-3"></div>
+        <div class="bar me-1 me-lg-2"></div>
+        <li class="d-flex align-items-center">
+          <router-link :to="{ name: 'Workspaces' }" class="btn text-primary lighten-30 selectable text-uppercase">
+            Workspace
+          </router-link>
+          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-office-building-plus" data-bs-toggle="modal"
+            data-bs-target="#newWorkspaceModal" type="button"></i>
+        </li>
+        <div class="bar me-1 me-lg-2"></div>
         <li class="d-flex align-items-center">
           <router-link :to="{ name: 'Projects' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Projects
           </router-link>
-          <i class="fs-3 ms-2 me-4 mdi mdi-text-box-plus" data-bs-toggle="modal" data-bs-target="#newProjectModal"
-            type="button"></i>
+          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-text-box-plus" data-bs-toggle="modal"
+            data-bs-target="#newProjectModal" type="button"></i>
         </li>
-        <div class="bar me-3"></div>
+        <div class="bar me-1 me-lg-2"></div>
         <li class="d-flex align-items-center">
           <router-link :to="{ name: 'Folders' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Folders
           </router-link>
-          <i class="fs-3 ms-2 me-4 mdi mdi-folder-plus" data-bs-toggle="modal" data-bs-target="#newFolderModal"
-            type="button"></i>
+          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-folder-plus" data-bs-toggle="modal"
+            data-bs-target="#newFolderModal" type="button"></i>
         </li>
-        <div class="bar me-3"></div>
+        <div class="bar me-1 me-lg-2"></div>
         <li class="d-flex align-items-center">
           <router-link :to="{ name: 'Tasks' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Tasks
           </router-link>
-          <i class="fs-3 ms-2 me-4 mdi mdi-checkbox-marked-circle-plus-outline" data-bs-target="#newTaskModal"
-            data-bs-toggle="modal" type="button"></i>
+          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-checkbox-marked-circle-plus-outline"
+            data-bs-target="#newTaskModal" data-bs-toggle="modal" type="button"></i>
         </li>
-        <div class="bar me-3"></div>
-        <li class="d-flex align-items-center">
-          <p title="Change background" @click="changeBG()" type="button"
-            class="mb-0 ms-2 me-4 btn text-primary lighten-30 selectable text-uppercase">
-            <i class="fs-2 mdi mdi-image-refresh"></i>
-          </p>
-        </li>
-        <div class="bar me-3"></div>
+        <div class="bar me-1 me-lg-2"></div>
         <li class="d-flex align-items-center">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
           </router-link>
+        </li>
+        <div class="bar mx-2"></div>
+        <li class="d-flex align-items-center">
+          <p title="Change background" @click="changeBG()" type="button"
+            class="mb-0 ms-1 ms-lg-2 me-3 btn text-primary lighten-30 selectable text-uppercase">
+            <i class="fs-2 mdi mdi-image-refresh"></i>
+          </p>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
