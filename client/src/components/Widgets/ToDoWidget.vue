@@ -76,6 +76,7 @@ export default {
       async createToDo() {
         try {
           await toDoService.createToDo(newToDo.value);
+          newToDo.value = {};
         }
         catch (error) {
           Pop.error(error);

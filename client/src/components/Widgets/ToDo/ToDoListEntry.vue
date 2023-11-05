@@ -30,14 +30,14 @@ import Pop from "../../../utils/Pop.js";
 export default {
   props: { todo: { type: ToDo, required: true } },
 
-  setup(props) {
+  setup() {
     return {
       account: computed(() => AppState.account),
 
 
       async toggleCompleted(todoObj) {
         try {
-          todoObj.isCompleted = true;
+          !todoObj.isCompleted;
           await toDoService.updateToDo(todoObj)
         } catch (error) {
           Pop.error(error)
@@ -79,6 +79,10 @@ export default {
 <style lang="scss" scoped>
 input[type="text"] {
   width: 100%;
+}
+
+input[type="checkbox"] {
+  width: 1.2rem;
 }
 
 i {

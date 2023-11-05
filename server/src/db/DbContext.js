@@ -6,6 +6,7 @@ import { NoteSchema } from "../models/Note.js";
 import { FolderSchema } from "../models/Folder.js";
 import { ProjectSchema } from "../models/Project.js";
 import { WorkspaceSchema } from "../models/Workspace.js";
+import { MemberSchema } from "../models/Member.js";
 
 class DbContext {
   Account = mongoose.model('Account', AccountSchema);
@@ -13,11 +14,12 @@ class DbContext {
   // SECTION TODO RELATED DB ENTRIES
   ToDos = mongoose.model('ToDo', ToDoSchema);
 
-  Notes = mongoose.model('Note', NoteSchema);
   Tasks = mongoose.model('Task', TaskSchema);
+  Notes = mongoose.model('Note', NoteSchema);
   Folders = mongoose.model('Folder', FolderSchema);
   Projects = mongoose.model('Project', ProjectSchema);
   Workspaces = mongoose.model('Workspace', WorkspaceSchema);
+  Members = mongoose.model('Member', MemberSchema);
 
 }
 

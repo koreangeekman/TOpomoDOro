@@ -18,38 +18,38 @@
           </router-link>
         </li>
         <div class="bar me-1 me-lg-2"></div>
-        <li class="d-flex align-items-center">
+        <li class="d-flex align-items-center" v-if="account.id">
           <router-link :to="{ name: 'Workspaces' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Workspace
           </router-link>
           <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-office-building-plus" data-bs-toggle="modal"
             data-bs-target="#newWorkspaceModal" type="button"></i>
         </li>
-        <div class="bar me-1 me-lg-2"></div>
-        <li class="d-flex align-items-center">
+        <div class="bar me-1 me-lg-2" v-if="account.id"></div>
+        <li class="d-flex align-items-center" v-if="account.id">
           <router-link :to="{ name: 'Projects' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Projects
           </router-link>
-          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-text-box-plus" data-bs-toggle="modal"
+          <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-briefcase-plus" data-bs-toggle="modal"
             data-bs-target="#newProjectModal" type="button"></i>
         </li>
-        <div class="bar me-1 me-lg-2"></div>
-        <li class="d-flex align-items-center">
+        <div class="bar me-1 me-lg-2" v-if="account.id"></div>
+        <li class="d-flex align-items-center" v-if="account.id">
           <router-link :to="{ name: 'Folders' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Folders
           </router-link>
           <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-folder-plus" data-bs-toggle="modal"
             data-bs-target="#newFolderModal" type="button"></i>
         </li>
-        <div class="bar me-1 me-lg-2"></div>
-        <li class="d-flex align-items-center">
+        <div class="bar me-1 me-lg-2" v-if="account.id"></div>
+        <li class="d-flex align-items-center" v-if="account.id">
           <router-link :to="{ name: 'Tasks' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Tasks
           </router-link>
           <i class="fs-3 ms-1 ms-lg-2 me-3 me-xl-4 mdi mdi-checkbox-marked-circle-plus-outline"
             data-bs-target="#newTaskModal" data-bs-toggle="modal" type="button"></i>
         </li>
-        <div class="bar me-1 me-lg-2"></div>
+        <div class="bar me-1 me-lg-2" v-if="account.id"></div>
         <li class="d-flex align-items-center">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { bgImageService } from "../services/BGImageService.js";
 import Pop from "../utils/Pop.js";
@@ -78,6 +79,8 @@ import Login from './Login.vue';
 export default {
   setup() {
     return {
+      account: computed(() => AppState.account),
+
       async changeBG() {
         try {
           await bgImageService.getBGImg();

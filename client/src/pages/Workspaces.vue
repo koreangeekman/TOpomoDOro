@@ -9,9 +9,22 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, onMounted } from 'vue';
+import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
+
+    async function _getWorkspaces() {
+      try {
+        await workspaceService.getWorkspaces();
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    onMounted(() = {
+      _getWorkspaces();
+    })
+
     return {
       account: computed(() => AppState.account)
     }
