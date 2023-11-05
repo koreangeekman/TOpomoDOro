@@ -72,8 +72,8 @@ export default {
 }
 
 .refreshQuote {
-  top: -12px;
-  left: -10px;
+  top: -.8rem;
+  left: -.5rem;
   text-shadow: 0 0 5px black;
 }
 

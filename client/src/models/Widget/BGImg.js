@@ -5,5 +5,6 @@ export class BGImg {
     this.largeImgUrl = data.largeImgUrl
     this.author = data.author
     this.query = data.query
+    this.tags = data.tags
   }
 }

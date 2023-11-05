@@ -1,11 +1,21 @@
 <template>
-  <div class="d-flex align-items-center justify-content-between p-1">
-    <span class="d-flex">
-      <input v-model="todo.body" type="checkbox" @change="toggle(todo)" :checked="todo.completed">
-      <p :class="`listItem px-1 ms-1 mb-0 shadow ${todo.isCompleted ? 'text-secondary' : ''}`"><s>{{ todo.body }}</s>
+  <div class="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
+    <span class="d-flex w-100">
+      <input v-if="!todo.edit" v-model="todo.isCompleted" type="checkbox" @change="toggleCompleted(todo)"
+        :checked="todo.isCompleted">
+      <input v-if="todo.edit" v-model="todo.body" type="text" maxlength="100" class="ms-2 me-3 form-control">
+      <p v-else :class="`listItem px-1 mx-1 mb-0 ${todo.isCompleted ? 'text-secondary' : ''}`">
+        <s v-if="todo.isCompleted">{{ todo.body }}</s>
+        <span v-else>{{ todo.body }}</span>
       </p>
     </span>
-    <i class="fs-4 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
+    <span class="d-flex">
+      <i v-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
+        @click="enableEdit(todo)"></i>
+      <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
+        @click="saveEdit(todo)"></i>
+      <i class="fs-4 ms-2 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
+    </span>
   </div>
 </template>
 
@@ -24,8 +34,36 @@ export default {
     return {
       account: computed(() => AppState.account),
 
+
+      async toggleCompleted(todoObj) {
+        try {
+          todoObj.isCompleted = true;
+          await toDoService.updateToDo(todoObj)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async enableEdit(todoObj) {
+        try {
+          await toDoService.enableEdit(todoObj)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async saveEdit(todoObj) {
+        try {
+          await toDoService.updateToDo(todoObj)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
       async removeToDo(todoObj) {
         try {
+          const yes = await Pop.confirm('Remove this ToDo entry?');
+          if (!yes) { return }
           await toDoService.removeToDo(todoObj);
         } catch (error) {
           Pop.error(error)
@@ -39,7 +77,16 @@ export default {
 
 
 <style lang="scss" scoped>
+input[type="text"] {
+  width: 100%;
+}
+
 i {
+  text-shadow: 0 0 8px black;
+}
+
+.mdi-pencil,
+.mdi-trash-can {
   opacity: .8;
 }
 

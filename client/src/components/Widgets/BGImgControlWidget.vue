@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative text-center blueBlur shadow BGImgCredit px-3 py-1">
+  <div class="position-relative text-center blueBlur shadow BGImgCredit px-3 pt-1 pb-2">
     <p class="mb-1">Background Image Credit & Controls</p>
     <div class="" id="BGImgCredit">
       <div class="d-flex justify-content-between">
@@ -12,11 +12,11 @@
       </div>
       <div class="d-flex justify-content-between">
         <p>Query: </p>
-        <p>{{ bgImg.tags }}</p>
+        <p class="pe-1">{{ bgImg.tags }}</p>
       </div>
     </div>
     <div class="position-absolute changeBG">
-      <i class="fs-4 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
+      <i class="fs-3 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
     </div>
   </div>
 </template>
@@ -61,8 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .changeBG {
-  bottom: -0.75rem;
-  right: -0.36rem;
+  bottom: -0.96rem;
+  right: -0.5rem;
   color: orange;
 }
 
@@ -71,8 +71,9 @@ export default {
   height: fit-content;
   width: 250px;
   filter: blur(1px);
-  opacity: .25;
+  opacity: .35;
   transition: ease-in-out .25s;
+  border: 1px solid #ffffffb9;
 }
 
 .BGImgCredit:hover {

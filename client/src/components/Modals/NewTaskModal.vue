@@ -13,7 +13,7 @@
                 <label for="project">Project</label>
                 <select v-model="newTask.projectId" name="project" id="project" class="form-control">
                   <option v-for="project in projects" :key="project.id" :value="project.Id">
-                    <i class="fs-3 mdi mdi-text-box me-2" :style="`color:${project.color}`"></i>
+                    <i class="fs-3 mdi mdi-briefcase me-2" :style="`color:${project.color}`"></i>
                     {{ project.name }}
                   </option>
                 </select>

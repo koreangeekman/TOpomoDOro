@@ -2,19 +2,19 @@
   <div class="position-relative">
     <div class="container-fluid">
       <section class="row justify-content-center p-0">
-        <div class="col-12 col-md-10 p-0 position-relative d-flex justify-content-end">
-          <div class="position-absolute BGImgControls">
-            <BGImgControlWidget />
-          </div>
-          <div class="p-0 ToDoWidget">
+        <div class="col-12 p-0 position-relative d-flex justify-content-end">
+          <div class="p-0 pt-md-4 pe-md-4 ToDoWidget">
             <ToDoWidget />
           </div>
         </div>
       </section>
     </div>
   </div>
-  <div class="d-flex justify-content-center position-absolute fixed-bottom mx-2 p-0 QuoteWidget">
+  <div class="QuoteWidget d-flex justify-content-center position-absolute fixed-bottom mx-3 p-0">
     <QuoteWidget />
+  </div>
+  <div class="BGImgControls d-flex justify-content-start position-absolute fixed-bottom mx-2 p-0">
+    <BGImgControlWidget />
   </div>
 </template>
 
@@ -40,13 +40,9 @@ export default {
 
 
 <style scoped lang="scss">
-.ToDoWidget {
-  // align-items: flex-end;
-}
-
 .BGImgControls {
-  top: 1rem;
-  left: 1rem;
+  bottom: 3rem;
+  left: 2rem;
 }
 
 .blueBlur {
@@ -63,8 +59,7 @@ i {
 
 @media screen and (max-width:768px) {
   .BGImgControls {
-    // top: -64px;
-    // left: 33%;
+    bottom: 11rem;
   }
 }
 </style>

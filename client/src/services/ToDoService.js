@@ -28,7 +28,7 @@ class ToDoService {
 
   async updateToDo(todoObj) {
     if (todoObj.creatorId != AppState.account.id) { throw new Error('Not yours to edit') }
-    const res = await api.delete(`api/todos/${todoObj.id}`)
+    const res = await api.put(`api/todos/${todoObj.id}`, todoObj)
     todoObj.edit = false;
     logger.log('[TODO SERVICE] updateToDo(): [res.data]', res.data);
   }
@@ -43,7 +43,7 @@ class ToDoService {
   async removeAllCompleted(completed) {
     const filtered = AppState.todos.filter(todo => !completed.some(done => done.id == todo.id));
     AppState.todos = filtered;
-    const res = await api.delete('api/todos/', completed)
+    const res = await api.delete('api/todos/')
     logger.log('[TODO SERVICE] removeAllCompleted(): [res.data]', res.data);
   }
 

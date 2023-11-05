@@ -49,7 +49,7 @@ export class ToDoController extends BaseController {
 
   async updateToDo(req, res, nxt) {
     try {
-      const toBeUpdated = await todoService.updateToDo(req.params.todoId, req.body, req.userInfo.id);
+      const toBeUpdated = await todoService.updateToDo(req.userInfo.id, req.params.todoId, req.body);
       return res.send(toBeUpdated)
     } catch (error) {
       nxt(error)
@@ -59,7 +59,7 @@ export class ToDoController extends BaseController {
   async removeToDoCompleted(req, res, nxt) {
     try {
       const toBeDeleted = await todoService.removeToDoCompleted(req.userInfo.id);
-      return res.send('Removed from DB: ', toBeDeleted)
+      return res.send(toBeDeleted)
     } catch (error) {
       nxt(error)
     }
@@ -67,8 +67,8 @@ export class ToDoController extends BaseController {
 
   async removeToDo(req, res, nxt) {
     try {
-      const toBeDeleted = await todoService.removeToDo(req.params.todoId, req.userInfo.id);
-      return res.send('Removed from DB: ', toBeDeleted)
+      const toBeDeleted = await todoService.removeToDo(req.userInfo.id, req.params.todoId);
+      return res.send(toBeDeleted)
     } catch (error) {
       nxt(error)
     }
