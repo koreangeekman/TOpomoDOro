@@ -1,17 +1,22 @@
 <template>
   <span class="navbar-text">
+
     <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
+
     <div v-else>
       <div class="dropdown my-2 my-lg-0">
+
         <div type="button" class="border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
-          <div v-if="account.picture || user.picture">
+          <div v-if="account.picture || user.picture" class="d-flex align-items-center">
+            <p class="mb-0 mx-2 d-none d-xl-inline">{{ account.name || user.name }}</p>
             <img :src="account.picture || user.picture" :title="account.name || user.name" height="42" class="rounded"
               alt="account photo" />
           </div>
         </div>
+
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
@@ -30,8 +35,10 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
+
   </span>
 </template>
 
