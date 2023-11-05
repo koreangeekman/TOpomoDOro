@@ -5,19 +5,23 @@
         <form class="d-flex align-items-center rounded my-2 blur" @submit.prevent="createToDo()">
           <input v-model="newToDo.body" class="form-control ms-2 shadow" type="text" name="body" placeholder="New ToDo?"
             maxlength="100">
-          <button class="btn p-0" type="submit"><i class="fs-1 p-1 mdi mdi-plus-box"></i>
-          </button>
+          <button class="btn p-0" type="submit"><i class="fs-1 p-1 mdi mdi-plus-box"></i></button>
         </form>
         <section v-if="todos.length > 0" class="card p-2" id="todoList">
           <div class="d-flex justify-content-between todoSmall mx-1 my-2">
-            <p @click="sortList('completed')" type="button" class="mb-0 ps-1 pe-4 orange">Sort List <i
-                class="mdi mdi-sort-bool-ascending-variant"></i></p>
+            <span class="d-flex align-items-center pe-3" type="button" @click="sortList()">
+              <p class="fs-5 mb-0 px-1 orange">Sort List</p>
+              <i class="fs-4 ms-1 headIcon mdi mdi-sort-bool-ascending-variant"></i>
+            </span>
             <div class="bar"></div>
-            <p @click="toggleVisibility()" type="button" class="mb-0 px-4 orange">Remaining ToDo: {{ incomplete.length }}
+            <p class="fs-5 mb-0 px-3 orange" type="button" @click="toggleVisibility()">
+              Remaining ToDo: <b>{{ incomplete.length }}</b> of <b>{{ todos.length }}</b>
             </p>
             <div class="bar"></div>
-            <p @click="removeAllCompleted()" type="button" class="mb-0 ps-4 pe-1 orange" disabled>Clean up list <i
-                class="mdi mdi-broom"></i></p>
+            <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
+              <p class="fs-5 mb-0 px-1 orange" disabled>Clean up list</p>
+              <i class="fs-3 ms-1 headIcon mdi mdi-broom"></i>
+            </span>
           </div>
           <hr class="my-1">
           <div v-for="todo in todos" :key="todo.id">
@@ -102,6 +106,10 @@ i,
 .orange {
   color: orange;
   text-shadow: 0 0 5px black;
+}
+
+.headIcon {
+  line-height: 1rem;
 }
 
 .mdi-plus-box {

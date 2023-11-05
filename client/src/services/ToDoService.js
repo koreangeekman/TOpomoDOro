@@ -40,11 +40,12 @@ class ToDoService {
     logger.log('[TODO SERVICE] removeToDo(): [res.data]', res.data);
   }
 
-  async removeAllCompleted(completed) {
-    const filtered = AppState.todos.filter(todo => !completed.some(done => done.id == todo.id));
+  async removeAllCompleted() {
+    const completed = AppState.todos.filter(todo => todo.isCompleted)
+    const filtered = AppState.todos.filter(todo => !completed.find(done => done.id == todo.id));
     AppState.todos = filtered;
     const res = await api.delete('api/todos/')
-    logger.log('[TODO SERVICE] removeAllCompleted(): [res.data]', res.data);
+    logger.log('[TODO SERVICE] removeAllCompleted(): [res.data]', res.data, 'filtered', filtered);
   }
 
 }
