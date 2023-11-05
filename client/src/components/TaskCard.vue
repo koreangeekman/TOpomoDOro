@@ -131,6 +131,10 @@ i {
     -3px 0 3px --var(taskColor);
 }
 
+.bg-light {
+  backdrop-filter: blur(3px);
+}
+
 @media screen and (max-width: 768px) {
   .user {
     top: 0;

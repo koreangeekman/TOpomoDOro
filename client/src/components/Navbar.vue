@@ -79,6 +79,10 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
+.bg-dark {
+  backdrop-filter: blur(3px);
+}
+
 .bar {
   border-left: 1px dashed #ff8000;
   opacity: .67

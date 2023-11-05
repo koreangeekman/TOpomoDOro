@@ -87,9 +87,10 @@ export default {
 }
 
 .blueBlur {
-  background-color: #123456b0;
+  background-color: #12345678;
   color: whitesmoke;
   border-radius: .25rem;
   /* width: fit-content; */
+  backdrop-filter: blur(2px);
 }
 </style>

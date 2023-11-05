@@ -9,6 +9,10 @@ class QuotesService {
     AppState.widgets.quote = new Quote(res.data);
   }
 
+  clearData() {
+    AppState.widgets.quote = {};
+  }
+
 }
 
 export const quotesService = new QuotesService();

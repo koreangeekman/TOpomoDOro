@@ -8,7 +8,7 @@
       </section>
     </div>
     <div class="position-absolute BGImgControls">
-      <BGImgControlWidget /> //
+      <BGImgControlWidget />
     </div>
   </div>
   <div class="d-flex justify-content-center position-absolute fixed-top mx-5 p-0 ToDoWidget">

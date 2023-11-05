@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative">
+  <div v-if="quote.content" class="position-relative">
     <div class="d-flex flex-column align-items-center text-center text-white d-block" id="quote">
       <div class="blueBlur quoteContent rounded-pill border px-3 py-2">{{ quote.content }}</div>
       <div class="quoteInfo d-flex flex-wrap justify-content-end align-items-center my-2 px-2 py-1">
@@ -33,6 +33,7 @@ export default {
     }
 
     onMounted(() => {
+      quotesService.clearData();
       _getQuote();
     })
 
@@ -77,11 +78,11 @@ export default {
 }
 
 .blueBlur {
-  background-color: #123456;
+  background-color: #12345678;
   color: whitesmoke;
   border-radius: .25rem;
   /* width: fit-content; */
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
 }
 
 i {
