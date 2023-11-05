@@ -1,19 +1,19 @@
 <template>
-  <div class="position-relative text-center blueBlur shadow BGImgCredit">
-    <p>Background Image Credit & Controls</p>
-    <div class="d-flex flex-wrap p-2" id="BGImgCredit">
-      <span class="d-flex w-100 justify-content-between">
+  <div class="position-relative text-center blueBlur shadow BGImgCredit px-3 py-1">
+    <p class="mb-1">Background Image Credit & Controls</p>
+    <div class="" id="BGImgCredit">
+      <div class="d-flex justify-content-between">
         <p>Author:</p>
         <p>{{ bgImg.author }}</p>
-      </span>
-      <span class="d-flex w-100 justify-content-between">
+      </div>
+      <div class="d-flex justify-content-between">
         <p>Tags: </p>
         <p>{{ bgImg.query }}</p>
-      </span>
-      <span class="d-flex w-100 justify-content-between">
+      </div>
+      <div class="d-flex justify-content-between">
         <p>Query: </p>
         <p>{{ bgImg.tags }}</p>
-      </span>
+      </div>
     </div>
     <div class="position-absolute changeBG">
       <i class="fs-4 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
@@ -61,8 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .changeBG {
-  bottom: -0.8rem;
-  right: -0.42rem;
+  bottom: -0.75rem;
+  right: -0.36rem;
   color: orange;
 }
 

@@ -41,7 +41,7 @@
         </button>
       </span>
     </div>
-    <img :src="task.creator.picture" :alt="task.creator.name" :title="task.creator.name"
+    <img :src="task.creator?.picture" :alt="task.creator?.name" :title="task.creator?.name"
       class="user rounded-circle border p-1 bg-dark">
   </div>
 </template>

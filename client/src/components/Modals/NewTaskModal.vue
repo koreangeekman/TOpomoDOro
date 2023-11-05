@@ -56,9 +56,12 @@ import { AppState } from '../../AppState';
 import { computed, onMounted, ref } from 'vue';
 import Pop from "../../utils/Pop.js";
 import { tasksService } from "../../services/TasksService.js";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
+
     const newTask = ref({});
 
     async function _getProjectList() {
@@ -93,6 +96,7 @@ export default {
         try {
           await tasksService.createTask(newTask.value);
           newTask.value = {};
+          router.push({ name: 'Tasks' })
         } catch (error) {
           Pop.error(error)
         }

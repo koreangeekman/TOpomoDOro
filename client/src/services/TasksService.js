@@ -6,9 +6,6 @@ import { api } from "./AxiosService";
 
 class TasksService {
 
-
-  // SECTION API CALLS
-
   async getTasks() {
     const res = await api.get('api/tasks');
     AppState.tasks = res.data.map(task => new Task(task));
@@ -34,7 +31,7 @@ class TasksService {
     // const specificTask = AppState.tasks.find(task => task.id = taskObj.id);
     // specificTask.edit = true;
     taskObj.edit = true;
-    logger.log('[TASKS SERVICE] enableEdit(): Editing ', specificTask.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
+    logger.log('[TASKS SERVICE] enableEdit(): Editing', taskObj.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
   }
 
   async saveTask(taskObj) {
@@ -42,7 +39,7 @@ class TasksService {
     // specificTask.edit = true;
     taskObj.edit = false;
     const res = await api.put(`api/tasks/${taskObj.id}`, taskObj)
-    logger.log('[TASKS SERVICE] saveTask(): ', specificTask.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
+    logger.log('[TASKS SERVICE] saveTask(): editing', taskObj.edit ? 'enabled' : 'disabled', `on ${taskObj}`)
   }
 
 }

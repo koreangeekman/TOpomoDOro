@@ -31,7 +31,7 @@ class TasksService {
 
   async createTask(body) {
     const newTask = await dbContext.Tasks.create(body);
-    newTask.populate('creator', 'name picture')
+    await newTask.populate('creator', 'name picture')
     logger.log('[TASKS SERVICE] createTask(): ', newTask)
     return newTask
   }

@@ -5,8 +5,8 @@ export const TaskSchema = new Schema({
   completed: { type: Boolean, required: true, default: false },
   color: { type: String, required: true, maxLength: 32, default: '#000000' },
   isArchived: { type: Boolean, required: true, default: false },
-  workspaceId: { type: Schema.Types.ObjectId, required: true, ref: 'Workspace' }, // tied to a shared workspace
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }, // tied to account
+  workspaceId: { type: Schema.Types.ObjectId, required: false, ref: 'Workspace' }, // tied to a shared workspace
   projectId: { type: Schema.Types.ObjectId, required: false, ref: 'Project' }, // if tied to a project
   folderId: { type: Schema.Types.ObjectId, required: false, ref: 'Folder' }, // either for organization or prioritization
   noteId: { type: Schema.Types.ObjectId, required: false, ref: 'Folder' }, // either for organization or prioritization
