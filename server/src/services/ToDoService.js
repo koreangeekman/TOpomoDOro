@@ -54,6 +54,17 @@ class ToDoService {
     return toBeDeleted
   }
 
+  async removeToDoBulk(toBeDeleted, creatorId) {
+    const allToDos = await dbContext.ToDos.find({ creatorId });
+    const filtered = allToDos.filter(todo => toBeDeleted.some(pending => pending.id == todo.id));
+    let results = [];
+    for (let i = 0; i < filtered.length; i++) {
+      results.push([filtered[i].id, filtered[i].body, await dbContext.ToDos.remove(filtered[i].id)]);
+    }
+    logger.log('[TODO SERVICE] removeToDo(): ', results)
+    return results
+  }
+
 }
 
 export const todoService = new ToDoService();

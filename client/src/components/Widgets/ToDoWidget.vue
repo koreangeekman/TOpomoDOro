@@ -12,10 +12,10 @@
             <i @click="sortList('completed')" type="button" class="pe-2">Sort List <i
                 class="mdi mdi-sort-bool-ascending-variant"></i></i>
             <div class="bar"></div>
-            <i @click="toggleVisibility()" type="button" class="px-2">Tasks remaining: &nbsp
-              ${incomplete.length}</i>
+            <i @click="toggleVisibility()" type="button" class="px-2">Tasks remaining: {{ incomplete.length }}</i>
             <div class="bar"></div>
-            <i @click="clearAll()" type="button" class="ps-2" disabled>Clear list <i class="mdi mdi-broom"></i></i>
+            <i @click="removeAllCompleted()" type="button" class="ps-2" disabled>Clean up list <i
+                class="mdi mdi-broom"></i></i>
           </div>
 
           <!-- <div v-for="todo in todos" :key="todo.id">
@@ -40,6 +40,8 @@ export default {
   setup() {
     const newToDo = ref('');
 
+    const visibility = true; // show all
+
     // async function _getToDos() {
     //   try {
     //     await toDoService.getToDos();
@@ -55,7 +57,14 @@ export default {
 
     return {
       account: computed(() => AppState.account),
-      todos: computed(() => AppState.todos),
+      incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
+      todos: computed(() => {
+        if (visibility) {
+          return AppState.todos
+        } else {
+          return AppState.todos.filter(todo => !todo.isCompleted)
+        }
+      }),
 
       async createToDo() {
         try {
@@ -63,6 +72,16 @@ export default {
         }
         catch (error) {
           Pop.error(error);
+        }
+      },
+
+
+      async removeAllCompleted() {
+        try {
+          const completed = AppState.todos.filter(todo => todo.isCompleted)
+          await toDoService.removeAllCompleted(completed);
+        } catch (error) {
+          Pop.error(error)
         }
       }
 

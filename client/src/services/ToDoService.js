@@ -36,14 +36,15 @@ class ToDoService {
   async removeToDo(todoObj) {
     if (todoObj.creatorId != AppState.account.id) { throw new Error('Not yours to remove') }
     const res = await api.delete(`api/todos/${todoObj.id}`)
-    AppState.tasks = AppState.tasks.filter(task => task.id != todoObj.id);
+    AppState.todos = AppState.todos.filter(todo => todo.id != todoObj.id);
     logger.log('[TODO SERVICE] removeToDo(): [res.data]', res.data);
   }
 
-  async removeALLToDos() {
-    const res = await api.delete(`api/todos/`, AppState.todos)
-    AppState.tasks = AppState.tasks.filter(task => task.id != todoObj.id);
-    logger.log('[TODO SERVICE] removeToDo(): [res.data]', res.data);
+  async removeAllCompleted(completed) {
+    const filtered = AppState.todos.filter(todo => !completed.some(done => done.id == todo.id));
+    AppState.todos = filtered;
+    const res = await api.delete('api/todos/', completed)
+    logger.log('[TODO SERVICE] removeAllCompleted(): [res.data]', res.data);
   }
 
 }

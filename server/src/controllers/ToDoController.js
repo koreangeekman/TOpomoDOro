@@ -13,6 +13,7 @@ export class ToDoController extends BaseController {
       .get('/:todoId', this.getToDoById)
       .post('', this.createToDo)
       .put('/:todoId', this.updateToDo)
+      .delete('/', this.removeToDoBulk)
       .delete('/:todoId', this.removeToDo)
   }
 
@@ -58,6 +59,15 @@ export class ToDoController extends BaseController {
   async removeToDo(req, res, nxt) {
     try {
       const toBeDeleted = await todoService.removeToDo(req.params.todoId, req.userInfo.id);
+      return res.send('Removed from DB: ', toBeDeleted)
+    } catch (error) {
+      nxt(error)
+    }
+  }
+
+  async removeToDoBulk(req, res, nxt) {
+    try {
+      const toBeDeleted = await todoService.removeToDoBulk(req.body, req.userInfo.id);
       return res.send('Removed from DB: ', toBeDeleted)
     } catch (error) {
       nxt(error)
