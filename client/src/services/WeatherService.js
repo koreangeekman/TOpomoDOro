@@ -8,7 +8,7 @@ class WeatherService {
   }
 
   async getWeather() {
-    const userSettings = AppState.settings;
+    const userSettings = AppState.settings.weather;
     const query = `?lat=${lat}&lon=${lon}`
     const res = await weatherAPI.get(`${query}`)
   }

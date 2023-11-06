@@ -4,6 +4,7 @@ export class ToDo {
     this.body = data.body
     this.isCompleted = data.isCompleted || false
     this.creatorId = data.creatorId
+    this.anchor = data.anchor
     this.edit = false
   }
 }

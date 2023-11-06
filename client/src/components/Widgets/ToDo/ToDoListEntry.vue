@@ -10,11 +10,16 @@
       </p>
     </span>
     <span class="d-flex">
-      <div v-if="!todo.edit && todo.isCompleted"></div>
-      <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
-        @click="enableEdit(todo)"></i>
-      <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
-        @click="saveEdit(todo)"></i>
+      <i v-if="todo.anchor" class="fs-4 ms-3 text-secondary mdi mdi-link-variant" type="button" title="Anchored note link"
+        @click="routeToNotes(todo.anchor)"></i>
+      <i v-else class="fs-4 ms-3 invisible mdi mdi-link-variant"></i>
+      <span class="d-flex ms-4">
+        <i v-if="!todo.edit && todo.isCompleted" class="fs-4 invisible mdi mdi-pencil"></i>
+        <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
+          @click="enableEdit(todo)"></i>
+        <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
+          @click="saveEdit(todo)"></i>
+      </span>
       <i class="fs-4 ms-2 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
     </span>
   </div>
@@ -88,6 +93,10 @@ input[type="checkbox"] {
 
 i {
   text-shadow: 0 0 8px black;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .mdi-pencil,
