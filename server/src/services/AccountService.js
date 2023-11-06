@@ -45,7 +45,7 @@ async function _createDefaults(creatorId) {
     creatorId, workspaceId: workspace.id, projectId: project.id, tagId: tag2.id,
     name: 'General', color: '#123456'
   });
-  const note = await notesService.createFirstNote({
+  const note = await notesService.createNote({
     creatorId, workspaceId: workspace.id, projectId: project.id, folderId: folder.id, tagId: tag1.id,
     body: 'Welcome to the workspace! Feel free to explore and customize the colors for the various components. For more details on how you can use this app, please see the About page available in the nav bar above.', color: '#334455'
   });

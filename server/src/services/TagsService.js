@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js";
 import { Forbidden } from "../utils/Errors.js";
+import { logger } from "../utils/Logger.js";
 
 class TagsService {
 
@@ -9,14 +10,15 @@ class TagsService {
   }
 
   async createFirstTags(body) {
-    const newWorkspace = await dbContext.Tags.create({ body });
-    await newWorkspace.populate('creator');
-    return newWorkspace
+    const newTag = await dbContext.Tags.create(body);
+    logger.log('[TAGS SERVICE] this.createFirstTags(): ', newTag)
+    return newTag
   }
 
   async createTag(creatorId, body) {
     body.creatorId = creatorId;
-    const newTag = await dbContext.Tags.create(body)
+    const newTag = await dbContext.Tags.create(body);
+    await newTag.populate('creator');
     return newTag
   }
 
