@@ -3,12 +3,12 @@
     <!-- box-shadow: 0 -3px 3px ${task.project?.color}, 3px 0 3px ${task.folder?.color}, 0 3px 3px ${task.note?.color}, -3px 0 3px ${task.color}; -->
     <div v-if="!task.edit && (task.project || task.folder)" class="fs-5 fw-bold d-flex justify-content-between">
       <p v-if="task.project" class="mb-0">
-        <i class="mdi mdi-text-box" :style="'color:', task.project.color"></i>
+        <i class="mdi mdi-text-box" :style="'color:'+ task.project.color"></i>
         {{ task.project }}
       </p>
       <p class="mb-0">{{ (task.project && task.folder) ? ' & ' : '' }} </p>
       <p v-if="task.folder" class="mb-0">
-        <i class="mdi mdi-folder" :style="'color:', task.folder.color"></i>
+        <i class="mdi mdi-folder" :style="'color:'+ task.folder.color"></i>
         {{ task.folder }}
       </p>
     </div>

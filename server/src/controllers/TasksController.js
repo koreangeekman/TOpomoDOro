@@ -7,10 +7,10 @@ export class TasksController extends BaseController {
   constructor() {
     super('api/tasks')
     this.router
-      .get('', this.getTasks)
-      .get('/:taskId', this.getTaskById)
       // 🔽 REQUIRES AUTHENTICATION 🔽
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('', this.getTasks)
+      .get('/:taskId', this.getTaskById)
       .post('', this.createTask)
       .put('/:taskId', this.updateTask)
       .delete('/:taskId', this.removeTask)
@@ -18,7 +18,7 @@ export class TasksController extends BaseController {
 
   async getTasks(req, res, nxt) {
     try {
-      const tasks = await tasksService.getTasks(req.query);
+      const tasks = await tasksService.getTasks(req.userInfo.id, req.body, req.query);
       return res.send(tasks)
     } catch (error) {
       nxt(error)

@@ -14,7 +14,7 @@
             <p class="mb-0 mx-3 d-none d-xl-inline">{{ account.name || user.name }}</p>
             <img :src="account.picture || user.picture" :title="account.name || user.name" height="42" class="rounded"
               alt="account photo" />
-            <p class="mb-0 mx-3 d-inline d-xl-none">{{ account.name || user.name }}</p>
+            <p class="mb-0 mx-3 d-inline d-lg-none">{{ account.name || user.name }}</p>
           </div>
         </div>
 
