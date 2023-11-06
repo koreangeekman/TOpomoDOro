@@ -71,11 +71,14 @@
 
         <div class="bar mx-1"></div>
 
-        <li class="d-flex align-items-center">
+        <li class="d-flex align-items-center position-relative">
           <p title="Change background" @click="changeBG()" type="button"
-            class="m-1 btn text-primary lighten-30 selectable text-uppercase">
+            class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
             <i class="fs-2 mdi mdi-image-refresh"></i>
           </p>
+          <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-2 p-0">
+            <BGImgControlWidget />
+          </div>
         </li>
 
       </ul>
@@ -88,9 +91,11 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
-import { bgImageService } from "../services/BGImageService.js";
-import Pop from "../utils/Pop.js";
 import Login from './Login.vue';
+import Pop from "../utils/Pop.js";
+import BGImgControlWidget from "../components/Widgets/BGImgControlWidget.vue";
+import { bgImageService } from "../services/BGImageService.js";
+
 
 export default {
   setup() {
@@ -108,7 +113,7 @@ export default {
 
     }
   },
-  components: { Login }
+  components: { Login, BGImgControlWidget }
 }
 </script>
 
@@ -143,6 +148,32 @@ a:hover {
 @media screen and (min-width: 992px) {
   nav {
     height: 64px;
+  }
+}
+
+/* SECTION BG IMG CONTROLS CSS */
+.hide {
+  cursor: default;
+  transition: ease-in-out .25s;
+  opacity: 0;
+  visibility: hidden;
+  width: 15rem;
+}
+
+.showInfo:hover+.hide {
+  opacity: 1;
+  visibility: visible;
+}
+
+.BGImgControls {
+  bottom: -6rem;
+  left: 0;
+}
+
+@media screen and (max-width:768px) {
+  .BGImgControls {
+    left: 5rem;
+    bottom: 0rem;
   }
 }
 </style>

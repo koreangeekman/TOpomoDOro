@@ -11,9 +11,10 @@
 
         <div type="button" class="border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
           <div v-if="account.picture || user.picture" class="d-flex align-items-center">
-            <p class="mb-0 mx-2 d-none d-xl-inline">{{ account.name || user.name }}</p>
+            <p class="mb-0 mx-3 d-none d-xl-inline">{{ account.name || user.name }}</p>
             <img :src="account.picture || user.picture" :title="account.name || user.name" height="42" class="rounded"
               alt="account photo" />
+            <p class="mb-0 mx-3 d-inline d-xl-none">{{ account.name || user.name }}</p>
           </div>
         </div>
 

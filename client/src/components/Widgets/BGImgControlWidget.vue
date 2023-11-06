@@ -67,19 +67,9 @@ export default {
 }
 
 .BGImgCredit {
-  cursor: help;
   height: fit-content;
   width: 250px;
-  filter: blur(1px);
-  opacity: .35;
-  transition: ease-in-out .25s;
   border: 1px solid #ffffffb9;
-}
-
-.BGImgCredit:hover {
-  filter: blur(0);
-  opacity: 1;
-  /*  */
 }
 
 .BGImgCredit p {
@@ -88,10 +78,10 @@ export default {
 }
 
 .blueBlur {
-  background-color: #12345678;
+  background-color: #123456b9;
   color: whitesmoke;
   border-radius: .25rem;
   /* width: fit-content; */
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 }
 </style>
