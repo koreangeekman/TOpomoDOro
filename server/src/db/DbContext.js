@@ -7,6 +7,7 @@ import { FolderSchema } from "../models/Folder.js";
 import { ProjectSchema } from "../models/Project.js";
 import { WorkspaceSchema } from "../models/Workspace.js";
 import { MemberSchema } from "../models/Member.js";
+import { TagSchema } from "../models/Tag.js";
 
 class DbContext {
   Account = mongoose.model('Account', AccountSchema);
@@ -18,6 +19,7 @@ class DbContext {
   Notes = mongoose.model('Note', NoteSchema);
   Folders = mongoose.model('Folder', FolderSchema);
   Projects = mongoose.model('Project', ProjectSchema);
+  Tags = mongoose.model('Tag', TagSchema);
   Workspaces = mongoose.model('Workspace', WorkspaceSchema);
   Members = mongoose.model('Member', MemberSchema);
 

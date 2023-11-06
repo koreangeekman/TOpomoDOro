@@ -50,7 +50,7 @@ export default {
   setup() {
     const newToDo = ref({});
 
-    const visibility = true; // show all
+    const visibility = ref(true); // show all
 
     // async function _getToDos() {
     //   try {
@@ -67,6 +67,7 @@ export default {
 
     return {
       newToDo,
+      visibility: computed(() => AppState.visibility),
       account: computed(() => AppState.account),
       incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
       todos: computed(() => {
@@ -77,6 +78,10 @@ export default {
         }
       }),
 
+      toggleVisibility() {
+        visibility = false;
+      },
+
       async createToDo() {
         try {
           await toDoService.createToDo(newToDo.value);
@@ -86,7 +91,6 @@ export default {
           Pop.error(error);
         }
       },
-
 
       async removeAllCompleted() {
         try {

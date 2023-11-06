@@ -2,7 +2,8 @@ import { Schema } from "mongoose";
 
 export const WorkspaceSchema = new Schema({
   name: { type: String, required: true, maxLength: 64 },
-  description: { type: String, required: true, maxLength: 500 },
+  description: { type: String, required: true, maxLength: 500, default: '' },
+  color: { type: String, required: true, maxLength: 10, default: '#000000' },
   isArchived: { type: Boolean, required: true, default: false },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
 

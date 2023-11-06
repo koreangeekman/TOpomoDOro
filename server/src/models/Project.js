@@ -6,6 +6,7 @@ export const ProjectSchema = new Schema({
   isArchived: { type: Boolean, required: true, default: false },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
   workspaceId: { type: Schema.Types.ObjectId, required: true, ref: 'Workspace' },
+  tagId: { type: Schema.Types.ObjectId, required: true, ref: 'Tag' },
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -14,6 +15,20 @@ ProjectSchema.virtual('creator', {
   foreignField: '_id',
   justOne: true,
   ref: 'Account'
+})
+
+ProjectSchema.virtual('workspace', {
+  localField: 'workspaceId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Workspace'
+})
+
+ProjectSchema.virtual('tag', {
+  localField: 'tagId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Tag'
 })
 
 ProjectSchema.virtual('folderCount', {

@@ -6,10 +6,11 @@ export const TaskSchema = new Schema({
   color: { type: String, required: true, maxLength: 32, default: '#000000' },
   isArchived: { type: Boolean, required: true, default: false },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }, // tied to account
-  workspaceId: { type: Schema.Types.ObjectId, required: false, ref: 'Workspace' }, // tied to a shared workspace
+  workspaceId: { type: Schema.Types.ObjectId, required: true, ref: 'Workspace' }, // tied to a shared workspace
   projectId: { type: Schema.Types.ObjectId, required: false, ref: 'Project' }, // if tied to a project
   folderId: { type: Schema.Types.ObjectId, required: false, ref: 'Folder' }, // either for organization or prioritization
   noteId: { type: Schema.Types.ObjectId, required: false, ref: 'Folder' }, // either for organization or prioritization
+  tagId: { type: Schema.Types.ObjectId, required: false, ref: 'Tag' },
 }, {
   timestamps: true, toJSON: { virtuals: true }
 })
@@ -19,6 +20,13 @@ TaskSchema.virtual('creator', {
   foreignField: '_id',
   justOne: true,
   ref: 'Account'
+})
+
+TaskSchema.virtual('workspace', {
+  localField: 'workspaceId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Workspace'
 })
 
 TaskSchema.virtual('project', {
@@ -40,4 +48,11 @@ TaskSchema.virtual('note', {
   foreignField: '_id',
   justOne: true,
   ref: 'note'
+})
+
+TaskSchema.virtual('tag', {
+  localField: 'tagId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Tag'
 })

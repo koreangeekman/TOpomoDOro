@@ -14,8 +14,10 @@ function _captureData(newData) {
 }
 class TasksService {
 
-  async getTasks(query) {
-    const tasks = await dbContext.Tasks.find(query).populate('creator', 'name picture');
+  async getTasks(creatorId, workspaceId) {
+    const tasks = await dbContext.Tasks.find({ creatorId, workspaceId })
+      .populate('creator', 'name picture')
+      .populate('workspace', 'name');
     logger.log('[TASKS SERVICE] getTasks(): ', tasks)
     return tasks
   }
