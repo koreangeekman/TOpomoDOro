@@ -6,17 +6,12 @@
     <router-view />
   </main>
   <!-- SECTION MODALS -->
-  <UserSettingsModal />
-  <NewProjectModal />
-  <NewFolderModal />
-  <NewTaskModal />
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
-import NewTaskModal from './components/Modals/NewTaskModal.vue'
 
 export default {
   setup() {
@@ -27,7 +22,7 @@ export default {
 
     }
   },
-  components: { Navbar, NewTaskModal }
+  components: { Navbar }
 }
 </script>
 <style lang="scss">

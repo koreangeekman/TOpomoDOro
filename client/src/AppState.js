@@ -6,7 +6,7 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
 
-  /** @type {import('./models/ToDo.js').ToDo[]} */
+  /** @type {import('./models/Widget/ToDo.js').ToDo[]} */
   todos: [],
 
   /** @type {import('./models/Task.js').Task[]} */

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow bg-dark px-2">
 
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
@@ -53,8 +53,8 @@ import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import Pop from "../utils/Pop.js";
-import BGImgControlWidget from "../components/Widgets/BGImgControlWidget.vue";
-import { bgImageService } from "../services/BGImageService.js";
+import BGImgControlWidget from "./Widgets/BGImgControlWidget.vue";
+import { bgImageService } from "../services/Widgets/BGImageService.js";
 
 
 export default {

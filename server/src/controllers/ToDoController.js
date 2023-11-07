@@ -9,7 +9,7 @@ export class ToDoController extends BaseController {
     this.router
       // 🔽 REQUIRES AUTHENTICATION 🔽
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getToDos)
+      .get('', this.getToDos) // by userId
       .get('/:todoId', this.getToDoById)
       .post('', this.createToDo)
       .put('/:todoId', this.updateToDo)

@@ -26,7 +26,7 @@
 import { AppState } from '../../AppState';
 import { computed, onMounted } from 'vue';
 import Pop from "../../utils/Pop.js";
-import { bgImageService } from "../../services/BGImageService.js";
+import { bgImageService } from "../../services/Widgets/BGImageService.js";
 
 export default {
   setup() {

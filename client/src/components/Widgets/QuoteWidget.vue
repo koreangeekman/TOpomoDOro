@@ -15,10 +15,10 @@
 
 <script>
 import { computed, onMounted } from 'vue';
-import { AppState } from '../../AppState';
 import Pop from "../../utils/Pop.js";
+import { AppState } from '../../AppState';
 import { logger } from "../../utils/Logger.js";
-import { quotesService } from "../../services/QuotesService.js";
+import { quotesService } from "../../services/Widgets/QuotesService.js";
 
 export default {
   setup() {

@@ -12,31 +12,6 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/workspaces',
-    name: 'Workspaces',
-    component: loadPage('Workspaces')
-  },
-  {
-    path: '/projects',
-    name: 'Projects',
-    component: loadPage('MasonryProjects')
-  },
-  {
-    path: '/folders',
-    name: 'Folders',
-    component: loadPage('MasonryFolders')
-  },
-  {
-    path: '/notes',
-    name: 'Notes',
-    component: loadPage('MasonryNotes')
-  },
-  {
-    path: '/tasks',
-    name: 'Tasks',
-    component: loadPage('MasonryTasks')
-  },
-  {
     path: '/about',
     name: 'About',
     component: loadPage('AboutPage')

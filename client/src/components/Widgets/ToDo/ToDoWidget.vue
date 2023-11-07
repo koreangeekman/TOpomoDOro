@@ -40,11 +40,11 @@
 
 
 <script>
-import { AppState } from '../../AppState';
 import { computed, onMounted, ref } from 'vue';
-import Pop from "../../utils/Pop.js";
+import { AppState } from '../../../AppState';
+import Pop from "../../../utils/Pop.js";
 import ToDoListEntry from "./ToDoListEntry.vue";
-import { toDoService } from "../../services/ToDoService.js";
+import { toDoService } from "../../../services/Widgets/ToDoService.js";
 
 export default {
   setup() {
