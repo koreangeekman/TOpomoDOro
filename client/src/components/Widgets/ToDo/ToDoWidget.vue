@@ -43,7 +43,7 @@
 import { AppState } from '../../AppState';
 import { computed, onMounted, ref } from 'vue';
 import Pop from "../../utils/Pop.js";
-import ToDoListEntry from "./ToDo/ToDoListEntry.vue";
+import ToDoListEntry from "./ToDoListEntry.vue";
 import { toDoService } from "../../services/ToDoService.js";
 
 export default {

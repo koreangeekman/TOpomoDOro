@@ -27,10 +27,10 @@
 
 
 <script>
-import { ToDo } from "../../../models/Widget/ToDo.js";
-import { AppState } from '../../../AppState';
 import { computed } from 'vue';
+import { AppState } from '../../../AppState';
 import { toDoService } from "../../../services/ToDoService.js";
+import { ToDo } from "../../../models/Widget/ToDo.js";
 import Pop from "../../../utils/Pop.js";
 
 export default {

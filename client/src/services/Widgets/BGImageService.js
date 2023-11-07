@@ -1,6 +1,6 @@
-import { bcwSandbox } from "./AxiosService.js";
-import { AppState } from "../AppState.js";
-import { BGImg } from "../models/Widget/BGImg.js";
+import { bcwSandbox } from "../AxiosService.js";
+import { AppState } from "../../AppState.js";
+import { BGImg } from "../../models/Widget/BGImg.js";
 
 // function _saveBGs() {
 //   localStorage.setItem('backgrounds', AppState.backgrounds);

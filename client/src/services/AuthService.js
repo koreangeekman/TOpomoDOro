@@ -5,7 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
-import { toDoService } from "./ToDoService.js"
+import { toDoService } from "./Widgets/ToDoService.js"
 
 export const AuthService = initialize({
   domain,

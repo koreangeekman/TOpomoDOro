@@ -1,6 +1,6 @@
-import { bcwSandbox } from "./AxiosService.js";
-import { AppState } from "../AppState.js";
-import { Quote } from "../models/Widget/Quote.js";
+import { bcwSandbox } from "../AxiosService.js";
+import { AppState } from "../../AppState.js";
+import { Quote } from "../../models/Widget/Quote.js";
 
 class QuotesService {
 

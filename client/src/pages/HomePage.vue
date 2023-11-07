@@ -38,7 +38,7 @@
 import { computed } from "vue";
 import { AppState } from "../AppState";
 import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
-import ToDoWidget from "../components/Widgets/ToDoWidget.vue";
+import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -48,9 +48,6 @@ export default {
     return {
       router,
       account: computed(() => AppState.account),
-      projects: computed(() => AppState.projects),
-      folders: computed(() => AppState.folders),
-      tasks: computed(() => AppState.tasks),
     };
   },
   components: { QuoteWidget, ToDoWidget }

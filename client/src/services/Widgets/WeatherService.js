@@ -1,5 +1,5 @@
-import { AppState } from "../AppState.js";
-import { weatherAPI } from "./AxiosService.js";
+import { AppState } from "../../AppState.js";
+import { weatherAPI } from "../AxiosService.js";
 
 class WeatherService {
 
