@@ -9,22 +9,6 @@ export const AppState = reactive({
   /** @type {import('./models/Widget/ToDo.js').ToDo[]} */
   todos: [],
 
-  /** @type {import('./models/Task.js').Task[]} */
-  tasks: [],
-  /** @type {import('./models/Note.js').Note[]} */
-  notes: [],
-  /** @type {import('./models/Folder.js').Folder[]} */
-  folders: [],
-  /** @type {import('./models/Project.js').Project[]} */
-  projects: [],
-  /** @type {import('./models/Workspace.js').Workspace} */
-  workspaces: [],
-
-  activeTask: null,
-  activeNote: null,
-  activeFolder: null,
-  activeProject: null,
-  activeWorkspace: null,
 
   settings: {
     weather: {
@@ -41,6 +25,9 @@ export const AppState = reactive({
       bgColor: '#123456', // if bgImg is disabled/unresponsive, set a custom bg-color
       autoChange: false,
       cycle: 3600 // auto-refresh interval
+    },
+    todo: {
+      showAll: true,
     }
   },
 

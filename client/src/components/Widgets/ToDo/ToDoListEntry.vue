@@ -10,17 +10,14 @@
       </p>
     </span>
     <span class="d-flex">
-      <i v-if="todo.anchor" class="fs-4 ms-3 text-secondary mdi mdi-link-variant" type="button" title="Anchored note link"
-        @click="routeToNotes(todo.anchor)"></i>
-      <i v-else class="fs-4 ms-3 invisible mdi mdi-link-variant"></i>
-      <span class="d-flex ms-4">
+      <span class="d-flex mx-3">
         <i v-if="!todo.edit && todo.isCompleted" class="fs-4 invisible mdi mdi-pencil"></i>
         <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
           @click="enableEdit(todo)"></i>
         <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
           @click="saveEdit(todo)"></i>
       </span>
-      <i class="fs-4 ms-2 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
+      <i class="fs-4 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
     </span>
   </div>
 </template>
@@ -29,9 +26,9 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../../../AppState';
-import { toDoService } from "../../../services/Widgets/ToDoService.js";
-import { ToDo } from "../../../models/Widget/ToDo.js";
 import Pop from "../../../utils/Pop.js";
+import { ToDo } from "../../../models/Widget/ToDo.js";
+import { toDoService } from "../../../services/Widgets/ToDoService.js";
 
 export default {
   props: { todo: { type: ToDo, required: true } },

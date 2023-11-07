@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark shadow bg-dark px-2">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow bg-dark px-3">
 
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
@@ -15,13 +15,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
 
-        <li class="d-flex align-items-center me-1">
+        <li class="d-flex align-items-center mx-1">
           <router-link :to="{ name: 'Home' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Home
           </router-link>
         </li>
 
-        <div class="bar mx-1"></div>
+        <div class="bar mx-2"></div>
 
         <li class="d-flex align-items-center mx-1">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
@@ -29,7 +29,7 @@
           </router-link>
         </li>
 
-        <div class="bar mx-1"></div>
+        <div class="bar mx-2"></div>
 
         <li class="d-flex align-items-center position-relative">
           <p title="Change background" @click="changeBG()" type="button"
@@ -40,6 +40,8 @@
             <BGImgControlWidget />
           </div>
         </li>
+
+        <div class="bar mx-2"></div>
 
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -101,8 +103,8 @@ a:hover {
 }
 
 .bar {
-  border-left: 1px dashed #ff8000;
-  opacity: .67
+  border-left: 1px dashed #ffbb77;
+  opacity: .32;
 }
 
 @media screen and (min-width: 992px) {
