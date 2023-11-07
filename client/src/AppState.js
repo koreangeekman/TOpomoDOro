@@ -5,12 +5,31 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
+  /** @type {import('./models/Account.js').Account[]} */
+  authors: [],
 
   /** @type {import('./models/Widget/ToDo.js').ToDo[]} */
   todos: [],
 
+  widgets: { // to anchor the current instance of simple widget data objects
+    weather: {}, // populated by OpenWeather API on get
+    bgImg: {},
+    quote: {}
+  },
+
+  backgrounds: [],
 
   settings: {
+    todo: {
+      showAll: true,
+    },
+    pomodoro: {
+      workTime: 25,
+      breakTime: 5,
+      cycles: 1,
+      breakTimeAudio: '',
+      workTimeAudio: '',
+    },
     weather: {
       location: '',
       format: 'F' // 'K'elvin, 'F'ahrenheit, 'C'elsius
@@ -25,18 +44,7 @@ export const AppState = reactive({
       bgColor: '#123456', // if bgImg is disabled/unresponsive, set a custom bg-color
       autoChange: false,
       cycle: 3600 // auto-refresh interval
-    },
-    todo: {
-      showAll: true,
     }
-  },
+  }
 
-
-  widgets: { // to anchor the current instance of simple widget data objects
-    weather: {}, // populated by OpenWeather API on get
-    bgImg: {},
-    quote: {}
-  },
-
-  backgrounds: []
 })

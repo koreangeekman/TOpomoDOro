@@ -11,7 +11,7 @@
           <div class="d-flex justify-content-between todoSmall mx-1 my-2">
             <span class="d-flex align-items-center pe-3" type="button" @click="sortList()">
               <p class="fs-5 mb-0 px-1 orange">Sort List</p>
-              <i class="fs-4 ms-1 headIcon mdi mdi-sort-bool-ascending-variant"></i>
+              <i class="fs-4 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
             </span>
             <div class="bar"></div>
             <p class="fs-5 mb-0 px-3 orange" v-if="todos.length == incomplete.length">
@@ -26,7 +26,7 @@
             <div class="bar"></div>
             <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
               <p class="fs-5 mb-0 px-1 orange" disabled>Clean up list</p>
-              <i class="fs-3 ms-1 headIcon mdi mdi-broom"></i>
+              <i class="fs-3 ms-1 headerIcon mdi mdi-broom"></i>
             </span>
           </div>
           <hr class="my-1">
@@ -114,7 +114,7 @@ i,
   text-shadow: 0 0 5px black;
 }
 
-.headIcon {
+.headerIcon {
   line-height: 1rem;
 }
 

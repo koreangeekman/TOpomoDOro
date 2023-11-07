@@ -10,15 +10,15 @@
         <section class="user">
           <div class="m-3 mt-0">
             <label for="name">Name</label>
-            <input v-model="editable.name" class="ms-2 form-control" type="text" id="name" maxlength="100">
+            <input v-model="editable.name" class="ms-2 form-control" type="text" id="name" maxlength="96">
           </div>
           <div class="m-3 mt-0">
             <label for="picture">User Picture URL</label>
-            <input v-model="editable.picture" class="ms-2 form-control" type="url" id="picture" maxlength="200">
+            <input v-model="editable.picture" class="ms-2 form-control" type="url" id="picture" maxlength="256">
           </div>
           <div class="m-3 mt-0">
             <label for="website">Website</label>
-            <input v-model="editable.website" class="ms-2 form-control" type="text" id="website" maxlength="100">
+            <input v-model="editable.website" class="ms-2 form-control" type="text" id="website" maxlength="64">
           </div>
         </section>
       </div>
@@ -26,15 +26,15 @@
         <section class="socials">
           <div class="m-3 mt-0">
             <label for="github">Github</label>
-            <input v-model="editable.github" class="ms-2 form-control" type="url" id="github" maxlength="100">
+            <input v-model="editable.github" class="ms-2 form-control" type="url" id="github" maxlength="64">
           </div>
           <div class="m-3 mt-0">
             <label for="linkedin">LinkedIn</label>
-            <input v-model="editable.linkedin" class="ms-2 form-control" type="url" id="linkedin" maxlength="100">
+            <input v-model="editable.linkedin" class="ms-2 form-control" type="url" id="linkedin" maxlength="64">
           </div>
           <div class="m-3 mt-0">
             <label for="resume">Resume</label>
-            <input v-model="editable.resume" class="ms-2 form-control" type="url" id="resume" maxlength="100">
+            <input v-model="editable.resume" class="ms-2 form-control" type="url" id="resume" maxlength="64">
           </div>
         </section>
       </div>
@@ -42,7 +42,7 @@
         <div class="mx-3 mt-0 mb-4">
           <label for="bio">Bio</label>
           <textarea v-model="editable.bio" class="ms-2 form-control" name="bio" id="bio" rows="4"
-            maxlength="5000"></textarea>
+            maxlength="500"></textarea>
         </div>
         <hr>
       </div>

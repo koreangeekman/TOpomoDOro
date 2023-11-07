@@ -51,6 +51,20 @@ function sanitizeBody(body) {
   return writable
 }
 
+function _filterBody(body) {
+  const shareable = {
+    name: body.name,
+    email: body.email,
+    picture: body.picture,
+    github: body.github,
+    linkedin: body.linkedin,
+    resume: body.resume,
+    website: body.website,
+    bio: body.bio
+  }
+  return shareable
+}
+
 class AccountService {
   /**
    * Returns a user account from the Auth0 user object
@@ -74,6 +88,13 @@ class AccountService {
    *  @param {any} user Auth0 user object
    *  @param {any} body Updates to apply to user object
    */
+
+  async getAppAuthors() {
+    const accounts = await dbContext.Account.find({ appAuthor: true });
+    const authors = accounts.map(acct => _filterBody(acct));
+    return authors
+  }
+
   async updateAccount(user, body) {
     const update = sanitizeBody(body)
     const account = await dbContext.Account.findOneAndUpdate(

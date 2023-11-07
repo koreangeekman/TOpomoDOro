@@ -14,12 +14,20 @@ class AccountService {
     }
   }
 
+  async getAppAuthors() {
+    try {
+      const res = await api.get('/account/authors');
+      AppState.authors = res.data.map(author => new Account(author));
+    } catch (error) {
+      Pop.error(error)
+    }
+  }
+
   async updateProfile(newData) {
     try {
       const res = await api.put(`/account/${newData.id}`, newData);
       AppState.account = new Account(res.data);
     } catch (error) {
-      logger.error(error);
       Pop.error(error);
     }
   }
