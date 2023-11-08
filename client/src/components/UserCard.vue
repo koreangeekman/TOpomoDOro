@@ -1,6 +1,6 @@
 <template>
   <div class="bgColor rounded p-3">
-    <h1>Welcome {{ profile.name }}</h1>
+    <h1>{{ profile.name }}</h1>
     <img class="rounded-circle mt-2 mb-3" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
     <div class="d-flex justify-content-center">
@@ -17,7 +17,8 @@
         </span>
       </div>
     </div>
-    <div class="fs-1 socials d-flex justify-content-center px-3 pt-5">
+    <p class="pt-3">{{ profile.bio }}</p>
+    <div class="fs-1 socials d-flex justify-content-center p-3">
       <a :href="profile.github" target="_blank"><i class="p-3 mdi mdi-github" title="icon for github"></i></a>
       <a :href="profile.linkedin" target="_blank"><i class="p-3 mdi mdi-linkedin" title="icon for linked"></i></a>
       <a :href="profile.resume" target="_blank"><i class="p-3 mdi mdi-file-account"
@@ -53,7 +54,8 @@ img {
 }
 
 .bgColor {
-  background-color: #12345678;
+  background-color: #123456b9;
+  backdrop-filter: blur(5px);
 }
 
 .courier {

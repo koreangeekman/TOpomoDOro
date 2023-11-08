@@ -68,6 +68,15 @@ function _filterBody(body) {
 }
 
 class AccountService {
+
+  async getAppAuthors() {
+    const accounts = await dbContext.Account.find({ appAuthor: true });
+    const authors = accounts.map(acct => _filterBody(acct));
+    return authors
+  }
+
+  // SECTION 🔽 REQUIRES AUTHENTICATION 🔽
+
   /**
    * Returns a user account from the Auth0 user object
    *
@@ -98,12 +107,6 @@ class AccountService {
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     )
     return account
-  }
-
-  async getAppAuthors() {
-    const accounts = await dbContext.Account.find({ appAuthor: true });
-    const authors = accounts.map(acct => _filterBody(acct));
-    return authors
   }
 
 }

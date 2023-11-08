@@ -1,31 +1,29 @@
 <template>
   <div class="container-fluid">
-    <section class="row justify-content-around">
-      <div class="col-12 d-flex flex-column p-3 justify-content-center align-items-center">
-        <p class="fs-1 bgBlur p-2 rounded mb-1 fw-bold">TOpomoDOro</p>
-        <p class="fs-4 bgBlur p-2 rounded">[ TO-DO + pomodoro ]</p>
-      </div>
-      <div class="col-12 col-md-6 d-flex p-3">
-        <p class="fs-5 bgBlur p-2 rounded">
-          Full Stack Application built by DJ Aaron <br>
-          built from Express & Vue
+    <section class="row justify-content-center p-4 pt-5">
+      <div class="col-auto d-flex flex-column justify-content-center align-items-center rounded bgBlur py-2 px-3">
+        <p class="fs-1 p-2 rounded mb-1 fw-bold">TOpomoDOro</p>
+        <p class="fs-4 p-2 rounded">[ TO-DO + pomodoro ]</p>
+        <p class="fs-5 p-2 rounded text-center">
+          Personal project to create a ToDo & Pomodoro blended <br>
+          application with additional custom functionality
         </p>
-      </div>
-      <div class="col-12 col-md-4 d-flex p-3">
-
-      </div>
-      <div class="col-12 col-md-4 d-flex p-3">
-
-      </div>
-      <div class="col-12 col-md-6 d-flex p-3">
-        <p class="fs-5 bgBlur p-2 rounded">
-          Personal project to create a ToDo & Pomodoro blended application with
-          additional custom functionality
+        <p class="fs-5 p-2 m-2 rounded text-center">
+          Full Stack Application <br>
+        </p>
+        <p class="fs-5 p-2 m-2 rounded text-center">
+          MongoDB, Mongoose, Express, Vue
         </p>
       </div>
     </section>
     <section v-if="authors.length > 0" class="row justify-content-evenly align-items-center">
-      <div v-for="author in authors" :key="author.email" class="col-12 col-md-6 mt-5 mt-md-0 text-center text-light">
+      <div class="col-12 d-flex justify-content-center">
+        <p class="fs-3 py-2 px-3 mt-3 mb-5 bgBlur rounded text-center">
+          Like the app? <br>
+          Find out more about the creator below!
+        </p>
+      </div>
+      <div v-for="author in authors" :key="author.email" class="col-12 col-md-6 mb-5 px-4 text-center text-light">
         <UserCard :profile="author" />
       </div>
     </section>
@@ -51,7 +49,9 @@ export default {
     }
 
     onMounted(() => {
-      _getAppAuthors();
+      if (AppState.authors.length == 0) {
+        _getAppAuthors();
+      }
     })
 
     return {
@@ -65,8 +65,15 @@ export default {
 
 
 <style lang="scss" scoped>
+hr {
+  margin: 0.5rem;
+  color: #ffffff;
+  box-shadow: 0 0 5px 5px white;
+}
+
 .bgBlur {
-  background-color: #dadadab9;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
+  background-color: #123456b9;
+  color: whitesmoke;
 }
 </style>
