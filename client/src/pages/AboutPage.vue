@@ -24,20 +24,20 @@
         </p>
       </div>
     </section>
-    <section class="row justify-content-evenly align-items-center">
-      <div class="col-12 col-md-6 mt-5 mt-md-0 text-center text-light">
-        <UserCard />
+    <section v-if="authors.length > 0" class="row justify-content-evenly align-items-center">
+      <div v-for="author in authors" :key="author.email" class="col-12 col-md-6 mt-5 mt-md-0 text-center text-light">
+        <UserCard :profile="author" />
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
+import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
 import UserCard from "../components/UserCard.vue";
 import { accountService } from "../services/AccountService.js";
-import Pop from "../utils/Pop.js";
-import { AppState } from "../AppState.js";
 
 export default {
   setup() {

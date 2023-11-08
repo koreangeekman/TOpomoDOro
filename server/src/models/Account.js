@@ -13,6 +13,7 @@ export const AccountSchema = new Schema(
     resume: { type: String, required: false, maxLength: 64 },
     website: { type: String, required: false, maxLength: 64 },
     bio: { type: String, required: false, maxLength: 500 },
+    appAuthor: { type: Boolean, required: false, default: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

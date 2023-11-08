@@ -3,7 +3,7 @@
     <section class="row justify-content-evenly align-items-center">
 
       <div class="col-12 col-md-6 mt-5 mt-md-0 text-center text-light">
-        <UserCard />
+        <UserCard :profile="account" />
       </div>
 
       <div v-if="account.id" class="col-12 col-lg-6 col-xxl-5 py-5 pe-xl-5">
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { AppState } from '../AppState';
 import EditAccountForm from "../components/EditAccountForm.vue";
 import UserCard from "../components/UserCard.vue";
