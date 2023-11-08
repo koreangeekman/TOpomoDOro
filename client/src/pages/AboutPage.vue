@@ -14,6 +14,11 @@
         <p class="fs-5 p-2 m-2 rounded text-center">
           MongoDB, Mongoose, Express, Vue
         </p>
+        <p class="p-2 m-2 rounded text-center">
+          - Weather info pulled from the <a href="https://openweathermap.org/" target="_blank">OpenWeather</a> API - <br>
+          - Background Image & Quote pulled from
+          <a href="https://boisecodeworks.com/" target="_blank">Boise Codeworks'</a> Sandbox -
+        </p>
       </div>
     </section>
     <section v-if="authors.length > 0" class="row justify-content-evenly align-items-center">
@@ -65,10 +70,18 @@ export default {
 
 
 <style lang="scss" scoped>
-hr {
-  margin: 0.5rem;
-  color: #ffffff;
-  box-shadow: 0 0 5px 5px white;
+// hr {
+//   margin: 0.5rem;
+//   color: #ffffff;
+//   box-shadow: 0 0 5px 5px white;
+// }
+
+a {
+  color: orange;
+}
+
+a:hover {
+  color: rgb(255, 210, 125);
 }
 
 .bgBlur {
