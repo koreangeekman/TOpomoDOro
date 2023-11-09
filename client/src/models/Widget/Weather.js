@@ -5,7 +5,8 @@ export class Weather {
       temp_min: data.main.temp_min,
       temp_max: data.main.temp_max,
       feels_like: data.main.feels_like,
-      weatherIcon: data.weather["0"].icon
+      weather: data.weather["0"].description,
+      weatherIcon: `https://openweathermap.org/img/wn/${data.weather["0"].icon}.png`
     }
     this.details = {
       weather: data.weather["0"].description,

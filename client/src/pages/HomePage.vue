@@ -14,9 +14,6 @@
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> ✍️(◔◡◔)</p>
           </span>
         </div>
-        <div class="col-12">
-          <WeatherWidget />
-        </div>
       </section>
     </div>
   </div>
@@ -31,7 +28,6 @@ import { computed } from "vue";
 import { AppState } from "../AppState";
 import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
 import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
-import WeatherWidget from "../components/Widgets/Weather/WeatherWidget.vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -43,7 +39,7 @@ export default {
       account: computed(() => AppState.account),
     };
   },
-  components: { QuoteWidget, ToDoWidget, WeatherWidget }
+  components: { QuoteWidget, ToDoWidget }
 }
 </script>
 

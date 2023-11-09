@@ -1,15 +1,20 @@
 <template>
-  <section class="position-relative">
-    <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
-      <div v-if="account.id" class="d-block text-center temp pe-3" id="weather">
-        <WeatherData :dataProp="weather.data" />
+  <section v-if="account.id" class="position-relative">
+    <div class="col-12">
+      <div class="weatherData">
+        {{ temperature }} asdsd
+      </div>
+    </div>
+    <div class="col-12 col-md-auto d-flex position-absolute weather" onclick="changeTempType()">
+      <div class="d-block text-center temp px-3" id="weatherData">
+        <WeatherData :dataProp="weather.data" :temps="temps" :format="settings.format" />
       </div>
       <div class="bar"></div>
-      <div v-if="account.id" class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
+      <div class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
         <WeatherDetails :details="weather.details" />
       </div>
     </div>
-    <div class="col-12 col-md-auto d-flex justify-content-center p-3">
+    <div class="col-12 col-md-auto d-flex justify-content-center text-white p-3">
       {{ weather.conditions }}
     </div>
     <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
@@ -28,7 +33,7 @@
 
 <script>
 import { AppState } from "../../../AppState";
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { logger } from "../../../utils/Logger.js";
 import Pop from "../../../utils/Pop.js";
 import WeatherData from "./WeatherData.vue";
@@ -38,11 +43,17 @@ import { weatherService } from "../../../services/Widgets/WeatherService.js";
 export default {
   setup() {
 
+    const temps = ref({});
+
     async function _getWeather() {
-      try {
-        await weatherService.getWeather();
-      }
+      try { await weatherService.getWeather(); }
       catch (error) { Pop.error(error); }
+    }
+
+    function _calcFormat(temp, format) {
+      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
+      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
+      return `${temp.toFixed(2)}ºK`
     }
 
     onMounted(() => {
@@ -55,6 +66,12 @@ export default {
       settings: computed(() => AppState.settings.weather),
       weather: computed(() => AppState.widgets.weather),
 
+      temperature: computed(() => {
+        let kelvin = this.weather.data.temp;
+        let format = this.settings.format;
+        return _calcFormat(kelvin, format);
+      }),
+
       async changeTempType() {
         try {
           await weatherService.changeTempType();
@@ -63,7 +80,7 @@ export default {
           logger.error(error);
           Pop.error(error);
         }
-      }
+      },
 
     };
   },

@@ -1,12 +1,12 @@
 <template>
-  <div v-if="temps != {}" class="weatherData">
+  <div v-if="temps.C?.mainTemp" class="weatherData position-absolute">
 
     <span class="d-flex pt-2 align-items-center">
       <span class="d-block tempSmall pt-3 ps-2">
         <div class="d-flex align-items-center">
           <i class="mdi mdi-format-vertical-align-top"></i>
           <p class="mb-0 px-2">
-            {{ temps.maxTemp[settings.weather.format] }}
+            {{ temps[format].maxTemp }}
           </p>
         </div>
         <div>
@@ -22,7 +22,7 @@
         </div>
         <div class="d-flex align-items-center">
           <p class="mb-0 px-2">
-            {{ temps.minTemp[settings.weather.format] }}
+            {{ temps[format].minTemp }}
           </p>
           <i class="mdi mdi-format-vertical-align-bottom"></i>
         </div>
@@ -31,13 +31,12 @@
 
     <div class="d-flex justify-content-between align-items-center tempBig">
       <p class="mb-0 px-2">
-        {{ temps.mainTemp[settings.weather.format] }}
+        {{ temps[format].mainTemp }}
       </p>
-      <img class="img-fluid weatherIcon" :src="`https://openweathermap.org/img/wn/${dataProp.weatherIcon}.png`"
-        :alt="`${dataProp.weather['0']?.description}`">
+      <img class="img-fluid weatherIcon" :src="dataProp.weatherIcon" :alt="dataProp.weather">
     </div>
     <p class="tempSmall mb-4">
-      Feels like: {{ temps.feels_like[settings.weather.format] }}
+      Feels like: {{ temps[format].feels_like }}
     </p>
 
   </div>
@@ -45,64 +44,38 @@
 
 
 <script>
-import { AppState } from '../../../AppState';
 import { computed, onMounted, ref } from 'vue';
+import { AppState } from '../../../AppState';
 import { logger } from "../../../utils/Logger.js";
 
 export default {
-  props: { dataPropProp: { type: Object } },
+  props: {
+    dataProp: { type: Object },
+    temps: { type: Object },
+    format: { type: String }
+  },
 
   setup(props) {
 
-    const temps = ref({});
-
-    function _mainTempFormatted(format) {
-      const temp = props.dataProp.temp;
-      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
-      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
-      return `${temp.toFixed(2)}ºK`
-    }
-
-    function _minTempFormatted(format) {
-      const temp = props.dataProp.temp_min;
-      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
-      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
-      return `${temp.toFixed(2)}ºK`
-    }
-
-    function _maxTempFormatted(format) {
-      const temp = props.dataProp.temp_max;
-      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
-      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
-      return `${temp.toFixed(2)}ºK`
-    }
-
-    function _feelsLikeTempFormatted(format) {
-      const temp = props.dataProp.feels_like;
-      if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
-      if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
-      return `${temp.toFixed(2)}ºK`
-    }
-
-    function _calcVariables() {
-      const formats = ['K', 'F', 'C'] // HAH
-      formats.forEach(format => {
-        logger.log('calculating format:', format)
-        temps.mainTemp[format] = _mainTempFormatted(format)
-        temps.minTemp[format] = _minTempFormatted(format)
-        temps.maxTemp[format] = _maxTempFormatted(format)
-        temps.feels_like[format] = _feelsLikeTempFormatted(format)
-      })
-      logger.log('calculated temps', temps)
-    }
-
     onMounted(() => {
-      _calcVariables();
+      // calcVariables();
     })
 
     return {
-      temps,
-      settings: computed(() => AppState.settings)
+      // settings: computed(() => AppState.settings.weather),
+
+      // calcVariables() {
+      //   const formats = ['K', 'F', 'C'] // HAH
+      //   formats.forEach(format => {
+      //     logger.log('calculating format:', format)
+      //     const mainTemp = _calcFormat(props.dataProp.temp, format)
+      //     const minTemp = _calcFormat(props.dataProp.temp_min, format)
+      //     const maxTemp = _calcFormat(props.dataProp.temp_max, format)
+      //     const feels_like = _calcFormat(props.dataProp.feels_like, format)
+      //     temps.value[format] = { mainTemp, minTemp, maxTemp, feels_like }
+      //   })
+      //   logger.log('calculated temps', temps.value)
+      // },
 
     }
   }

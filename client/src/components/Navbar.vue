@@ -43,6 +43,10 @@
 
         <div class="bar mx-2"></div>
 
+        <li class="">
+          <WeatherWidget />
+        </li>
+
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
@@ -50,14 +54,15 @@
   </nav>
 </template>
 
+
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import Pop from "../utils/Pop.js";
-import BGImgControlWidget from "./Widgets/BGImgControlWidget.vue";
 import { bgImageService } from "../services/Widgets/BGImageService.js";
-
+import BGImgControlWidget from "./Widgets/BGImgControlWidget.vue";
+import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
 
 export default {
   setup() {
@@ -75,7 +80,7 @@ export default {
 
     }
   },
-  components: { Login, BGImgControlWidget }
+  components: { Login, BGImgControlWidget, WeatherWidget }
 }
 </script>
 
