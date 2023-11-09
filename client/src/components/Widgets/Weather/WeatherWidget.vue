@@ -1,21 +1,21 @@
 <template>
   <section v-if="account.id" class="position-relative">
     <div class="col-12">
-      <div class="weatherData">
-        {{ temperature }} asdsd
+      <div class="temp">
+        A {{ temperature }} A
       </div>
     </div>
     <div class="col-12 col-md-auto d-flex position-absolute weather" onclick="changeTempType()">
-      <div class="d-block text-center temp px-3" id="weatherData">
+      <div class="d-block text-center weatherData px-3" id="weatherData">
         <WeatherData :dataProp="weather.data" :temps="temps" :format="settings.format" />
       </div>
       <div class="bar"></div>
-      <div class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
+      <div class="d-flex flex-column justify-content-between weatherDetails p-3" id="weatherDetails">
         <WeatherDetails :details="weather.details" />
       </div>
     </div>
     <div class="col-12 col-md-auto d-flex justify-content-center text-white p-3">
-      {{ weather.conditions }}
+      <!-- {{ weather.conditions }} -->
     </div>
     <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
   </section>
@@ -56,11 +56,26 @@ export default {
       return `${temp.toFixed(2)}ºK`
     }
 
-    onMounted(() => {
-      _getWeather();
+    function _calcVariables() {
+      const formats = ['K', 'F', 'C'] // HAH
+      formats.forEach(format => {
+        logger.log('calculating format:', format)
+        const mainTemp = _calcFormat(props.dataProp.temp, format)
+        const minTemp = _calcFormat(props.dataProp.temp_min, format)
+        const maxTemp = _calcFormat(props.dataProp.temp_max, format)
+        const feels_like = _calcFormat(props.dataProp.feels_like, format)
+        temps.value[format] = { mainTemp, minTemp, maxTemp, feels_like }
+      })
+      logger.log('calculated temps', temps.value)
+    }
+
+    onMounted(async () => {
+      await _getWeather();
+      _calcVariables();
     });
 
     return {
+      temps,
 
       account: computed(() => AppState.account),
       settings: computed(() => AppState.settings.weather),
@@ -73,13 +88,8 @@ export default {
       }),
 
       async changeTempType() {
-        try {
-          await weatherService.changeTempType();
-        }
-        catch (error) {
-          logger.error(error);
-          Pop.error(error);
-        }
+        try { await weatherService.changeTempType(); }
+        catch (error) { Pop.error(error) }
       },
 
     };

@@ -44,41 +44,13 @@
 
 
 <script>
-import { computed, onMounted, ref } from 'vue';
-import { AppState } from '../../../AppState';
-import { logger } from "../../../utils/Logger.js";
-
 export default {
   props: {
     dataProp: { type: Object },
     temps: { type: Object },
     format: { type: String }
   },
-
-  setup(props) {
-
-    onMounted(() => {
-      // calcVariables();
-    })
-
-    return {
-      // settings: computed(() => AppState.settings.weather),
-
-      // calcVariables() {
-      //   const formats = ['K', 'F', 'C'] // HAH
-      //   formats.forEach(format => {
-      //     logger.log('calculating format:', format)
-      //     const mainTemp = _calcFormat(props.dataProp.temp, format)
-      //     const minTemp = _calcFormat(props.dataProp.temp_min, format)
-      //     const maxTemp = _calcFormat(props.dataProp.temp_max, format)
-      //     const feels_like = _calcFormat(props.dataProp.feels_like, format)
-      //     temps.value[format] = { mainTemp, minTemp, maxTemp, feels_like }
-      //   })
-      //   logger.log('calculated temps', temps.value)
-      // },
-
-    }
-  }
+  setup(props) { return {} }
 };
 </script>
 

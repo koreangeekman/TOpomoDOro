@@ -12,8 +12,8 @@ export class Weather {
       weather: data.weather["0"].description,
       city: data.name,
       timezone: data.timezone, // pre-formatting / shift in seconds from UTC
-      sunrise: data.sys.sunrise, // pre-formatting
-      sunset: data.sys.sunset, // pre-formatting
+      sunrise: new Date(data.sys.sunrise),
+      sunset: new Date(data.sys.sunset),
       humidity: data.main.humidity
     }
     this.conditions = {

@@ -35,14 +35,14 @@ export default {
     return {
 
       formatSunrise() {
-        const sunrise = new Date(props.details.sunrise)
+        const sunrise = props.details.sunrise
         console.log('sunrise formatted', sunrise);
         const hh = sunrise.getHours(); const mm = sunrise.getMinutes(); const ss = sunrise.getSeconds();
         return hh + ':' + (mm < 10 ? "0" + mm : mm) + ':' + (ss < 10 ? "0" + ss : ss)
       },
 
       formatSunset() {
-        const sunset = new Date(props.details.sunset)
+        const sunset = props.details.sunset
         console.log('sunset formatted', sunset);
         const hh = sunset.getHours(); const mm = sunset.getMinutes(); const ss = sunset.getSeconds();
         return hh + ':' + (mm < 10 ? "0" + mm : mm) + ':' + (ss < 10 ? "0" + ss : ss)
