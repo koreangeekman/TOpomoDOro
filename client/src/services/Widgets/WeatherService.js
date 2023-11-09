@@ -1,5 +1,6 @@
 import { AppState } from "../../AppState.js";
 import { Weather } from "../../models/Widget/Weather.js";
+import { logger } from "../../utils/Logger.js";
 import { weatherAPI } from "../AxiosService.js";
 
 class WeatherService {
@@ -24,7 +25,9 @@ class WeatherService {
       query = `?lat=${weather.location[0]}&lon=${weather.location[1]}`;
     }
     const res = await weatherAPI.get(`${query}`);
-    AppState.widgets.weather = new Weather(res.data);
+    const weatherPoll = new Weather(res.data);
+    AppState.widgets.weather = weatherPoll;
+    logger.log('weather get', weatherPoll)
   }
 
 }

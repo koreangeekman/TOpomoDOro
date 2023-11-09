@@ -1,7 +1,7 @@
 <template>
   <span class="d-flex justify-content-between">
     <p class="mb-0">City: </p>
-    <p class="mb-0">{{ details.location }}</p>
+    <p class="mb-0">{{ details.city }}</p>
   </span>
   <span class="d-flex justify-content-between">
     <p class="mb-0">Timezone: &nbsp</p>
@@ -17,7 +17,7 @@
   </span>
   <span class="d-flex justify-content-between">
     <p class="mb-0">Weather: </p>
-    <p class="mb-0">{{ details.weather.description }}</p>
+    <p class="mb-0">{{ details.weather }}</p>
   </span>
   <span class="d-flex justify-content-between">
     <p class="mb-0">Humidity: </p>

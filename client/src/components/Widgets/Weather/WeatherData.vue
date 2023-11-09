@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div v-if="temps != {}" class="weatherData">
 
     <span class="d-flex pt-2 align-items-center">
       <span class="d-block tempSmall pt-3 ps-2">
@@ -33,8 +33,8 @@
       <p class="mb-0 px-2">
         {{ temps.mainTemp[settings.weather.format] }}
       </p>
-      <img class="img-fluid weatherIcon" :src="`https://openweathermap.org/img/wn/${data.weather['0']?.icon}.png`"
-        :alt="`${data.weather['0']?.description}`">
+      <img class="img-fluid weatherIcon" :src="`https://openweathermap.org/img/wn/${dataProp.weatherIcon}.png`"
+        :alt="`${dataProp.weather['0']?.description}`">
     </div>
     <p class="tempSmall mb-4">
       Feels like: {{ temps.feels_like[settings.weather.format] }}
@@ -46,38 +46,39 @@
 
 <script>
 import { AppState } from '../../../AppState';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { logger } from "../../../utils/Logger.js";
 
 export default {
-  props: { data: { type: Object } },
+  props: { dataPropProp: { type: Object } },
 
   setup(props) {
 
-    const temps = {}
+    const temps = ref({});
 
     function _mainTempFormatted(format) {
-      let temp = props.data.temp;
+      const temp = props.dataProp.temp;
       if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
       if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
       return `${temp.toFixed(2)}ºK`
     }
 
     function _minTempFormatted(format) {
-      let temp = props.data.temp_min;
+      const temp = props.dataProp.temp_min;
       if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
       if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
       return `${temp.toFixed(2)}ºK`
     }
 
     function _maxTempFormatted(format) {
-      let temp = props.data.temp_max;
+      const temp = props.dataProp.temp_max;
       if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
       if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
       return `${temp.toFixed(2)}ºK`
     }
 
     function _feelsLikeTempFormatted(format) {
-      let temp = props.data.feels_like;
+      const temp = props.dataProp.feels_like;
       if (format == 'F') { return `${((temp - 273.15) * (9 / 5) + 32).toFixed(0)}ºF` }
       if (format == 'C') { return `${(temp - 273.15).toFixed(1)}ºC` }
       return `${temp.toFixed(2)}ºK`
@@ -86,16 +87,19 @@ export default {
     function _calcVariables() {
       const formats = ['K', 'F', 'C'] // HAH
       formats.forEach(format => {
+        logger.log('calculating format:', format)
         temps.mainTemp[format] = _mainTempFormatted(format)
         temps.minTemp[format] = _minTempFormatted(format)
         temps.maxTemp[format] = _maxTempFormatted(format)
         temps.feels_like[format] = _feelsLikeTempFormatted(format)
       })
+      logger.log('calculated temps', temps)
     }
 
     onMounted(() => {
-      _calcVariables
+      _calcVariables();
     })
+
     return {
       temps,
       settings: computed(() => AppState.settings)

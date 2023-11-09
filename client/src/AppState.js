@@ -11,6 +11,8 @@ export const AppState = reactive({
   /** @type {import('./models/Widget/ToDo.js').ToDo[]} */
   todos: [],
 
+  /** @type {import('./models/Widget/Weather.js').Weather} */
+
   widgets: { // to anchor the current instance of simple widget data objects
     weather: {}, // populated by OpenWeather API on get
     bgImg: {},

@@ -1,13 +1,16 @@
 <template>
   <section class="position-relative">
     <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
-      <div v-if="weather.data?.temp" class="d-block text-center temp pe-3" id="weather">
-        <WeatherData :data="weather.data" />
+      <div v-if="account.id" class="d-block text-center temp pe-3" id="weather">
+        <WeatherData :dataProp="weather.data" />
       </div>
       <div class="bar"></div>
-      <div v-if="weather.details?.location" class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
+      <div v-if="account.id" class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
         <WeatherDetails :details="weather.details" />
       </div>
+    </div>
+    <div class="col-12 col-md-auto d-flex justify-content-center p-3">
+      {{ weather.conditions }}
     </div>
     <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
   </section>
@@ -39,10 +42,7 @@ export default {
       try {
         await weatherService.getWeather();
       }
-      catch (error) {
-        logger.error(error);
-        Pop.error(error);
-      }
+      catch (error) { Pop.error(error); }
     }
 
     onMounted(() => {
@@ -50,6 +50,8 @@ export default {
     });
 
     return {
+
+      account: computed(() => AppState.account),
       settings: computed(() => AppState.settings.weather),
       weather: computed(() => AppState.widgets.weather),
 
