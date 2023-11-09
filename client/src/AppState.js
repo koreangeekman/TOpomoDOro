@@ -31,7 +31,8 @@ export const AppState = reactive({
       workTimeAudio: '',
     },
     weather: {
-      location: '',
+      city: 'Boise',
+      location: [], // [lon, lat]
       format: 'F' // 'K'elvin, 'F'ahrenheit, 'C'elsius
     },
     quote: {

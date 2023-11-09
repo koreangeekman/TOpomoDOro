@@ -1,11 +1,11 @@
 <template>
   <section class="position-relative">
     <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
-      <div class="d-block text-center temp pe-3" id="weather">
+      <div v-if="weather.data?.temp" class="d-block text-center temp pe-3" id="weather">
         <WeatherData :data="weather.data" />
       </div>
       <div class="bar"></div>
-      <div class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
+      <div v-if="weather.details?.location" class="d-flex flex-column justify-content-between p-3" id="weatherDetails">
         <WeatherDetails :details="weather.details" />
       </div>
     </div>
@@ -18,6 +18,7 @@
     <!-- https://openweathermap.org/appid -->
     <!-- https://openweathermap.org/current -->
     <!-- https://bulk.openweathermap.org/sample/ -->
+    <!-- https://www.iso.org/iso-3166-country-codes.html ISO 3166 country codes -->
   </section>
 </template>
 
@@ -29,7 +30,7 @@ import { logger } from "../../../utils/Logger.js";
 import Pop from "../../../utils/Pop.js";
 import WeatherData from "./WeatherData.vue";
 import WeatherDetails from "./WeatherDetails.vue";
-import { weatherService } from "../../../services/WeatherService.js";
+import { weatherService } from "../../../services/Widgets/WeatherService.js";
 
 export default {
   setup() {
@@ -45,12 +46,12 @@ export default {
     }
 
     onMounted(() => {
-      // _getWeather();
+      _getWeather();
     });
 
     return {
-      settings: computed(() => AppState.settings),
-      weather: computed(() => AppState.weather),
+      settings: computed(() => AppState.settings.weather),
+      weather: computed(() => AppState.widgets.weather),
 
       async changeTempType() {
         try {
