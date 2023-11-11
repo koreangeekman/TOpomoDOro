@@ -2,21 +2,25 @@
   <section v-if="account.id" class="position-relative">
     <div class="col-12">
       <div class="temp">
-        A {{ temperature }} A
+        <p class="fs-1 mb-0 px-2">
+          {{ temperature }}
+        </p>
       </div>
     </div>
-    <div class="col-12 col-md-auto d-flex position-absolute weather" onclick="changeTempType()">
-      <div class="d-block text-center weatherData px-3" id="weatherData">
-        <WeatherData :dataProp="weather.data" :temps="temps" :format="settings.format" />
+    <span class="position-absolute">
+      <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
+        <div class="d-block text-center weatherData px-3" id="weatherData">
+          <WeatherData :dataProp="weather.data" :temps="temps" :format="settings.format" />
+        </div>
+        <div class="bar"></div>
+        <div class="d-flex flex-column justify-content-between weatherDetails p-3" id="weatherDetails">
+          <WeatherDetails :details="weather.details" />
+        </div>
       </div>
-      <div class="bar"></div>
-      <div class="d-flex flex-column justify-content-between weatherDetails p-3" id="weatherDetails">
-        <WeatherDetails :details="weather.details" />
+      <div class="col-12 col-md-auto d-flex justify-content-center text-white p-3">
+        <!-- {{ weather.conditions }} -->
       </div>
-    </div>
-    <div class="col-12 col-md-auto d-flex justify-content-center text-white p-3">
-      <!-- {{ weather.conditions }} -->
-    </div>
+    </span>
     <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
   </section>
 
@@ -46,7 +50,7 @@ export default {
     const temps = ref({});
 
     async function _getWeather() {
-      try { await weatherService.getWeather(); }
+      try { await weatherService.getWeather(); logger.log('got weather data', AppState.widgets.weather) }
       catch (error) { Pop.error(error); }
     }
 
@@ -59,11 +63,12 @@ export default {
     function _calcVariables() {
       const formats = ['K', 'F', 'C'] // HAH
       formats.forEach(format => {
+        const weatherData = AppState.widgets.weather
         logger.log('calculating format:', format)
-        const mainTemp = _calcFormat(props.dataProp.temp, format)
-        const minTemp = _calcFormat(props.dataProp.temp_min, format)
-        const maxTemp = _calcFormat(props.dataProp.temp_max, format)
-        const feels_like = _calcFormat(props.dataProp.feels_like, format)
+        const mainTemp = _calcFormat(weatherData.data.temp, format)
+        const minTemp = _calcFormat(weatherData.data.temp_min, format)
+        const maxTemp = _calcFormat(weatherData.data.temp_max, format)
+        const feels_like = _calcFormat(weatherData.data.feels_like, format)
         temps.value[format] = { mainTemp, minTemp, maxTemp, feels_like }
       })
       logger.log('calculated temps', temps.value)
@@ -82,10 +87,11 @@ export default {
       weather: computed(() => AppState.widgets.weather),
 
       temperature: computed(() => {
-        let kelvin = this.weather.data.temp;
-        let format = this.settings.format;
+        let kelvin = AppState.widgets.weather.data.temp;
+        let format = AppState.settings.weather.format;
         return _calcFormat(kelvin, format);
       }),
+      // QUESTION: Always access direct from AppState on computed/functions? 
 
       async changeTempType() {
         try { await weatherService.changeTempType(); }

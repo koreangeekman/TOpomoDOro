@@ -70,10 +70,8 @@ export default {
 
       // settings: computed(() => AppState.settings.todo),
       account: computed(() => AppState.account),
-
-      incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
-
       todos: computed(() => AppState.todos),
+      incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
 
       // toggleVisibility() {
       //   !settings.showAll;

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="temps.C?.mainTemp" class="weatherData position-absolute">
+  <div v-if="temps.C?.mainTemp" class="weatherData">
 
     <span class="d-flex pt-2 align-items-center">
       <span class="d-block tempSmall pt-3 ps-2">
@@ -35,7 +35,7 @@
       </p>
       <img class="img-fluid weatherIcon" :src="dataProp.weatherIcon" :alt="dataProp.weather">
     </div>
-    <p class="tempSmall mb-4">
+    <p class="tempSmall mb-0">
       Feels like: {{ temps[format].feels_like }}
     </p>
 
@@ -58,7 +58,7 @@ export default {
 <style lang="scss" scoped>
 .tempSmall {
   font-size: 1rem;
-  line-height: .5rem;
+  line-height: 1rem;
 }
 
 .tempBig {

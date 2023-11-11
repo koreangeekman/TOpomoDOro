@@ -1,26 +1,26 @@
 <template>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">City: </p>
+    <p class="mb-0 me-2">City: </p>
     <p class="mb-0">{{ details.city }}</p>
   </span>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">Timezone: &nbsp</p>
+    <p class="mb-0 me-2">Timezone:</p>
     <p class="mb-0">GMT{{ details.timezone / 3600 }}</p>
   </span>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">Sunrise: &nbsp</p>
+    <p class="mb-0 me-2">Sunrise:</p>
     <p class="mb-0">{{ formatSunrise() }}am</p>
   </span>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">Sunset: </p>
+    <p class="mb-0 me-2">Sunset: </p>
     <p class="mb-0">{{ formatSunset() }}pm</p>
   </span>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">Weather: </p>
+    <p class="mb-0 me-2">Weather: </p>
     <p class="mb-0">{{ details.weather }}</p>
   </span>
   <span class="d-flex justify-content-between">
-    <p class="mb-0">Humidity: </p>
+    <p class="mb-0 me-2">Humidity: </p>
     <p class="mb-0">{{ details.humidity }}%</p>
   </span>
 </template>
@@ -53,4 +53,8 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+p {
+  text-wrap: nowrap;
+}
+</style>
