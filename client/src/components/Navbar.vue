@@ -37,13 +37,13 @@
             <i class="fs-2 mdi mdi-image-refresh"></i>
           </p>
           <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-2 p-0">
-            <BGImgControlWidget />
+            <BGImgWidget />
           </div>
         </li>
 
         <div class="bar mx-2"></div>
 
-        <li class="">
+        <li class="d-flex align-items-center">
           <WeatherWidget />
         </li>
 
@@ -61,7 +61,7 @@ import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import Pop from "../utils/Pop.js";
 import { bgImageService } from "../services/Widgets/BGImageService.js";
-import BGImgControlWidget from "./Widgets/BGImgControlWidget.vue";
+import BGImgWidget from "./Widgets/BGImgWidget.vue";
 import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
 
 export default {
@@ -80,7 +80,7 @@ export default {
 
     }
   },
-  components: { Login, BGImgControlWidget, WeatherWidget }
+  components: { Login, BGImgWidget, WeatherWidget }
 }
 </script>
 

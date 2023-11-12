@@ -1,7 +1,8 @@
 <template>
-  <div v-if="temps.C?.mainTemp" class="weatherData">
+  <div v-if="temps.C?.mainTemp" class="weatherData ">
 
-    <span class="d-flex pt-2 align-items-center">
+    <span class="d-flex align-items-center pt-2">
+
       <span class="d-block tempSmall pt-3 ps-2">
         <div class="d-flex align-items-center">
           <i class="mdi mdi-format-vertical-align-top"></i>
@@ -27,15 +28,17 @@
           <i class="mdi mdi-format-vertical-align-bottom"></i>
         </div>
       </span>
+
     </span>
 
     <div class="d-flex justify-content-between align-items-center tempBig">
       <p class="mb-0 px-2">
         {{ temps[format].mainTemp }}
       </p>
-      <img class="img-fluid weatherIcon" :src="dataProp.weatherIcon" :alt="dataProp.weather">
+      <img class="img-fluid weatherIcon" :src="data.weatherIcon" :alt="data.weather">
     </div>
-    <p class="tempSmall mb-0">
+
+    <p class="tempSmall">
       Feels like: {{ temps[format].feels_like }}
     </p>
 
@@ -46,7 +49,7 @@
 <script>
 export default {
   props: {
-    dataProp: { type: Object },
+    data: { type: Object },
     temps: { type: Object },
     format: { type: String }
   },

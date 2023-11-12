@@ -18,7 +18,7 @@ class BGImageService {
     const res = await bcwSandbox.get('api/images');
     const newBGImg = new BGImg(res.data);
     AppState.widgets.bgImg = newBGImg;
-    AppState.backgrounds.push(newBGImg);
+    // AppState.backgrounds.push(newBGImg);
     // _saveBGs();
   }
 

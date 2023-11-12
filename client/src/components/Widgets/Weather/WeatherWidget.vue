@@ -1,26 +1,31 @@
 <template>
   <section v-if="account.id" class="position-relative">
-    <div class="col-12">
-      <div class="temp">
-        <p class="fs-1 mb-0 px-2">
-          {{ temperature }}
-        </p>
-      </div>
+
+    <div class="temp rounded">
+      <p class="fs-2 mb-0 px-2" @click="changeTempType()">
+        {{ temperature }}
+      </p>
     </div>
-    <span class="position-absolute">
-      <div class="col-12 col-md-auto d-flex weather" onclick="changeTempType()">
+
+    <span class="position-absolute hidden">
+      <div class="d-flex rounded weather">
+
         <div class="d-block text-center weatherData px-3" id="weatherData">
-          <WeatherData :dataProp="weather.data" :temps="temps" :format="settings.format" />
+          <WeatherData :data="weather.data" :temps="temps" :format="settings.format" />
         </div>
+
         <div class="bar"></div>
+
         <div class="d-flex flex-column justify-content-between weatherDetails p-3" id="weatherDetails">
           <WeatherDetails :details="weather.details" />
         </div>
+
       </div>
-      <div class="col-12 col-md-auto d-flex justify-content-center text-white p-3">
+      <div class="d-flex justify-content-center text-white p-3">
         <!-- {{ weather.conditions }} -->
       </div>
     </span>
+
     <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
   </section>
 
@@ -115,12 +120,18 @@ i {
   border-left: 1px dashed grey;
 }
 
+.temp {
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid orange;
+  color: orange;
+  cursor: help;
+}
+
 .weather {
   font-family: 'Courier New', Courier, monospace;
   background-color: #123456b0;
   color: whitesmoke;
   border: 1px solid white;
-  border-radius: 1rem;
   width: fit-content;
   height: fit-content;
 }
@@ -129,13 +140,15 @@ i {
   margin-bottom: 0;
 }
 
-.temp {
-  cursor: help;
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+  top: 4rem;
 }
 
-#temp:hover+#tempDetails {
-  font-family: 'Courier New', Courier, monospace;
-  border: 1px solid white;
-  border-radius: 1rem;
+.temp:hover+.hidden {
+  visibility: visible;
+  opacity: 1;
 }
 </style>

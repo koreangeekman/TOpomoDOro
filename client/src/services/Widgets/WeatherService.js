@@ -8,10 +8,10 @@ class WeatherService {
   changeTempType() {
     const format = AppState.settings.weather.format;
     if (format == 'F') {
-      format = 'C'
+      AppState.settings.weather.format = 'C'
     }
     if (format == 'C') {
-      format = 'F'
+      AppState.settings.weather.format = 'F'
     }
   }
 
