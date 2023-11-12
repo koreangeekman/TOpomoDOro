@@ -31,8 +31,8 @@ export const AppState = reactive({
       workTime: 25,
       breakTime: 5,
       cycles: 1,
-      breakTimeAudio: '',
-      workTimeAudio: '',
+      breakTimeAudioCue: '',
+      workTimeAudioCue: '',
     },
     weather: {
       city: 'Boise',

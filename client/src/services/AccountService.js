@@ -5,14 +5,6 @@ import Pop from "../utils/Pop"
 import { api } from './AxiosService'
 
 class AccountService {
-  async getAccount() {
-    try {
-      const res = await api.get('/account')
-      AppState.account = new Account(res.data)
-    } catch (err) {
-      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
-    }
-  }
 
   async getAppAuthors() {
     try {
@@ -23,10 +15,39 @@ class AccountService {
     }
   }
 
+  // SECTION 🔽 AUTHORIZATION REQUIRED 🔽
+
+  async getAccount() {
+    try {
+      const res = await api.get('/account')
+      AppState.account = new Account(res.data)
+    } catch (err) {
+      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+    }
+  }
+
+  async getSettings() {
+    try {
+      const res = await api.get('/account/settings')
+      AppState.settings = new Settings(res.data)
+    } catch (err) {
+      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+    }
+  }
+
   async updateProfile(newData) {
     try {
-      const res = await api.put(`/account/${newData.id}`, newData);
+      const res = await api.put('/account', newData);
       AppState.account = new Account(res.data);
+    } catch (error) {
+      Pop.error(error);
+    }
+  }
+
+  async updateSettings(newData) {
+    try {
+      const res = await api.put('/account/settings', newData);
+      AppState.settings = new Settings(res.data);
     } catch (error) {
       Pop.error(error);
     }
