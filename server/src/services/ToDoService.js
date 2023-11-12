@@ -28,7 +28,6 @@ class ToDoService {
 
   async createToDo(body) {
     const newToDo = await dbContext.ToDos.create(body);
-    await newToDo.populate('creator', 'name picture')
     logger.log('[TODO SERVICE] createToDo(): ', newToDo)
     return newToDo
   }
