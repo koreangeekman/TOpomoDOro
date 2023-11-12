@@ -26,6 +26,11 @@ class ToDoService {
     logger.log('[TODO SERVICE] enableEdit(): Editing enabled', `on ${todoObj}`)
   }
 
+  cancelEdit(todoObj) {
+    todoObj.edit = false;
+    logger.log('[TODO SERVICE] cancelEdit(): Editing cancelled', `on ${todoObj}`)
+  }
+
   async updateToDo(todoObj) {
     if (todoObj.creatorId != AppState.account.id) { throw new Error('Not yours to edit') }
     const res = await api.put(`api/todos/${todoObj.id}`, todoObj)

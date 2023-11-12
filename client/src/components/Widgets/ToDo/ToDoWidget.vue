@@ -9,10 +9,18 @@
         </form>
         <section v-if="todos.length > 0" class="card p-2" id="todoList">
           <div class="d-flex justify-content-between todoSmall mx-1 my-2">
-            <span class="d-flex align-items-center pe-3" type="button" @click="sortList()">
+            <span class="d-flex align-items-center pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+              @click="sortList()">
               <p class="fs-5 mb-0 px-1 orange">Sort List</p>
               <i class="fs-4 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
             </span>
+            <div class="dropdown">
+              <ul class="dropdown-menu py-1">
+                <li type="button" @click="sortList('alpha')" class="border-bottom rounded px-2">Alphabetical</li>
+                <li type="button" @click="sortList('creation')" class="border-bottom rounded px-2">Creation Date</li>
+                <li type="button" @click="sortList('done')" class="rounded px-2">Completed</li>
+              </ul>
+            </div>
             <div class="bar"></div>
             <p class="fs-5 mb-0 px-3 orange" v-if="todos.length == incomplete.length">
               <b>{{ todos.length }}</b> things To Do
@@ -51,6 +59,8 @@ import { toDoService } from "../../../services/Widgets/ToDoService.js";
 export default {
   setup() {
     const newToDo = ref({});
+
+    const sorting = ['creation date', 'alphabetical'];
 
     // async function _getToDos() {
     //   try {
@@ -95,7 +105,12 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
-      }
+      },
+
+      async sortList() {
+
+
+      },
 
     };
   },

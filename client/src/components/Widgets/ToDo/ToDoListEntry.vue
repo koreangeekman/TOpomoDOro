@@ -1,6 +1,8 @@
 <template>
   <div class="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
-    <span class="d-flex w-100">
+    <span class="d-flex w-100 shown">
+      <i v-if="todo.edit" class="fs-4 text-secondary mdi mdi-cancel" type="button" title="Cancel edit"
+        @click="cancelEdit(todo)"></i>
       <input v-if="!todo.edit" v-model="todo.isCompleted" type="checkbox" @change="toggleCompleted(todo)"
         :checked="todo.isCompleted">
       <input v-if="todo.edit" v-model="todo.body" type="text" maxlength="100" class="ms-2 me-3 form-control">
@@ -9,7 +11,7 @@
         <span v-else>{{ todo.body }}</span>
       </p>
     </span>
-    <span class="d-flex">
+    <span class="d-flex" :class="!todo.edit ? 'hidden' : ''">
       <span class="d-flex mx-3">
         <i v-if="!todo.edit && todo.isCompleted" class="fs-4 invisible mdi mdi-pencil"></i>
         <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
@@ -47,12 +49,12 @@ export default {
         }
       },
 
-      async enableEdit(todoObj) {
-        try {
-          await toDoService.enableEdit(todoObj)
-        } catch (error) {
-          Pop.error(error)
-        }
+      enableEdit(todoObj) {
+        toDoService.enableEdit(todoObj)
+      },
+
+      cancelEdit(todoObj) {
+        toDoService.cancelEdit(todoObj)
       },
 
       async saveEdit(todoObj) {
@@ -101,6 +103,10 @@ i {
   opacity: .8;
 }
 
+.mdi-cancel {
+  margin-left: -.15rem;
+}
+
 .listItem {
   border-radius: .25rem;
 }
@@ -108,5 +114,18 @@ i {
 .offlineOutline {
   border: 1px dashed red;
   opacity: .5;
+}
+
+.hidden {
+  opacity: 0;
+  transition: .25s;
+}
+
+.hidden:hover {
+  opacity: 1;
+}
+
+.shown:hover+.hidden {
+  opacity: 1;
 }
 </style>
