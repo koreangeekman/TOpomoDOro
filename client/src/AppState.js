@@ -36,7 +36,10 @@ export const AppState = reactive({
     },
     weather: {
       city: 'Boise',
-      location: [], // [lon, lat]
+      location: {
+        lon: -116.2035,
+        lat: 43.6135
+      }, // [lon, lat]
       format: 'F' // 'K'elvin, 'F'ahrenheit, 'C'elsius
     },
     quote: {

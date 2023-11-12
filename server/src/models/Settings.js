@@ -1,6 +1,5 @@
 import { Schema } from "mongoose";
 
-
 export const SettingsSchema = new Schema({
   accountId: { type: Schema.Types.ObjectId, required: true },
   todo: {
@@ -18,8 +17,8 @@ export const SettingsSchema = new Schema({
     city: { type: String, required: true, default: 'Boise', maxLength: 100 },
     format: { type: String, required: true, default: 'F', enum: ['K', 'F', 'C'] },
     location: {
-      lon: { type: Number, required: true, default: 5, max: 360 }, // DD: Decimal Degrees format
-      lat: { type: Number, required: true, default: 5, max: 360 }, // DD: Decimal Degrees format
+      lon: { type: Number, required: true, default: -116.2035, max: 360 }, // DD: Decimal Degrees format
+      lat: { type: Number, required: true, default: 43.6135, max: 360 }, // DD: Decimal Degrees format
     }
   },
   quote: {
