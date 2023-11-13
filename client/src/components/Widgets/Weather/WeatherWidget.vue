@@ -1,5 +1,7 @@
 <template>
   <section v-if="account.id" class="position-relative">
+    <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" type="button" title="Update weather data"
+      @click="refreshWeather()"></i>
 
     <div class="temp rounded">
       <p class="fs-2 mb-0 px-2" @click="changeTempType()">
@@ -29,7 +31,6 @@
       </div>
     </span>
 
-    <!-- <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" onclick="refreshWeather()"></i> -->
   </section>
 
   <section v-if="false">
@@ -99,12 +100,10 @@ export default {
         let format = AppState.settings.weather.format;
         return _calcFormat(kelvin, format);
       }),
-      // QUESTION: Always access direct from AppState on computed/functions? 
+      // TODO QUESTION: Always access direct from AppState on computed/functions? 
 
-      async changeTempType() {
-        try { await weatherService.changeTempType(); }
-        catch (error) { Pop.error(error) }
-      },
+      changeTempType() { weatherService.changeTempType(); },
+      refreshWeather() { _getWeather(); },
 
     };
   },
@@ -145,6 +144,11 @@ hr {
   margin-bottom: 0;
 }
 
+.refresh {
+  bottom: -.9rem;
+  right: -.5rem;
+}
+
 .hidden {
   opacity: 0;
   transition: .25s;
@@ -165,7 +169,7 @@ hr {
 @media screen and (max-width:768px) {
   .hidden {
     top: -8.5rem;
-    left: 5.5rem;
+    left: 6.9rem;
   }
 }
 </style>

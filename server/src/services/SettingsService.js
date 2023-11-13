@@ -31,6 +31,10 @@ function _filterBody(body) {
       autoChange: body.bgImg.autoChange,
       bgColor: body.bgImg.bgColor,
       cycle: body.bgImg.cycle
+    },
+    clock: {
+      timeFormat: body.clock.timeFormat,
+      timeZone: body.clock.timeZone
     }
   }
   return updateable

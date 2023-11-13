@@ -52,6 +52,10 @@ export const AppState = reactive({
       bgColor: '#123456', // if bgImg is disabled/unresponsive, set a custom bg-color
       autoChange: false,
       cycle: 3600 // auto-refresh interval
+    },
+    clock: {
+      timeFormat: '12',
+      timeZone: '0'
     }
   }
 

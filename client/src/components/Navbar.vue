@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
 
-        <li class="d-flex align-items-center mx-1">
+        <li class="d-flex align-items-center mx-1 my-2 my-md-0">
           <router-link :to="{ name: 'Home' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Home
           </router-link>
@@ -23,7 +23,7 @@
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center mx-1">
+        <li class="d-flex align-items-center mx-1 my-2 my-md-0">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
           </router-link>
@@ -31,7 +31,7 @@
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center position-relative">
+        <li class="d-flex align-items-center position-relative my-2 my-md-0">
           <p title="Change background" @click="changeBG()" type="button"
             class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
             <i class="fs-2 mdi mdi-image-refresh"></i>
@@ -43,8 +43,14 @@
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center">
+        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
           <WeatherWidget />
+        </li>
+
+        <div class="bar mx-2"></div>
+
+        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
+          <!-- <ClockWidget /> -->
         </li>
 
       </ul>
@@ -63,6 +69,7 @@ import Pop from "../utils/Pop.js";
 import { bgImageService } from "../services/Widgets/BGImageService.js";
 import BGImgWidget from "./Widgets/BGImgWidget.vue";
 import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
+import ClockWidget from "./Widgets/ClockWidget.vue";
 
 export default {
   setup() {
@@ -80,7 +87,7 @@ export default {
 
     }
   },
-  components: { Login, BGImgWidget, WeatherWidget }
+  components: { Login, BGImgWidget, WeatherWidget, ClockWidget }
 }
 </script>
 
@@ -135,7 +142,7 @@ a:hover {
 
 @media screen and (min-width: 992px) {
   nav {
-    height: 64px;
+    height: 76px;
   }
 }
 

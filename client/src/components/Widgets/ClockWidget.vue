@@ -1,18 +1,73 @@
 <template>
   <div class="component">
-
+    <button @click="toggleFormat()">toggle format</button>
+    <p class="fs-1">{{ `A<span class="text-secondary">AA</span>A` }}</p>
 
   </div>
 </template>
 
 
 <script>
-import { AppState } from '../AppState';
+import { AppState } from '../../AppState';
 import { computed, onMounted } from 'vue';
+import { clockService } from '../../services/Widgets/ClockService.js'
+import Pop from "../../utils/Pop.js";
 
 export default {
   setup() {
-    return {}
+
+    function _greetings() {
+      const hour = new Date().getHours();
+      let ToD = '';
+      if (hour < 3) {
+        ToD = 'Go to sleep!'
+      } else if (hour < 6) {
+        Pop.error('.. Did you sleep??'); return
+      } else if (hour < 12) {
+        ToD = 'Good morning!'
+      } else if (hour == 12) {
+        Pop.success(`It's hiiigh nooon~`); return
+      } else if (hour < 17) {
+        ToD = 'Good afternoon!'
+      } else if (hour < 22) {
+        ToD = 'Good evening!'
+      } else if (hour >= 22) {
+        ToD = 'Good night!'
+      }
+      Pop.success(ToD)
+    }
+
+    function _formatClock() {
+      const date = new Date(); let ampm = '';
+      let hh = date.getHours(); let mm = date.getMinutes(); let ss = date.getSeconds();
+      if (AppState.settings.clock.timeFormat == 12) {
+        if (hh == 0) {
+          hh = 12;
+          ampm = 'am';
+        } else if (hh == 12) {
+          ampm = 'pm';
+        } else if (hh > 12) {
+          hh -= 12;
+          ampm = 'pm';
+        } else {
+          ampm = 'am';
+        }
+      }
+      return hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `<span class="ampm">${ampm}</span>`
+    }
+
+    onMounted(() => {
+      _greetings();
+    })
+    return {
+
+      settings: computed(() => AppState.settings.clock),
+
+      toggleFormat() {
+        clockService.toggleFormat();
+      }
+
+    }
   }
 };
 </script>
