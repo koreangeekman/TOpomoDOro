@@ -24,9 +24,6 @@
       </section>
     </div>
   </div>
-  <div class="QuoteWidget d-flex justify-content-center position-absolute fixed-bottom mx-4 mx-md-5 p-0">
-    <QuoteWidget />
-  </div>
 </template>
 
 
@@ -34,7 +31,6 @@
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { AppState } from "../AppState";
-import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
 import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
 
 export default {
@@ -48,7 +44,7 @@ export default {
 
     };
   },
-  components: { QuoteWidget, ToDoWidget }
+  components: { ToDoWidget }
 }
 </script>
 

@@ -8,13 +8,16 @@
     </div>
 
     <span class="position-absolute hidden">
-      <div class="d-flex rounded weather">
+      <div class="d-md-flex justify-content-center rounded weather">
 
         <div class="d-block text-center weatherData px-3" id="weatherData">
           <WeatherData :data="weather.data" :temps="temps" :format="settings.format" />
         </div>
 
-        <div class="bar"></div>
+        <div class="bar d-none d-md-inline"></div>
+        <div class="d-inline d-md-none">
+          <hr>
+        </div>
 
         <div class="d-flex flex-column justify-content-between weatherDetails p-3" id="weatherDetails">
           <WeatherDetails :details="weather.details" />
@@ -111,7 +114,8 @@ export default {
 
 
 <style lang="scss" scoped>
-i {
+i,
+hr {
   color: orange;
   text-shadow: 0 0 5px black;
 }
@@ -129,7 +133,8 @@ i {
 
 .weather {
   font-family: 'Courier New', Courier, monospace;
-  background-color: #123456b0;
+  background-color: #123456f0;
+  // backdrop-filter: blur(5px);
   color: whitesmoke;
   border: 1px solid white;
   width: fit-content;
@@ -142,13 +147,25 @@ i {
 
 .hidden {
   opacity: 0;
-  visibility: hidden;
   transition: .25s;
   top: 4rem;
 }
 
 .temp:hover+.hidden {
-  visibility: visible;
   opacity: 1;
+}
+
+@media screen and (max-width:1100px) {
+  .hidden {
+    top: 0;
+    left: 5.5rem;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .hidden {
+    top: -8.5rem;
+    left: 5.5rem;
+  }
 }
 </style>

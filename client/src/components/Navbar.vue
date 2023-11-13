@@ -112,12 +112,6 @@ a:hover {
   opacity: .32;
 }
 
-@media screen and (min-width: 992px) {
-  nav {
-    height: 64px;
-  }
-}
-
 /* SECTION BG IMG CONTROLS CSS */
 .hide {
   cursor: default;
@@ -135,6 +129,14 @@ a:hover {
 .BGImgControls {
   bottom: -6rem;
   left: 0;
+}
+
+/* SECTION MEDIA TRANSFORMS */
+
+@media screen and (min-width: 992px) {
+  nav {
+    height: 64px;
+  }
 }
 
 @media screen and (max-width:1100px) {
