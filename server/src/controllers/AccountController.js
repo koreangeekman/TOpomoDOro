@@ -10,7 +10,7 @@ export class AccountController extends BaseController {
       // 🔽 REQUIRES AUTHENTICATION 🔽
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
-      .put('/:accountId', this.updateAccount)
+      .put('', this.updateAccount)
   }
 
   async getAppAuthors(req, res, next) {
