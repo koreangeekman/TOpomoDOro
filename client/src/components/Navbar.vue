@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
 
-        <li class="d-flex align-items-center mx-1">
+        <li class="d-flex align-items-center mx-1 my-2 my-md-0">
           <router-link :to="{ name: 'Home' }" class="btn text-primary lighten-30 selectable text-uppercase">
             Home
           </router-link>
@@ -23,7 +23,7 @@
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center mx-1">
+        <li class="d-flex align-items-center mx-1 my-2 my-md-0">
           <router-link :to="{ name: 'About' }" class="btn text-primary lighten-30 selectable text-uppercase">
             About
           </router-link>
@@ -31,17 +31,27 @@
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center position-relative">
+        <li class="d-flex align-items-center position-relative my-2 my-md-0">
           <p title="Change background" @click="changeBG()" type="button"
             class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
             <i class="fs-2 mdi mdi-image-refresh"></i>
           </p>
           <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-2 p-0">
-            <BGImgControlWidget />
+            <BGImgWidget />
           </div>
         </li>
 
         <div class="bar mx-2"></div>
+
+        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
+          <WeatherWidget />
+        </li>
+
+        <div class="bar mx-2"></div>
+
+        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
+          <!-- <ClockWidget /> -->
+        </li>
 
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -50,14 +60,16 @@
   </nav>
 </template>
 
+
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import Pop from "../utils/Pop.js";
-import BGImgControlWidget from "./Widgets/BGImgControlWidget.vue";
 import { bgImageService } from "../services/Widgets/BGImageService.js";
-
+import BGImgWidget from "./Widgets/BGImgWidget.vue";
+import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
+import ClockWidget from "./Widgets/ClockWidget.vue";
 
 export default {
   setup() {
@@ -75,7 +87,7 @@ export default {
 
     }
   },
-  components: { Login, BGImgControlWidget }
+  components: { Login, BGImgWidget, WeatherWidget, ClockWidget }
 }
 </script>
 
@@ -107,12 +119,6 @@ a:hover {
   opacity: .32;
 }
 
-@media screen and (min-width: 992px) {
-  nav {
-    height: 64px;
-  }
-}
-
 /* SECTION BG IMG CONTROLS CSS */
 .hide {
   cursor: default;
@@ -130,6 +136,14 @@ a:hover {
 .BGImgControls {
   bottom: -6rem;
   left: 0;
+}
+
+/* SECTION MEDIA TRANSFORMS */
+
+@media screen and (min-width: 992px) {
+  nav {
+    height: 76px;
+  }
 }
 
 @media screen and (max-width:1100px) {

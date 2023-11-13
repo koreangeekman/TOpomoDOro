@@ -5,6 +5,11 @@
   <main class="z0">
     <router-view />
   </main>
+  <footer>
+    <div class="QuoteWidget d-flex justify-content-center position-absolute fixed-bottom mx-4 mx-md-5 p-0">
+      <QuoteWidget />
+    </div>
+  </footer>
   <!-- SECTION MODALS -->
 </template>
 
@@ -12,6 +17,7 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import QuoteWidget from "./components/Widgets/QuoteWidget.vue";
 
 export default {
   setup() {
@@ -22,14 +28,14 @@ export default {
 
     }
   },
-  components: { Navbar }
+  components: { Navbar, QuoteWidget }
 }
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
 :root {
-  --main-height: calc(100vh - 64px);
+  --main-height: calc(100vh - 76px -5rem);
 }
 
 body {
@@ -43,7 +49,7 @@ body {
 footer {
   display: grid;
   place-content: center;
-  height: 32px;
+  // height: 32px;
 }
 
 .z2 {

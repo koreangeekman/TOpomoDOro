@@ -14,6 +14,7 @@ export const AccountSchema = new Schema(
     website: { type: String, required: false, maxLength: 64 },
     bio: { type: String, required: false, maxLength: 500 },
     appAuthor: { type: Boolean, required: false, default: false },
+    settingsId: { type: Schema.Types.ObjectId, required: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
@@ -23,4 +24,11 @@ AccountSchema.virtual('todoCount', {
   foreignField: 'creatorId',
   ref: 'Account',
   count: true
+})
+
+AccountSchema.virtual('settings', {
+  localField: 'settingsId',
+  foreignField: '_id',
+  ref: 'Settings',
+  justOne: true
 })

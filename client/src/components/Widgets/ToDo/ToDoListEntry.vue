@@ -1,23 +1,26 @@
 <template>
   <div class="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
-    <span class="d-flex w-100">
+    <span class="d-flex w-100 shown">
+      <i v-if="todo.edit" class="fs-4 text-secondary mdi mdi-cancel" type="button" title="Cancel edit" tabindex="0"
+        @click="cancelEdit(todo)"></i>
       <input v-if="!todo.edit" v-model="todo.isCompleted" type="checkbox" @change="toggleCompleted(todo)"
         :checked="todo.isCompleted">
-      <input v-if="todo.edit" v-model="todo.body" type="text" maxlength="100" class="ms-2 me-3 form-control">
-      <p v-else :class="`listItem px-1 mx-1 mb-0 ${todo.isCompleted ? 'text-secondary' : ''}`">
+      <input v-if="todo.edit" v-model="todo.body" id="editMe" type="text" maxlength="100" class="ms-2 me-3 form-control">
+      <p v-else :class="`listItem px-1 mx-1 mb-0 ${todo.isCompleted ? 'text-secondary' : ''}`" tabindex="0">
         <s v-if="todo.isCompleted">{{ todo.body }}</s>
         <span v-else>{{ todo.body }}</span>
       </p>
     </span>
-    <span class="d-flex">
+    <span class="d-flex" :class="!todo.edit ? 'hidden' : ''">
       <span class="d-flex mx-3">
         <i v-if="!todo.edit && todo.isCompleted" class="fs-4 invisible mdi mdi-pencil"></i>
-        <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" type="button" title="Edit entry"
-          @click="enableEdit(todo)"></i>
-        <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" title="Save edits"
+        <i v-else-if="!todo.edit" class="fs-4 text-secondary mdi mdi-pencil" id="enableEdit" type="button"
+          title="Edit entry" @click="enableEdit(todo)" tabindex="0"></i>
+        <i v-else class="fs-4 text-primary mdi mdi-content-save" type="button" tabindex="0" title="Save edits"
           @click="saveEdit(todo)"></i>
       </span>
-      <i class="fs-4 text-danger mdi mdi-trash-can" type="button" title="Remove entry" @click="removeToDo(todo)"></i>
+      <i class="fs-4 text-danger mdi mdi-trash-can" type="button" tabindex="0" title="Remove entry"
+        @click="removeToDo(todo)"></i>
     </span>
   </div>
 </template>
@@ -41,25 +44,28 @@ export default {
       async toggleCompleted(todoObj) {
         try {
           !todoObj.isCompleted;
-          await toDoService.updateToDo(todoObj)
+          await toDoService.updateToDo(todoObj);
         } catch (error) {
           Pop.error(error)
         }
       },
 
-      async enableEdit(todoObj) {
-        try {
-          await toDoService.enableEdit(todoObj)
-        } catch (error) {
-          Pop.error(error)
-        }
+      enableEdit(todoObj) {
+        toDoService.enableEdit(todoObj);
+        document.getElementById('enableEdit').addEventListener('click', () => {
+          document.getElementById('editMe').focus();
+        })
+      },
+
+      cancelEdit(todoObj) {
+        toDoService.cancelEdit(todoObj);
       },
 
       async saveEdit(todoObj) {
         try {
-          await toDoService.updateToDo(todoObj)
+          await toDoService.updateToDo(todoObj);
         } catch (error) {
-          Pop.error(error)
+          Pop.error(error);
         }
       },
 
@@ -101,6 +107,10 @@ i {
   opacity: .8;
 }
 
+.mdi-cancel {
+  margin-left: -.15rem;
+}
+
 .listItem {
   border-radius: .25rem;
 }
@@ -108,5 +118,18 @@ i {
 .offlineOutline {
   border: 1px dashed red;
   opacity: .5;
+}
+
+.hidden {
+  opacity: 0;
+  transition: .25s;
+}
+
+.hidden:hover {
+  opacity: 1;
+}
+
+.shown:hover+.hidden {
+  opacity: 1;
 }
 </style>

@@ -7,7 +7,14 @@
             <ToDoWidget />
           </div>
         </div>
-        <div v-else class="col-12 p-5 d-flex flex-column align-items-center">
+        <div v-else-if="!authQueried" class="col-12 p-5 d-flex justify-content-center">
+          <span class="fs-1 text-white blueBlur rounded-pill px-3 d-flex align-items-center">
+            <i class="mdi mdi-tire mdi-spin"></i>
+            <p class="mb-0 mx-3 fs-3">LOADING</p>
+            <i class="mdi mdi-tire mdi-spin"></i>
+          </span>
+        </div>
+        <div v-else-if="!account.id && authQueried" class="col-12 p-5 d-flex flex-column align-items-center">
           <span class="d-flex mb-4 align-items-center justify-content-center flex-wrap">
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> (●'◡'●)</p>
             <p class="fs-1 p-4 blueBlur shadow rounded-pill loginNote">Login for additional functionality!</p>
@@ -17,18 +24,14 @@
       </section>
     </div>
   </div>
-  <div class="QuoteWidget d-flex justify-content-center position-absolute fixed-bottom mx-4 mx-md-5 p-0">
-    <QuoteWidget />
-  </div>
 </template>
 
 
 <script>
 import { computed } from "vue";
-import { AppState } from "../AppState";
-import QuoteWidget from "../components/Widgets/QuoteWidget.vue";
-import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
 import { useRouter } from "vue-router";
+import { AppState } from "../AppState";
+import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
 
 export default {
   setup() {
@@ -37,9 +40,11 @@ export default {
     return {
       router,
       account: computed(() => AppState.account),
+      authQueried: computed(() => AppState.authQueried),
+
     };
   },
-  components: { QuoteWidget, ToDoWidget }
+  components: { ToDoWidget }
 }
 </script>
 

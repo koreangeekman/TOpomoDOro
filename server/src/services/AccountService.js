@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { settingsService } from "./SettingsService.js"
 
 // Private Methods
 
@@ -17,6 +18,12 @@ async function createAccountIfNeeded(account, user) {
       ...user,
       subs: [user.sub]
     })
+  }
+  if (!account.settingsId) {
+    const settings = await settingsService.createSettings({ accountId: account.id });
+    account.settingsId = settings.id
+    await dbContext.Account.findOneAndUpdate({ _id: account.id }, { $set: { settingsId: settings.id } })
+    await account.populate('settings')
   }
   return account
 }
@@ -91,6 +98,7 @@ class AccountService {
     })
     account = await createAccountIfNeeded(account, user)
     await mergeSubsIfNeeded(account, user)
+    await account.populate('settings')
     return account
   }
 

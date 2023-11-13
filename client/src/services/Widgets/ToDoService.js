@@ -23,7 +23,16 @@ class ToDoService {
 
   enableEdit(todoObj) {
     todoObj.edit = true;
-    logger.log('[TODO SERVICE] enableEdit(): Editing enabled', `on ${todoObj}`)
+    logger.log('[TODO SERVICE] enableEdit(): Editing enabled', `on "${todoObj.body}"`)
+  }
+
+  cancelEdit(todoObj) {
+    todoObj.edit = false;
+    logger.log('[TODO SERVICE] cancelEdit(): Editing cancelled', `on "${todoObj.body}"`)
+  }
+
+  toggleCompleted() {
+    AppState.settings.todo.showAll = !AppState.settings.todo.showAll;
   }
 
   async updateToDo(todoObj) {
