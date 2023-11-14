@@ -1,5 +1,5 @@
 <template>
-  <section v-if="account.id" class="position-relative">
+  <section v-if="weather.data" class="position-relative">
     <i class="position-absolute refresh fs-4 mdi mdi-refresh-circle" type="button" title="Update weather data"
       @click="refreshWeather()"></i>
 
@@ -91,7 +91,6 @@ export default {
     return {
       temps,
 
-      account: computed(() => AppState.account),
       settings: computed(() => AppState.settings.weather),
       weather: computed(() => AppState.widgets.weather),
 

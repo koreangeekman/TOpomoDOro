@@ -12,7 +12,8 @@
           Full Stack Application <br>
         </p>
         <p class="fs-5 p-2 m-2 rounded text-center">
-          MongoDB, Mongoose, Express, Vue
+          MongoDB, Mongoose, Express, Vue <br>
+          HTML, CSS, JavaScript
         </p>
         <p class="p-2 m-2 rounded text-center">
           - Weather info pulled from the <a href="https://openweathermap.org/" target="_blank">OpenWeather</a> API - <br>
