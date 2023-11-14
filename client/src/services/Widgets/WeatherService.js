@@ -39,7 +39,10 @@ class WeatherService {
     const weatherPoll = new Weather(res.data);
 
     settings.lastPoll = weatherPoll.details.dt
-    accountService.updateSettings();
+    if (AppState.account.id) {
+      const weather = { lastPoll: settings.lastPoll }
+      accountService.updateSettings({ weather });
+    }
 
     WEATHER_CACHE[city] = weatherPoll;
     AppState.widgets.weather = WEATHER_CACHE[city];
