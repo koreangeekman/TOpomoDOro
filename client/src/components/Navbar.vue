@@ -36,21 +36,21 @@
             class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
             <i class="fs-2 mdi mdi-image-refresh"></i>
           </p>
-          <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-2 p-0">
+          <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-3 p-0">
             <BGImgWidget />
           </div>
         </li>
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
+        <li class="d-flex align-items-center mx-4 my-2 my-md-0">
           <WeatherWidget />
         </li>
 
         <div class="bar mx-2"></div>
 
-        <li class="d-flex align-items-center mx-2 my-2 my-md-0">
-          <!-- <ClockWidget /> -->
+        <li class="d-flex align-items-center mx-3 my-2 my-md-0">
+          <ClockWidget />
         </li>
 
       </ul>

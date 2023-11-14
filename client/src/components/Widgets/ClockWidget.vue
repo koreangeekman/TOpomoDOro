@@ -1,8 +1,6 @@
 <template>
-  <div class="component">
-    <button @click="toggleFormat()">toggle format</button>
-    <p class="fs-1">{{ `A<span class="text-secondary">AA</span>A` }}</p>
-
+  <div class="" v-if="currentTime">
+    <p class="fs-1 mb-0 courier" v-html="currentTime" @click="toggleFormat()"></p>
   </div>
 </template>
 
@@ -37,7 +35,7 @@ export default {
       Pop.success(ToD)
     }
 
-    function _formatClock() {
+    function _drawClock() {
       const date = new Date(); let ampm = '';
       let hh = date.getHours(); let mm = date.getMinutes(); let ss = date.getSeconds();
       if (AppState.settings.clock.timeFormat == 12) {
@@ -53,22 +51,24 @@ export default {
           ampm = 'am';
         }
       }
-      return hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `<span class="ampm">${ampm}</span>`
+      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `<span class="ampm">${ampm}</span>`
     }
 
     onMounted(() => {
       _greetings();
+      setInterval(_drawClock, 500);
     })
-    return {
 
-      settings: computed(() => AppState.settings.clock),
+    return {
+      currentTime: computed(() => AppState.widgets.clock),
 
       toggleFormat() {
         clockService.toggleFormat();
-      }
+      },
 
     }
-  }
+  },
+
 };
 </script>
 
@@ -83,5 +83,9 @@ export default {
 .ampm {
   font-size: 1.5rem;
   line-height: 1rem;
+}
+
+.courier {
+  font-family: 'Courier New', Courier, monospace;
 }
 </style>

@@ -18,7 +18,8 @@ export const AppState = reactive({
     /** @type {import('./models/Widget/Weather.js').Weather} */
     weather: {}, // populated by OpenWeather API on get
     bgImg: {},
-    quote: {}
+    quote: {},
+    clock: ''
   },
 
   backgrounds: [],
