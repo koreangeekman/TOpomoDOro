@@ -1,7 +1,9 @@
 import { AppState } from "../../AppState.js";
 import { Weather } from "../../models/Widget/Weather.js";
-import { logger } from "../../utils/Logger.js";
+import { accountService } from "../AccountService.js";
 import { weatherAPI } from "../AxiosService.js";
+
+const WEATHER_CACHE = {};
 
 class WeatherService {
 
@@ -16,18 +18,31 @@ class WeatherService {
   }
 
   async getWeather() {
-    const weather = AppState.settings.weather;
+    const settings = AppState.settings.weather;
+    const city = AppState.settings.weather.city;
+
+    // 15min cache use
+    if (new Date() - settings.lastPoll < 900000 && WEATHER_CACHE[city]) {
+      AppState.widgets.weather = WEATHER_CACHE[city];
+      return
+    }
+
     let query = '';
-    if (weather.city) {
-      query = `?q=${weather.city}`;
+    if (city) {
+      query = `?q=${city}`;
     }
-    if (weather.location.length > 0) { //weather.location = [lon, lat]
-      query = `?lat=${weather.location[0]}&lon=${weather.location[1]}`;
-    }
+    // if (settings.location.length > 0 && settings.coords) { //settings.location = [lon, lat]
+    //   query = `?lat=${settings.location[0]}&lon=${settings.location[1]}`;
+    // }
+
     const res = await weatherAPI.get(`${query}`);
     const weatherPoll = new Weather(res.data);
-    AppState.widgets.weather = weatherPoll;
-    logger.log('weather get', weatherPoll)
+
+    settings.lastPoll = weatherPoll.details.dt
+    accountService.updateSettings();
+
+    WEATHER_CACHE[city] = weatherPoll;
+    AppState.widgets.weather = WEATHER_CACHE[city];
   }
 
 }

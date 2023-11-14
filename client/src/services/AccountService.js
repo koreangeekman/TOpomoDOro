@@ -1,6 +1,6 @@
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
-import { logger } from '../utils/Logger'
+import { Settings } from "../models/Settings.js"
 import Pop from "../utils/Pop"
 import { api } from './AxiosService'
 
@@ -26,21 +26,21 @@ class AccountService {
     }
   }
 
-  async getSettings() {
-    try {
-      const res = await api.get('/account/settings')
-      AppState.settings = new Settings(res.data)
-    } catch (err) {
-      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
-    }
-  }
-
   async updateProfile(newData) {
     try {
       const res = await api.put('/account', newData);
       AppState.account = new Account(res.data);
     } catch (error) {
       Pop.error(error);
+    }
+  }
+
+  async getSettings() {
+    try {
+      const res = await api.get('/account/settings')
+      AppState.settings = new Settings(res.data)
+    } catch (error) {
+      Pop.error(error)
     }
   }
 

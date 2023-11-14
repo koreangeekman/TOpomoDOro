@@ -19,7 +19,8 @@ function _filterBody(body) {
       location: {
         lon: body.weather.location.lon,
         lat: body.weather.location.lat,
-      }
+      },
+      lastPoll: body.weather.lastPoll
     },
     quote: {
       enabled: body.quote.enabled,

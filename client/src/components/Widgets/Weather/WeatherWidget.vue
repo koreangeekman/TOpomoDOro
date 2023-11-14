@@ -59,7 +59,10 @@ export default {
     const temps = ref({});
 
     async function _getWeather() {
-      try { await weatherService.getWeather(); logger.log('got weather data', AppState.widgets.weather) }
+      try {
+        await weatherService.getWeather();
+        _calcVariables();
+      }
       catch (error) { Pop.error(error); }
     }
 
@@ -73,7 +76,6 @@ export default {
       const formats = ['K', 'F', 'C'] // HAH
       formats.forEach(format => {
         const weatherData = AppState.widgets.weather
-        logger.log('calculating format:', format)
         const mainTemp = _calcFormat(weatherData.data.temp, format)
         const minTemp = _calcFormat(weatherData.data.temp_min, format)
         const maxTemp = _calcFormat(weatherData.data.temp_max, format)
@@ -85,7 +87,7 @@ export default {
 
     onMounted(async () => {
       await _getWeather();
-      _calcVariables();
+      setInterval(() => { _getWeather }, 900000);
     });
 
     return {

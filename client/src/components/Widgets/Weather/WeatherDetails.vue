@@ -25,7 +25,7 @@
   </span>
   <span class="d-flex justify-content-between">
     <p class="mb-0 me-2">[Recorded at: </p>
-    <p class="mb-0">{{ new Date(details.dt * 1000).toLocaleTimeString() }}]</p>
+    <p class="mb-0">{{ details.dt.toLocaleTimeString() }}]</p>
   </span>
 </template>
 

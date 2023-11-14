@@ -41,7 +41,8 @@ export const AppState = reactive({
         lon: -116.2035,
         lat: 43.6135
       }, // [lon, lat]
-      format: 'F' // 'K'elvin, 'F'ahrenheit, 'C'elsius
+      format: 'F', // 'K'elvin, 'F'ahrenheit, 'C'elsius
+      lastPoll: new Date()
     },
     quote: {
       enabled: true,

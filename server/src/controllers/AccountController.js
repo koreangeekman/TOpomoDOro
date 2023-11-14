@@ -11,6 +11,7 @@ export class AccountController extends BaseController {
       // 🔽 REQUIRES AUTHENTICATION 🔽
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/settings', this.getSettingsByAccountId)
       .put('', this.updateAccount)
       .put('/settings', this.updateSettings)
   }

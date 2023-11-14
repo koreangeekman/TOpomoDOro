@@ -19,7 +19,8 @@ export const SettingsSchema = new Schema({
     location: {
       lon: { type: Number, required: true, default: -116.2035, max: 360 }, // DD: Decimal Degrees format - set at Boise
       lat: { type: Number, required: true, default: 43.6135, max: 360 }, // DD: Decimal Degrees format
-    }
+    },
+    lastPoll: { type: Date, required: true, default: new Date() }
   },
   quote: {
     enabled: { type: Boolean, required: true, default: true },

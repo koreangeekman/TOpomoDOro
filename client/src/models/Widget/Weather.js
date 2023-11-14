@@ -15,7 +15,7 @@ export class Weather {
       sunrise: new Date(data.sys.sunrise),
       sunset: new Date(data.sys.sunset),
       humidity: data.main.humidity,
-      dt: data.dt
+      dt: new Date(data.dt * 1000)
     }
     this.conditions = {
       clouds: data.clouds.all, // % coverage cloudiness
