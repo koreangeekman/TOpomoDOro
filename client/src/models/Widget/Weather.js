@@ -14,7 +14,8 @@ export class Weather {
       timezone: data.timezone, // pre-formatting / shift in seconds from UTC
       sunrise: new Date(data.sys.sunrise),
       sunset: new Date(data.sys.sunset),
-      humidity: data.main.humidity
+      humidity: data.main.humidity,
+      dt: data.dt
     }
     this.conditions = {
       clouds: data.clouds.all, // % coverage cloudiness
