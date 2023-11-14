@@ -1,6 +1,6 @@
 <template>
-  <div class="" v-if="currentTime">
-    <p class="fs-1 mb-0 courier" v-html="currentTime" @click="toggleFormat()"></p>
+  <div v-if="currentTime">
+    <p class="fs-1 mb-0 clock" v-html="currentTime" @click="toggleFormat()"></p>
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
           ampm = 'am';
         }
       }
-      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `<span class="ampm">${ampm}</span>`
+      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`
     }
 
     onMounted(() => {
@@ -83,9 +83,5 @@ export default {
 .ampm {
   font-size: 1.5rem;
   line-height: 1rem;
-}
-
-.courier {
-  font-family: 'Courier New', Courier, monospace;
 }
 </style>
