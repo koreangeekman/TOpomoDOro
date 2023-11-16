@@ -39,7 +39,7 @@
             <div class="bar"></div>
 
             <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
-              <p class="fs-5 mb-0 px-1 orange" disabled>Clean up list</p>
+              <p class="fs-5 mb-0 px-1 orange">Clean up list</p>
               <i class="fs-3 ms-1 headerIcon mdi mdi-broom"></i>
             </span>
 
@@ -68,8 +68,10 @@ import { toDoService } from "../../../services/Widgets/ToDoService.js";
 export default {
   setup() {
     const newToDo = ref({});
+    const sortOptions = ref([]);
+    const sortOpt = ref('alpha');
 
-    const sorting = ['creation date', 'alphabetical'];
+    const sorting = ['default', 'creation date', 'alphabetical'];
 
     // async function _getToDos() {
     //   try {
@@ -86,14 +88,17 @@ export default {
 
     return {
       newToDo,
+      sortOpt,
 
       // settings: computed(() => AppState.settings.todo),
       account: computed(() => AppState.account),
       todos: computed(() => {
+        let arr = AppState.todos;
         if (AppState.settings.todo.showAll) {
-          return AppState.todos
+          if (sortOpt.value == 'alpha') { return arr.sort((a, b) => a.body - b.body) }
+          return arr
         } else {
-          return AppState.todos.filter(todo => !todo.isCompleted)
+          return arr.filter(todo => !todo.isCompleted)
         }
       }),
       incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
@@ -128,7 +133,8 @@ export default {
       },
 
       sortList() {
-
+        AppState.todos = AppState.todos.sort((a, b) => a.body - b.body)
+        // toDoService.sortByFilters()
       },
 
     };

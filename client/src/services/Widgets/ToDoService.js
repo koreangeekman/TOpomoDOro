@@ -3,7 +3,29 @@ import { ToDo } from "../../models/Widget/ToDo.js";
 import { logger } from "../../utils/Logger.js";
 import { api } from "../AxiosService.js";
 
+
+function _sortMany(arr, options) { // options = [{ field : 'key' , order : 'asc|desc' }]
+  for (const opt in options) {
+    arr.sort((a, b) => {
+      const aVal = a[opt.field];
+      const bVal = b[opt.field];
+
+      let comp = 0;
+      if (aVal > bVal) { comp = 1 }
+      if (aVal < bVal) { comp = -1 }
+
+      return opt.order == 'asc' ? comp : comp * -1;
+    }
+    )
+  }
+}
+
+
 class ToDoService {
+
+  sortByFilters(options) {
+    _sortMany(AppState.todos, options);
+  }
 
   // SECTION 🔽 AUTHENTICATION REQUIRED 🔽
 
