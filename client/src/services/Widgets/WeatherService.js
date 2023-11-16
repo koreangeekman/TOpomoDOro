@@ -1,5 +1,6 @@
 import { AppState } from "../../AppState.js";
 import { Weather } from "../../models/Widget/Weather.js";
+import { logger } from "../../utils/Logger.js";
 import { accountService } from "../AccountService.js";
 import { weatherAPI } from "../AxiosService.js";
 
@@ -24,6 +25,7 @@ class WeatherService {
     // 15min cache use
     if (new Date() - settings.lastPoll < 900000 && WEATHER_CACHE[city]) {
       AppState.widgets.weather = WEATHER_CACHE[city];
+      logger.log('returned weather from cache')
       return
     }
 
@@ -44,6 +46,7 @@ class WeatherService {
       accountService.updateSettings({ weather });
     }
 
+    logger.log('returned weather from API')
     WEATHER_CACHE[city] = weatherPoll;
     AppState.widgets.weather = WEATHER_CACHE[city];
   }

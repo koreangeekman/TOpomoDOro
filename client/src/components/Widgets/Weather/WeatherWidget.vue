@@ -87,7 +87,7 @@ export default {
 
     onMounted(async () => {
       await _getWeather();
-      setInterval(() => { _getWeather }, 900000);
+      // setInterval(() => { _getWeather }, 900000);
     });
 
     return {
