@@ -22,7 +22,7 @@ export const AccountSchema = new Schema(
 AccountSchema.virtual('todoCount', {
   localField: '_id',
   foreignField: 'creatorId',
-  ref: 'Account',
+  ref: 'ToDo',
   count: true
 })
 
