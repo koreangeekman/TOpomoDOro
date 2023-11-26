@@ -106,6 +106,12 @@ i {
 .mdi-pencil,
 .mdi-trash-can {
   opacity: .8;
+  transition: .25s;
+}
+
+.mdi-pencil:hover,
+.mdi-trash-can:hover {
+  transform: scale(1.2);
 }
 
 .mdi-cancel {
