@@ -6,7 +6,7 @@
     <router-view />
   </main>
   <footer>
-    <div class="QuoteWidget d-flex justify-content-center mx-4 mx-md-5 p-0 pt-4">
+    <div class="d-flex justify-content-center mx-4 mx-md-5 p-0 pt-4">
       <QuoteWidget />
     </div>
   </footer>
