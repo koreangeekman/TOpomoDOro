@@ -10,14 +10,14 @@ export const weatherAPI = Axios.create({ // returns 5 day forecast results per 3
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
   timeout: 8000,
   params: {
-    appid: 'e73c9ecf9e16938564a5548d481a3702'
+    appid: ''
   }
 })
 export const bcwSandbox = Axios.create({
   baseURL: 'https://sandbox.codeworksacademy.com/',
   timeout: 6000,
   params: {
-    clientId: 'pOXw2OGv1LsYi7LEBmDF04RLkXQvldml',
+    clientId: '',
     domain: 'codeworksclassroom.auth0.com',
     audience: 'https://codeworksclassroom.com'
   }
