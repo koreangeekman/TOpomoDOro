@@ -2,9 +2,11 @@
   <div class="position-relative">
     <div class="container-fluid">
       <section class="row justify-content-center p-0">
-        <div v-if="account.id" class="col-12 p-0 position-relative d-flex justify-content-end">
-          <div class="p-0 pt-md-4 pe-md-4 ToDoWidget">
-            <ToDoWidget />
+        <div v-if="account.id" class="col-12 p-0 pt-md-4 pe-md-4 d-flex justify-content-end">
+          <div class="row p-0">
+            <div class="col-12 ToDoWidget">
+              <ToDoWidget />
+            </div>
           </div>
         </div>
         <div v-else-if="!authQueried" class="col-12 p-5 d-flex justify-content-center">
@@ -62,4 +64,8 @@ i {
   color: orange;
   text-shadow: 0 0 5px black;
 }
+
+// .ToDoWidget{
+//   height: 69dvh;
+// }
 </style>

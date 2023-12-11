@@ -5,7 +5,7 @@
         @click="cancelEdit(todo)"></i>
       <input v-if="!todo.edit" v-model="todo.isCompleted" type="checkbox" @change="toggleCompleted(todo)"
         :checked="todo.isCompleted">
-      <input v-if="todo.edit" v-model="todo.body" id="editMe" type="text" maxlength="100" class="ms-2 me-3 form-control"
+      <input v-if="todo.edit" v-model="todo.body" id="editMe" type="text" maxlength="200" class="ms-2 me-3 form-control"
         @blur="saveEdit(todo)">
       <p v-else :class="`listItem px-1 mx-1 mb-0 ${todo.isCompleted ? 'text-secondary' : ''}`" tabindex="0">
         <s v-if="todo.isCompleted">{{ todo.body }}</s>

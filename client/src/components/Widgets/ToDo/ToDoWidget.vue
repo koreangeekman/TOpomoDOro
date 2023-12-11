@@ -1,60 +1,53 @@
 <template>
-  <div class="container-fluid">
-    <section class="row">
-      <div class="col-12">
+  <form class="d-flex align-items-center rounded my-2 blur sticky-top todoForm" @submit.prevent="createToDo()">
+    <input v-model="newToDo.body" class="form-control ms-2 shadow" type="text" name="body" placeholder="New ToDo?"
+      maxlength="200" required>
+    <button class="btn p-0" type="submit" tabindex="0" title="Add ToDo">
+      <i class="fs-1 p-1 mdi mdi-plus-box"></i></button>
+  </form>
 
-        <form class="d-flex align-items-center rounded my-2 blur" @submit.prevent="createToDo()">
-          <input v-model="newToDo.body" class="form-control ms-2 shadow" type="text" name="body" placeholder="New ToDo?"
-            maxlength="100" required>
-          <button class="btn p-0" type="submit" tabindex="0" title="Add ToDo">
-            <i class="fs-1 p-1 mdi mdi-plus-box"></i></button>
-        </form>
+  <section v-if="todos.length > 0" class="card p-2" id="todoList">
+    <div class="d-flex justify-content-between todoSmall mx-1 my-2">
 
-        <section v-if="todos.length > 0" class="card p-2" id="todoList">
-          <div class="d-flex justify-content-between todoSmall mx-1 my-2">
+      <span class="d-flex align-items-center pe-3" type="button" tabindex="0" @click="sortList()">
+        <p class="fs-5 mb-0 px-1 orange">Sort List</p>
+        <i class="fs-4 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
+      </span>
 
-            <span class="d-flex align-items-center pe-3" type="button" tabindex="0" @click="sortList()">
-              <p class="fs-5 mb-0 px-1 orange">Sort List</p>
-              <i class="fs-4 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
-            </span>
+      <div class="bar"></div>
 
-            <div class="bar"></div>
+      <span type="button" @click="toggleCompleted()" class="position-relative">
+        <p class="fs-5 mb-0 px-3 orange showToggleNote" tabindex="0" v-if="todos.length == incomplete.length">
+          <b>{{ todos.length }}</b> things To Do
+        </p>
+        <p class="fs-4 mb-0 px-3 orange showToggleNote" tabindex="0"
+          v-else-if="todos.length > 0 && incomplete.length == 0">
+          <b> Great Job! </b>
+        </p>
+        <p class="fs-5 mb-0 px-3 orange" v-else tabindex="0">
+          Remaining: <b>{{ incomplete.length }}</b> of <b>{{ todos.length }}</b>
+        </p>
+        <p v-if="completed.length > 0"
+          class="hiddenToggleNote position-absolute text-nowrap card border pb-1 px-2 rounded">
+          {{ completed.length }} completed task{{ completed.length > 1 ? 's' : '' }} hidden </p>
+      </span>
 
-            <span type="button" @click="toggleCompleted()" class="position-relative">
-              <p class="fs-5 mb-0 px-3 orange showToggleNote" tabindex="0" v-if="todos.length == incomplete.length">
-                <b>{{ todos.length }}</b> things To Do
-              </p>
-              <p class="fs-4 mb-0 px-3 orange showToggleNote" tabindex="0"
-                v-else-if="todos.length > 0 && incomplete.length == 0">
-                <b> Great Job! </b>
-              </p>
-              <p class="fs-5 mb-0 px-3 orange" v-else tabindex="0">
-                Remaining: <b>{{ incomplete.length }}</b> of <b>{{ todos.length }}</b>
-              </p>
-              <p v-if="completed.length > 0"
-                class="hiddenToggleNote position-absolute text-nowrap card border pb-1 px-2 rounded">
-                {{ completed.length }} completed task{{ completed.length > 1 ? 's' : '' }} hidden </p>
-            </span>
+      <div class="bar"></div>
 
-            <div class="bar"></div>
+      <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
+        <p class="fs-5 mb-0 px-1 orange">Clean up list</p>
+        <i class="fs-3 ms-1 headerIcon mdi mdi-broom"></i>
+      </span>
 
-            <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
-              <p class="fs-5 mb-0 px-1 orange">Clean up list</p>
-              <i class="fs-3 ms-1 headerIcon mdi mdi-broom"></i>
-            </span>
+    </div>
 
-          </div>
+    <hr class="my-1">
 
-          <hr class="my-1">
+    <div v-for="todo in todos" :key="todo.id">
+      <ToDoListEntry :todo="todo" />
+    </div>
 
-          <div v-for="todo in todos" :key="todo.id">
-            <ToDoListEntry :todo="todo" />
-          </div>
-
-        </section>
-      </div>
-    </section>
-  </div>
+  </section>
 </template>
 
 
@@ -187,5 +180,9 @@ i,
 .showToggleNote:hover+.hiddenToggleNote {
   opacity: .95;
   visibility: visible;
+}
+
+.todoForm{
+  top: 76px;
 }
 </style>

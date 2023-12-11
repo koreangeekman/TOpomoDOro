@@ -1,5 +1,5 @@
 <template>
-  <header class="z2">
+  <header class="z2 sticky-top">
     <Navbar />
   </header>
   <main class="z0">
