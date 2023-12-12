@@ -31,16 +31,12 @@
 
 <script>
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import { AppState } from "../AppState";
 import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
 
 export default {
   setup() {
-    const router = useRouter();
-
     return {
-      router,
       account: computed(() => AppState.account),
       authQueried: computed(() => AppState.authQueried),
 

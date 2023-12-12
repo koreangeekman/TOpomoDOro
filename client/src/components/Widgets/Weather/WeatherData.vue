@@ -1,5 +1,5 @@
 <template>
-  <div v-if="temps.C?.mainTemp" class="weatherData ">
+  <div v-if="temps.C?.mainTemp" class="weatherData">
 
     <span class="d-flex align-items-center pt-2">
 
@@ -53,7 +53,7 @@ export default {
     temps: { type: Object },
     format: { type: String }
   },
-  setup(props) { return {} }
+  setup() { return {} }
 };
 </script>
 

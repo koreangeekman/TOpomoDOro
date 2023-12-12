@@ -67,8 +67,8 @@ import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import Pop from "../utils/Pop.js";
 import { bgImageService } from "../services/Widgets/BGImageService.js";
-import BGImgWidget from "./Widgets/BGImgWidget.vue";
 import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
+import BGImgWidget from "./Widgets/BGImgWidget.vue";
 import ClockWidget from "./Widgets/ClockWidget.vue";
 
 export default {
