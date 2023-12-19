@@ -32,13 +32,7 @@
         <div class="bar mx-2"></div>
 
         <li class="d-flex align-items-center position-relative my-2 my-md-0">
-          <p title="Change background" @click="changeBG()" type="button"
-            class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
-            <i class="fs-2 mdi mdi-image-refresh"></i>
-          </p>
-          <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-3 p-0">
-            <BGImgWidget />
-          </div>
+          <BGImgWidget />
         </li>
 
         <div class="bar mx-2"></div>
@@ -76,14 +70,7 @@ export default {
     return {
       account: computed(() => AppState.account),
 
-      async changeBG() {
-        try {
-          await bgImageService.getBGImg();
-          document.body.style.backgroundImage = `url('${AppState.widgets.bgImg.largeImgUrl}')`
-        } catch (error) {
-          Pop.error(error);
-        }
-      }
+
 
     }
   },
@@ -119,25 +106,6 @@ a:hover {
   opacity: .32;
 }
 
-/* SECTION BG IMG CONTROLS CSS */
-.hide {
-  cursor: default;
-  transition: ease-in-out .25s;
-  opacity: 0;
-  visibility: hidden;
-  width: 15rem;
-}
-
-.showInfo:hover+.hide {
-  opacity: 1;
-  visibility: visible;
-}
-
-.BGImgControls {
-  bottom: -6rem;
-  left: 0;
-}
-
 /* SECTION MEDIA TRANSFORMS */
 
 @media screen and (min-width: 992px) {
@@ -146,16 +114,4 @@ a:hover {
   }
 }
 
-@media screen and (max-width:1100px) {
-  .BGImgControls {
-    left: -11.8em;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .BGImgControls {
-    left: 5rem;
-    bottom: 0rem;
-  }
-}
 </style>

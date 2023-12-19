@@ -1,8 +1,9 @@
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { Settings } from "../models/Settings.js"
-import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger"
 import { api } from './AxiosService'
+import Pop from "../utils/Pop"
 
 class AccountService {
 

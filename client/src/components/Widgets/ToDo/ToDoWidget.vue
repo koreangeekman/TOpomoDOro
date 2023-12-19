@@ -10,21 +10,21 @@
     <div class="d-flex justify-content-between todoSmall mx-1 my-2">
 
       <span class="d-flex align-items-center pe-3" type="button" tabindex="0" @click="sortList()">
-        <p class="fs-5 mb-0 px-1 orange">Sort List</p>
-        <i class="fs-4 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
+        <p class="fs-6 mb-0 px-1 orange">Sort List</p>
+        <i class="fs-5 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
       </span>
 
       <div class="bar"></div>
 
       <span type="button" @click="toggleCompleted()" class="position-relative">
-        <p class="fs-5 mb-0 px-3 orange showToggleNote" tabindex="0" v-if="todos.length == incomplete.length">
+        <p class="fs-6 mb-0 px-3 orange showToggleNote" tabindex="0" v-if="todos.length == incomplete.length">
           <b>{{ todos.length }}</b> things To Do
         </p>
-        <p class="fs-4 mb-0 px-3 orange showToggleNote" tabindex="0"
+        <p class="fs-5 mb-0 px-3 orange showToggleNote" tabindex="0"
           v-else-if="todos.length > 0 && incomplete.length == 0">
           <b> Great Job! </b>
         </p>
-        <p class="fs-5 mb-0 px-3 orange" v-else tabindex="0">
+        <p class="fs-6 mb-0 px-3 orange" v-else tabindex="0">
           Remaining: <b>{{ incomplete.length }}</b> of <b>{{ todos.length }}</b>
         </p>
         <p v-if="completed.length > 0"
@@ -35,8 +35,8 @@
       <div class="bar"></div>
 
       <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
-        <p class="fs-5 mb-0 px-1 orange">Clean up list</p>
-        <i class="fs-3 ms-1 headerIcon mdi mdi-broom"></i>
+        <p class="fs-6 mb-0 px-1 orange">Clean up list</p>
+        <i class="fs-4 ms-1 headerIcon mdi mdi-broom"></i>
       </span>
 
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
+  <div class="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 mb-1">
     <span class="d-flex w-100 shown">
       <i v-if="todo.edit" class="fs-4 text-secondary mdi mdi-cancel" type="button" title="Cancel edit" tabindex="0"
         @click="cancelEdit(todo)"></i>

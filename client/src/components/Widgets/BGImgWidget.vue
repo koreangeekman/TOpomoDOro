@@ -1,23 +1,29 @@
 <template>
-  <div class="position-relative text-center blueBlur shadow BGImgCredit p-1 pb-2">
-    <p class="mb-1 text-nowrap shadow">Background Image Credit & Controls</p>
-    <div class="" id="BGImgCredit">
-      <div class="d-flex justify-content-between shadow px-2">
-        <p>Author:</p>
-        <p>{{ bgImg.author }}</p>
+  <p title="Change background" @click="_getBGImg()" type="button"
+    class="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
+    <i class="fs-2 mdi mdi-image-refresh"></i>
+  </p>
+  <div class="BGImgControls hide d-flex justify-content-start position-absolute mx-3 p-0">
+    <div class="position-relative text-center blueBlur shadow BGImgCredit p-1 pb-2">
+      <p class="mb-1 text-nowrap shadow">Background Image Credit & Controls</p>
+      <div class="" id="BGImgCredit">
+        <div class="d-flex justify-content-between shadow px-2">
+          <p>Author:</p>
+          <p>{{ bgImg.author }}</p>
+        </div>
+        <div class="d-flex justify-content-between shadow px-2">
+          <p>Tags: </p>
+          <p>{{ bgImg.query }}</p>
+        </div>
+        <div class="d-flex justify-content-between shadow px-2">
+          <p class="me-2">Query: </p>
+          <p class="pe-1 text-nowrap">{{ bgImg.tags }}</p>
+        </div>
       </div>
-      <div class="d-flex justify-content-between shadow px-2">
-        <p>Tags: </p>
-        <p>{{ bgImg.query }}</p>
-      </div>
-      <div class="d-flex justify-content-between shadow px-2">
-        <p class="me-2">Query: </p>
-        <p class="pe-1 text-nowrap">{{ bgImg.tags }}</p>
-      </div>
+      <!-- <div class="position-absolute changeBG">
+        <i class="fs-3 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
+      </div> -->
     </div>
-    <!-- <div class="position-absolute changeBG">
-      <i class="fs-3 mdi mdi-dice-d20" type="button" title="Change background" @click="rng()"></i>
-    </div> -->
   </div>
 </template>
 
@@ -46,12 +52,10 @@ export default {
     })
 
     return {
+      _getBGImg,
+
       backgrounds: computed(() => AppState.backgrounds),
       bgImg: computed(() => AppState.widgets.bgImg),
-
-      rng() {
-        _getBGImg();
-      }
 
     }
   }
@@ -89,5 +93,36 @@ export default {
   border-radius: .25rem;
   /* width: fit-content; */
   backdrop-filter: blur(3px);
+}
+
+.hide {
+  cursor: default;
+  transition: ease-in-out .25s;
+  opacity: 0;
+  visibility: hidden;
+  width: 15rem;
+}
+
+.showInfo:hover+.hide {
+  opacity: 1;
+  visibility: visible;
+}
+
+.BGImgControls {
+  bottom: -6rem;
+  left: 0;
+}
+
+@media screen and (max-width:1100px) {
+  .BGImgControls {
+    left: -11.8em;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .BGImgControls {
+    left: 5rem;
+    bottom: 0rem;
+  }
 }
 </style>
