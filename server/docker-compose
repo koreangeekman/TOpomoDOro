@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: koreangeekman/topomodoro:latest
+    env_file:
+      - topomodoro-env
+    ports:
+      - "3000:3000"
