@@ -14,6 +14,7 @@ env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   ENV_FILE: ${{ secrets.ENV_FILE }}
+  OPENWEATHERAPI_KEY: ${{ secrets.OPENWEATHERAPI_KEY }}
 
 jobs:
   deploy:
@@ -37,6 +38,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS "
             sudo echo '$ENV_FILE' > ~/$REPO_NAME-env &&
+            sudo echo '$OPENWEATHERAPI_KEY' >> ~/$REPO_NAME-env &&
             sudo docker login -u $DOCKER_USERNAME -p '$DOCKER_PASSWORD' &&
             sudo docker pull $DOCKER_USERNAME/$REPO_NAME:latest &&
             sudo docker-compose -p $REPO_NAME -f ~/$REPO_NAME-compose up -d
