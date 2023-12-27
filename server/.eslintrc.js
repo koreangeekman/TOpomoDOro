@@ -1,7 +1,7 @@
 const NEVER = 'never'
 const ERROR = 2
 const WARN = 1
-const PROD = process.env.NODE_ENV === 'production' || 'prod'
+const PROD = process.env.NODE_ENV === 'production'
 
 module.exports = {
   root: true,
