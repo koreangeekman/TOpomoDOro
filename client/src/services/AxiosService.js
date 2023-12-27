@@ -6,11 +6,14 @@ export const api = Axios.create({
   baseURL,
   timeout: 8000
 })
+
+const weatherAPIkey = process.env.OPENWEATHERAPI_KEY;
+
 export const weatherAPI = Axios.create({ // returns 5 day forecast results per 3 hrs
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
   timeout: 8000,
   params: {
-    appid: process.env.OPENWEATHERAPI_KEY
+    appid: weatherAPIkey
   }
 })
 export const bcwSandbox = Axios.create({
