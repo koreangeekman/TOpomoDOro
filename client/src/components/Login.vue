@@ -25,11 +25,11 @@
                 Manage Account
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action">
+            <!-- <div class="list-group-item dropdown-item list-group-item-action">
               <div type="button" data-bs-toggle="modal" data-bs-target="#userSettingsModal">
                 Preferences
               </div>
-            </div>
+            </div> -->
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout

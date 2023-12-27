@@ -9,10 +9,10 @@
   <section v-if="todos.length > 0" class="card p-2" id="todoList">
     <div class="d-flex justify-content-between todoSmall mx-1 my-2">
 
-      <span class="d-flex align-items-center pe-3" type="button" tabindex="0" @click="sortList()">
+      <!-- <span class="d-flex align-items-center pe-3" type="button" tabindex="0" @click="sortList()">
         <p class="fs-6 mb-0 px-1 orange">Sort List</p>
         <i class="fs-5 ms-1 headerIcon mdi mdi-sort-bool-ascending-variant"></i>
-      </span>
+      </span> -->
 
       <div class="bar"></div>
 
@@ -39,6 +39,8 @@
         <i class="fs-4 ms-1 headerIcon mdi mdi-broom"></i>
       </span>
 
+      <div class="bar"></div>
+
     </div>
 
     <hr class="my-1">
@@ -52,7 +54,7 @@
 
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { AppState } from '../../../AppState';
 import Pop from "../../../utils/Pop.js";
 import ToDoListEntry from "./ToDoListEntry.vue";
@@ -61,29 +63,12 @@ import { toDoService } from "../../../services/Widgets/ToDoService.js";
 export default {
   setup() {
     const newToDo = ref({});
-    const sortOptions = ref([]);
     const sortOpt = ref('alpha');
-
-    const sorting = ['default', 'creation date', 'alphabetical'];
-
-    // async function _getToDos() {
-    //   try {
-    //     await toDoService.getToDos();
-    //   }
-    //   catch (error) {
-    //     Pop.error(error);
-    //   }
-    // }
-
-    onMounted(() => {
-      // via AuthService
-    });
 
     return {
       newToDo,
       sortOpt,
 
-      // settings: computed(() => AppState.settings.todo),
       account: computed(() => AppState.account),
       todos: computed(() => {
         let arr = AppState.todos;
@@ -96,10 +81,6 @@ export default {
       }),
       incomplete: computed(() => AppState.todos.filter(todo => !todo.isCompleted)),
       completed: computed(() => AppState.todos.filter(todo => todo.isCompleted)),
-
-      // toggleVisibility() {
-      //   !settings.showAll;
-      // },
 
       async createToDo() {
         try {
@@ -182,7 +163,7 @@ i,
   visibility: visible;
 }
 
-.todoForm{
+.todoForm {
   top: 76px;
 }
 </style>

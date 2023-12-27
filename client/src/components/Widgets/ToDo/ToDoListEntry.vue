@@ -41,14 +41,12 @@ export default {
     return {
       account: computed(() => AppState.account),
 
-
       async toggleCompleted(todoObj) {
         try {
           !todoObj.isCompleted;
           await toDoService.updateToDo(todoObj);
-        } catch (error) {
-          Pop.error(error)
         }
+        catch (error) { Pop.error(error); }
       },
 
       enableEdit(todoObj) {
@@ -63,11 +61,8 @@ export default {
       },
 
       async saveEdit(todoObj) {
-        try {
-          await toDoService.updateToDo(todoObj);
-        } catch (error) {
-          Pop.error(error);
-        }
+        try { await toDoService.updateToDo(todoObj); }
+        catch (error) { Pop.error(error); }
       },
 
       async removeToDo(todoObj) {
@@ -75,9 +70,8 @@ export default {
           const yes = await Pop.confirm('Remove this ToDo entry?');
           if (!yes) { return }
           await toDoService.removeToDo(todoObj);
-        } catch (error) {
-          Pop.error(error)
         }
+        catch (error) { Pop.error(error); }
       }
 
     }

@@ -31,8 +31,8 @@
 <script>
 import { AppState } from '../../AppState';
 import { computed, onMounted } from 'vue';
-import Pop from "../../utils/Pop.js";
 import { bgImageService } from "../../services/Widgets/BGImageService.js";
+import Pop from "../../utils/Pop.js";
 
 export default {
   setup() {
@@ -40,9 +40,8 @@ export default {
       try {
         await bgImageService.getBGImg();
         document.body.style.backgroundImage = `url('${AppState.widgets.bgImg.largeImgUrl}')`
-      } catch (error) {
-        Pop.error(error);
       }
+      catch (error) { Pop.error(error); }
     }
 
     onMounted(() => {
@@ -91,7 +90,6 @@ export default {
   background-color: #123456b9;
   color: whitesmoke;
   border-radius: .25rem;
-  /* width: fit-content; */
   backdrop-filter: blur(3px);
 }
 
