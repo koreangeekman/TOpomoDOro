@@ -2,7 +2,7 @@ import { AppState } from "../../AppState.js";
 import { Weather } from "../../models/Widget/Weather.js";
 import { logger } from "../../utils/Logger.js";
 import { accountService } from "../AccountService.js";
-import { weatherAPI } from "../AxiosService.js";
+import { weather } from "../AxiosService.js";
 
 const WEATHER_CACHE = {};
 
@@ -37,7 +37,7 @@ class WeatherService {
     //   query = `?lat=${settings.location[0]}&lon=${settings.location[1]}`;
     // }
 
-    const res = await weatherAPI.get(`${query}`);
+    const res = await weather.get(`${query}`);
     const weatherPoll = new Weather(res.data);
 
     settings.lastPoll = weatherPoll.details.dt
