@@ -9,14 +9,7 @@
             </div>
           </div>
         </div>
-        <div v-else-if="!authQueried" class="col-12 p-5 d-flex justify-content-center">
-          <span class="fs-1 text-white blueBlur rounded-pill px-3 d-flex align-items-center">
-            <i class="mdi mdi-tire mdi-spin"></i>
-            <p class="mb-0 mx-3 fs-3">LOADING</p>
-            <i class="mdi mdi-tire mdi-spin"></i>
-          </span>
-        </div>
-        <div v-else-if="!account.id && authQueried" class="col-12 p-5 d-flex flex-column align-items-center">
+        <div v-else-if="!account.id" class="col-12 p-5 d-flex flex-column align-items-center">
           <span class="d-flex mb-4 align-items-center justify-content-center flex-wrap">
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> (●'◡'●)</p>
             <p class="fs-1 p-4 blueBlur shadow rounded-pill loginNote">Login for additional functionality!</p>
