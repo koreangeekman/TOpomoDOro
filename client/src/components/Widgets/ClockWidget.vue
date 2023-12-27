@@ -32,7 +32,7 @@ export default {
       } else if (hour >= 22) {
         ToD = 'Good night!'
       }
-      Pop.success(ToD)
+      Pop.success(ToD);
     }
 
     function _drawClock() {
@@ -51,7 +51,7 @@ export default {
           ampm = 'am';
         }
       }
-      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`
+      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`;
     }
 
     onMounted(() => {
@@ -62,10 +62,7 @@ export default {
     return {
       currentTime: computed(() => AppState.widgets.clock),
 
-      toggleFormat() {
-        clockService.toggleFormat();
-      },
-
+      toggleFormat() { clockService.toggleFormat(); },
     }
   },
 

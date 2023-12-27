@@ -51,7 +51,6 @@ export default {
 .quoteContent {
   cursor: help;
   font-size: large;
-  // width: fit-content;
 }
 
 .quoteInfo {
@@ -76,7 +75,6 @@ export default {
   background-color: #123456b9;
   color: whitesmoke;
   border-radius: .25rem;
-  /* width: fit-content; */
   backdrop-filter: blur(3px);
 }
 

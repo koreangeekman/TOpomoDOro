@@ -37,11 +37,11 @@
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
-import Pop from "../utils/Pop.js";
-import UserCard from "../components/UserCard.vue";
+import { computed, onMounted } from "vue";
 import { accountService } from "../services/AccountService.js";
+import UserCard from "../components/UserCard.vue";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup() {

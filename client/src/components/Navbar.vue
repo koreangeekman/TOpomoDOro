@@ -59,20 +59,13 @@
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import Login from './Login.vue';
-import Pop from "../utils/Pop.js";
-import { bgImageService } from "../services/Widgets/BGImageService.js";
 import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
 import BGImgWidget from "./Widgets/BGImgWidget.vue";
 import ClockWidget from "./Widgets/ClockWidget.vue";
 
 export default {
   setup() {
-    return {
-      account: computed(() => AppState.account),
-
-
-
-    }
+    return {}
   },
   components: { Login, BGImgWidget, WeatherWidget, ClockWidget }
 }
@@ -113,5 +106,4 @@ a:hover {
     height: 76px;
   }
 }
-
 </style>
