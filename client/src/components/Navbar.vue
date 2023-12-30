@@ -56,8 +56,6 @@
 
 
 <script>
-import { computed } from "vue";
-import { AppState } from "../AppState.js";
 import Login from './Login.vue';
 import WeatherWidget from "./Widgets/Weather/WeatherWidget.vue";
 import BGImgWidget from "./Widgets/BGImgWidget.vue";
