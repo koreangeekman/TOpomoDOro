@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 export const ToDoSchema = new Schema({
   body: { type: String, required: true, maxLength: 200 },
   isCompleted: { type: Boolean, required: true, default: false },
-  collectionId: { type: Schema.Types.ObjectId, required: true, ref: 'Collection' },
+  // collectionId: { type: Schema.Types.ObjectId, required: true, ref: 'Collection' },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -14,9 +14,9 @@ ToDoSchema.virtual('creator', {
   ref: 'Account'
 })
 
-ToDoSchema.virtual('collection', {
-  localField: 'collectionId',
-  foreignField: '_id',
-  justOne: true,
-  ref: 'Collection'
-})
+// ToDoSchema.virtual('collection', {
+//   localField: 'collectionId',
+//   foreignField: '_id',
+//   justOne: true,
+//   ref: 'Collection'
+// })
