@@ -6,7 +6,6 @@ function _captureData(newData) {
   const updateable = {
     body: newData.body,
     isCompleted: newData.isCompleted,
-    // collectionId: newData.collectionId
   }
   return updateable
 }
