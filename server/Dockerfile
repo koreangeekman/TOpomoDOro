@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image for the client build
-FROM node:21.5.0-slim AS client-builder
+FROM node:21.5 AS client-builder
 
 # Set the working directory in the client builder container
 WORKDIR /app/client
@@ -17,7 +17,7 @@ COPY client ./
 RUN npm run build
 
 # Use a smaller base image for the final server image
-FROM node:21.5.0-slim
+FROM node:21.5
 
 # Set the working directory in the server container
 WORKDIR /app/server
