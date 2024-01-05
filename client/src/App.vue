@@ -35,7 +35,7 @@ export default {
 @import "./assets/scss/main.scss";
 
 :root {
-  --main-height: calc(100vh - 76px -5rem);
+  --main-height: calc(100vh - 76px - 5rem);
 }
 
 body {
