@@ -30,13 +30,13 @@
         </li>
 
         <div class="bar mx-2"></div>
-
+        <!-- 
         <li class="d-flex align-items-center position-relative my-2 my-md-0">
           <BGImgWidget />
         </li>
 
         <div class="bar mx-2"></div>
-
+ -->
         <li class="d-flex align-items-center mx-4 my-2 my-md-0">
           <WeatherWidget />
         </li>

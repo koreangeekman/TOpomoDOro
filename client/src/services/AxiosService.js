@@ -16,12 +16,7 @@ export const weather = Axios.create({ // returns 5 day forecast results per 3 hr
 })
 export const bcwSandbox = Axios.create({
   baseURL: 'https://sandbox.codeworksacademy.com/',
-  timeout: 6000,
-  params: {
-    clientId: 'pOXw2OGv1LsYi7LEBmDF04RLkXQvldml',
-    domain: 'codeworksclassroom.auth0.com',
-    audience: 'https://codeworksclassroom.com'
-  }
+  timeout: 4000
 })
 
 api.interceptors.request.use(config => config, handleAxiosError)
