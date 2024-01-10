@@ -20,3 +20,6 @@ ToDoSchema.virtual('creator', {
 //   justOne: true,
 //   ref: 'Collection'
 // })
+
+// per user collection - integration with twitch - max 3?5 todos for general users
+// displayed as: [ @user :: todo ]

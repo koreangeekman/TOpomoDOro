@@ -12,7 +12,7 @@
         <div v-else-if="!account.id" class="col-12 p-5 d-flex flex-column align-items-center">
           <span class="d-flex mb-4 align-items-center justify-content-center flex-wrap">
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> (●'◡'●)</p>
-            <p class="fs-1 p-4 blueBlur shadow rounded-pill loginNote">Login for additional functionality!</p>
+            <p class="fs-1 p-4 blueBlur shadow rounded-pill loginNote">Login for your personal To Do list manager!</p>
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> ✍️(◔◡◔)</p>
           </span>
         </div>
