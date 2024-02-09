@@ -2,6 +2,9 @@
   <div class="position-relative">
     <div class="container-fluid">
       <section class="row justify-content-center p-0">
+        <div class="col-12">
+          <PomodoroWidget />
+        </div>
         <div v-if="account.id" class="col-12 p-0 pt-md-4 pe-md-4 d-flex justify-content-end">
           <div class="row p-0">
             <div class="col-12 ToDoWidget">
@@ -31,6 +34,7 @@
 import { computed } from "vue";
 import { AppState } from "../AppState";
 import ToDoWidget from "../components/Widgets/ToDo/ToDoWidget.vue";
+import PomodoroWidget from "../components/Widgets/Pomodoro/PomodoroWidget.vue";
 
 export default {
   setup() {
@@ -44,7 +48,7 @@ export default {
 
     };
   },
-  components: { ToDoWidget }
+  components: { ToDoWidget, PomodoroWidget }
 }
 </script>
 
