@@ -1,18 +1,20 @@
 <template>
-  <div v-if="currentTime">
-    <p class="fs-1 mb-0 clock" v-html="currentTime" @click="toggleFormat()"></p>
+  <div v-if="clockTime">
+    <p class="fs-1 mb-0 clock" v-html="clockTime" @click="toggleFormat()"></p>
   </div>
 </template>
 
 
 <script>
 import { AppState } from '../../AppState';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { clockService } from '../../services/Widgets/ClockService.js'
 import Pop from "../../utils/Pop.js";
 
 export default {
   setup() {
+
+    const clockTime = ref('')
 
     function _greetings() {
       const hour = new Date().getHours();
@@ -51,7 +53,7 @@ export default {
           ampm = 'am';
         }
       }
-      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`;
+      clockTime.value = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`;
     }
 
     onMounted(() => {
@@ -60,7 +62,8 @@ export default {
     })
 
     return {
-      currentTime: computed(() => AppState.widgets.clock),
+      clockTime,
+      // currentTime: computed(() => AppState.widgets.clock),
 
       toggleFormat() { clockService.toggleFormat(); },
     }
