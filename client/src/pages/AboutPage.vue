@@ -40,7 +40,7 @@
 import { AppState } from "../AppState.js";
 import { computed, onMounted } from "vue";
 import { accountService } from "../services/AccountService.js";
-import UserCard from "../components/UserCard.vue";
+import UserCard from "../components/Account/UserCard.vue";
 import Pop from "../utils/Pop.js";
 
 export default {

@@ -6,8 +6,12 @@
         <UserCard :profile="account" />
       </div>
 
-      <div v-if="account.id" class="col-12 col-lg-6 col-xxl-5 py-5 pe-xl-5">
+      <div class="col-12 col-lg-6 col-xxl-5 py-5 pe-xl-5">
         <EditAccountForm />
+      </div>
+
+      <div class="col-12 py-5 pe-xl-5">
+        <EditSettingsForm />
       </div>
     </section>
   </div>
@@ -16,18 +20,20 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../AppState';
-import EditAccountForm from "../components/EditAccountForm.vue";
-import UserCard from "../components/UserCard.vue";
+import UserCard from "../components/Account/UserCard.vue";
+import EditAccountForm from "../components/Account/EditAccountForm.vue";
+import EditSettingsForm from "../components/Account/EditSettingsForm.vue";
 
 export default {
   setup() {
 
     return {
       account: computed(() => AppState.account),
+      settings: computed(() => AppState.settings),
 
     };
   },
-  components: { EditAccountForm, UserCard }
+  components: { UserCard, EditAccountForm, EditSettingsForm }
 }
 </script>
 

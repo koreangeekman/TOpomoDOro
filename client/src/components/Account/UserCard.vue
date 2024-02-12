@@ -29,9 +29,9 @@
 
 
 <script>
-import { AppState } from '../AppState';
+import { AppState } from '../../AppState';
 import { computed } from 'vue';
-import { Account } from "../models/Account.js";
+import { Account } from "../../models/Account.js";
 
 export default {
   props: { profile: { type: Account } },

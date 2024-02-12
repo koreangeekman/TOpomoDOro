@@ -3,7 +3,7 @@
     <section class="row justify-content-between">
       <div class="col-12">
         <p class="fs-3 text-center">Edit profile</p>
-        <hr>
+        <hr> <!--  -----  -->
       </div>
 
       <div class="col-12 col-md-6">
@@ -44,7 +44,7 @@
           <textarea v-model="editable.bio" class="ms-2 form-control" name="bio" id="bio" rows="4"
             maxlength="500"></textarea>
         </div>
-        <hr>
+        <hr> <!--  -----  -->
       </div>
 
       <div class="d-flex justify-content-center pe-3">
@@ -57,10 +57,10 @@
 
 <script>
 import { ref, watchEffect } from "vue";
-import { AppState } from "../AppState";
-import { accountService } from "../services/AccountService";
-import { logger } from "../utils/Logger";
-import Pop from "../utils/Pop";
+import { AppState } from "../../AppState";
+import { accountService } from "../../services/AccountService";
+import { logger } from "../../utils/Logger";
+import Pop from "../../utils/Pop";
 
 export default {
   setup() {
