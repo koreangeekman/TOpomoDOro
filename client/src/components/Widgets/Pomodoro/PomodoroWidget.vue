@@ -1,6 +1,6 @@
 <template>
   <div class="m-2">
-    <div class="card px-2">
+    <div class="card px-2 py-5">
       <div class="fs-1" v-html="clockTime"></div>
     </div>
   </div>
