@@ -90,11 +90,12 @@
           <h4 class="ms-3 mb-3">To Do Settings</h4>
           <div class="m-3 mt-0">
             <label for="github">Active Project</label>
-            <input v-model="settings.todo.project" class="ms-2 form-control" type="url" id="github" maxlength="64">
+            <input v-model="settings.todo.project" class="ms-2 form-control" type="text" id="github" maxlength="64"
+              placeholder="default">
           </div>
           <div class="m-3 mt-0">
             <label for="todoColWidth">Max Column Width (To-Do Only Views)</label>
-            <input v-model="settings.todoColWidth" class="ms-2 form-control" type="number" id="todoColWidth" min="1"
+            <input v-model="settings.todo.todoColWidth" class="ms-2 form-control" type="number" id="todoColWidth" min="1"
               max="12">
           </div>
         </section>
@@ -152,7 +153,7 @@
           <div class="m-3 mt-0">
             <label for="customBGImg">Custom Background by URL</label>
             <input v-model="settings.bgImg.customBGImg" class="ms-2 form-control" type="url" id="customBGImg"
-              maxlength="256" :disabled="!settings.bgImg.enable && settings.bgImg.enableAutoChange">
+              maxlength="256" :disabled="!settings.bgImg.enable && settings.bgImg.enableAutoChange" placeholder="URL">
           </div>
           <div class="m-3 mt-0">
             <label for="todoColWidth">Refresh Cycle (in hours)</label>
