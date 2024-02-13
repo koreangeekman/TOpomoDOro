@@ -20,7 +20,6 @@ export const AppState = reactive({
     bgImg: {}, // populated by CodeWorks Sandbox API on get
     /** @type {import('./models/Widget/Quote.js').Quote} */
     quote: {}, // populated by CodeWorks Sandbox API on get
-    clock: new Date() // last login tracking
   },
 
   backgrounds: [],
@@ -32,18 +31,21 @@ export const AppState = reactive({
       vAlign: 'd-flex align-items-center', // enum[align-items-start,align-items-center,align-items-end]
       pomoColWidth: 6, // enum[1-11]/12
       todoColWidth: 4, // enum[1-11]/12
+      saveLastView: false // keep track of last used view and reopen / disable 'name' field change by user? and auto-update
     },
     todo: {
-      showAll: true,
+      showAll: true, // show all todo entries or hide completed
       activeProject: '',
       todoColWidth: 4, // enum[1-12]/12 -- max column width -- when ToDo only
     },
     pomodoro: {
+      lockRatio: true, // 5/1 work/break time ratio
       workTime: 25,
       breakTime: 5,
       cycles: 1,
       breakTimeAudioCue: '',
       workTimeAudioCue: '',
+      pomoColWidth: 6, // enum[1-12]/12 -- max column width -- when pomodoro only
     },
     weather: {
       city: 'Boise',
@@ -57,18 +59,21 @@ export const AppState = reactive({
     quote: {
       enabled: true,
       autoChange: false,
-      cycle: 3600 // auto-refresh interval
+      cycle: 24 // auto-refresh interval -- in hours
     },
     bgImg: {
-      enabled: true,
-      bgColor: '#123456', // if bgImg is disabled/unresponsive, set a custom bg-color
-      autoChange: false,
-      cycle: 3600 // auto-refresh interval
+      enabled: true, // when disabled, use bgColor
+      bgColor: '#123456', // set as a custom bg-color
+      textColor: '#123456', // set as a custom font-color
+      autoChange: false, // when true, use (cycle * 60min * 60sec * 1000ms)
+      cycle: 24, // auto-refresh interval -- in hours
+      customBGImg: '', // if autoChange is disabled, option for custom BG
     },
     clock: {
       timeFormat: '12',
       timeZone: '-7'
-    }
+    },
+    lastLogin: new Date() // last login tracking
   }
 
 })
