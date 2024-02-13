@@ -8,12 +8,12 @@
         <span class="d-flex justify-content-between">
           <p class="mb-0 courier"> Created: </p>
           <p class="mb-0 courier">
-            {{ profile.createdAt.toLocaleDateString() + ' @ ' + profile.createdAt.toLocaleTimeString() }}</p>
+            {{ profile.createdAt?.toLocaleDateString() + ' @ ' + profile.createdAt?.toLocaleTimeString() }}</p>
         </span>
         <span class="d-flex justify-content-between">
           <p class="mb-0 courier">Updated: </p>
           <p class="mb-0 courier">
-            {{ profile.updatedAt.toLocaleDateString() + ' @ ' + profile.updatedAt.toLocaleTimeString() }} </p>
+            {{ profile.updatedAt?.toLocaleDateString() + ' @ ' + profile.updatedAt?.toLocaleTimeString() }} </p>
         </span>
       </div>
     </div>
@@ -33,8 +33,8 @@
 
 
 <script>
-import { AppState } from '../../AppState';
 import { computed } from 'vue';
+import { AppState } from '../../AppState';
 import { Account } from "../../models/Account.js";
 
 export default {

@@ -22,7 +22,7 @@ export const AppState = reactive({
     quote: {}, // populated by CodeWorks Sandbox API on get
   },
 
-  backgrounds: [],
+  backgrounds: [], // to cache the array.. will need a lifetime limit
 
   settings: {
     viewMode: {
