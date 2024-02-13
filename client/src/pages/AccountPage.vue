@@ -10,7 +10,7 @@
         <EditAccountForm />
       </div>
 
-      <div class="col-12 py-5 pe-xl-5">
+      <div class="col-12 col-md-11 pb-5 pe-xl-5">
         <EditSettingsForm />
       </div>
     </section>
@@ -29,7 +29,6 @@ export default {
 
     return {
       account: computed(() => AppState.account),
-      settings: computed(() => AppState.settings),
 
     };
   },

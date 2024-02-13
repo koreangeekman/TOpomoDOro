@@ -19,10 +19,14 @@
     </div>
     <p class="pt-3">{{ profile.bio }}</p>
     <div class="fs-1 socials d-flex justify-content-center p-3">
-      <a :href="profile.github" target="_blank"><i class="p-3 mdi mdi-github" title="github"></i></a>
-      <a :href="profile.linkedin" target="_blank"><i class="p-3 mdi mdi-linkedin" title="linkedin"></i></a>
-      <a :href="profile.resume" target="_blank"><i class="p-3 mdi mdi-file-account" title="user's resume"></i></a>
-      <a :href="profile.website" target="_blank"><i class="p-3 mdi mdi-web" title="the user's website"></i></a>
+      <a :href="profile.github" target="_blank" :class="profile.github ? 'd-block' : 'd-none'">
+        <i class="p-3 mdi mdi-github" title="user's github"></i></a>
+      <a :href="profile.linkedin" target="_blank" :class="profile.linkedin ? 'd-block' : 'd-none'">
+        <i class="p-3 mdi mdi-linkedin" title="user's linkedin"></i></a>
+      <a :href="profile.resume" target="_blank" :class="profile.resume ? 'd-block' : 'd-none'">
+        <i class="p-3 mdi mdi-file-account" title="user's resume"></i></a>
+      <a :href="profile.website" target="_blank" :class="profile.website ? 'd-block' : 'd-none'">
+        <i class="p-3 mdi mdi-web" title="user's website"></i></a>
     </div>
   </div>
 </template>
@@ -35,12 +39,9 @@ import { Account } from "../../models/Account.js";
 
 export default {
   props: { profile: { type: Account } },
-
   setup() {
-
     return {
       account: computed(() => AppState.account),
-
     }
   }
 };
