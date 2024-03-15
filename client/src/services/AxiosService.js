@@ -4,12 +4,12 @@ import { logger } from '../utils/Logger.js'
 
 export const api = Axios.create({
   baseURL,
-  timeout: 8000
+  timeout: 5000
 })
 
 export const weather = Axios.create({ // returns 5 day forecast results per 3 hrs
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
-  timeout: 8000,
+  timeout: 5000,
   params: {
     appid: 'dee0e73cd11c32c4b232ebc392880683'
   }

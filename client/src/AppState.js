@@ -27,6 +27,7 @@ export const AppState = reactive({
   settings: {
     todo: {
       showAll: true,
+      activeProject: ''
     },
     pomodoro: {
       workTime: 25,
@@ -40,7 +41,7 @@ export const AppState = reactive({
       location: {
         lon: -116.2035,
         lat: 43.6135
-      }, // [lon, lat]
+      }, // {lon, lat}
       format: 'F', // 'K'elvin, 'F'ahrenheit, 'C'elsius
       lastPoll: new Date()
     },
@@ -57,7 +58,7 @@ export const AppState = reactive({
     },
     clock: {
       timeFormat: '12',
-      timeZone: '0'
+      timeZone: '-7'
     }
   }
 

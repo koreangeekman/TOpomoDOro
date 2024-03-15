@@ -16,7 +16,8 @@
 
       <div class="bar"></div>
 
-      <span type="button" @click="toggleCompleted()" class="position-relative">
+      <span type="button" @click="toggleCompleted()" class="position-relative"
+        title="Click to show/hide completed entries">
         <p class="fs-6 mb-0 px-3 orange showToggleNote" tabindex="0" v-if="todos.length == incomplete.length">
           <b>{{ todos.length }}</b> things To Do
         </p>
@@ -34,7 +35,8 @@
 
       <div class="bar"></div>
 
-      <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()">
+      <span class="d-flex align-items-center ps-2" type="button" @click="removeAllCompleted()"
+        title="Remove completed tasks">
         <p class="fs-6 mb-0 px-1 orange">Clean up list</p>
         <i class="fs-4 ms-1 headerIcon mdi mdi-broom"></i>
       </span>

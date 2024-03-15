@@ -10,9 +10,14 @@
           </div>
         </div>
         <div v-else-if="!account.id" class="col-12 p-5 d-flex flex-column align-items-center">
-          <span class="d-flex mb-4 align-items-center justify-content-center flex-wrap">
+          <span class="d-flex mb-4 align-items-center justify-content-center flex-wrap" @click="hideMe()" id="hideMe">
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> (●'◡'●)</p>
-            <p class="fs-1 p-4 blueBlur shadow rounded-pill loginNote">Login for your personal To Do list manager!</p>
+            <div class="p-4 blueBlur shadow rounded-pill loginNote text-center">
+              <p class="fs-1 mb-0">
+                Login for your personal To Do list!
+              </p>
+              <small class="tiny">(<i> Or click to hide </i>)</small>
+            </div>
             <p class="fs-1 mx-5 p-3 blueBlur shadow rounded-pill"> ✍️(◔◡◔)</p>
           </span>
         </div>
@@ -32,6 +37,10 @@ export default {
     return {
       account: computed(() => AppState.account),
       authQueried: computed(() => AppState.authQueried),
+
+      hideMe() {
+        document.getElementById('hideMe').classList.add('d-none');
+      }
 
     };
   },

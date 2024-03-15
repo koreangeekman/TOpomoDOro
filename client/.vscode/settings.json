@@ -1,6 +1,8 @@
 {
   "javascript.preferences.importModuleSpecifier": "relative",
   "cSpell.words": [
-    "ampm"
+    "ampm",
+    "pomodoro",
+    "todos"
   ],
 }
